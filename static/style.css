@@ -1,0 +1,296 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff7ed;
+    color: #2b160b;
+}
+
+
+/* CONTAINER */
+
+.container {
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+
+/* CABEÇALHO */
+
+.hero {
+    background: #e85d04;
+    color: white;
+    text-align: center;
+    border-radius: 22px;
+    padding: 28px 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+}
+
+.logo {
+    font-size: 55px;
+}
+
+.hero h1 {
+    margin: 5px 0;
+    font-size: 29px;
+    font-weight: 900;
+}
+
+.hero p {
+    margin: 6px 0;
+    font-size: 18px;
+}
+
+
+/* CARTÕES */
+
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 21px;
+}
+
+
+/* HORÁRIOS */
+
+.horario p {
+    margin: 7px 0;
+}
+
+.esperamos {
+    margin-top: 15px !important;
+    font-weight: bold;
+    color: #e85d04;
+}
+
+
+/* LABELS */
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 7px;
+}
+
+
+/* OPÇÕES */
+
+.opcoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.opcao {
+    border: 2px solid #eeeeee;
+    border-radius: 13px;
+    padding: 14px;
+    margin: 0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.opcao:hover {
+    border-color: #e85d04;
+}
+
+.opcao:has(input:checked) {
+    border-color: #e85d04;
+    background: #fff1e6;
+}
+
+.opcao input {
+    margin-right: 7px;
+}
+
+.opcao div {
+    display: inline-block;
+}
+
+.opcao span {
+    display: block;
+    color: #777;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+
+/* CAMPOS */
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    font-size: 16px;
+    background: white;
+    outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #e85d04;
+}
+
+
+/* LISTA DE CHECKBOX */
+
+.lista {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.checkbox {
+    margin: 0;
+    padding: 11px;
+    background: #fafafa;
+    border-radius: 9px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.checkbox:hover {
+    background: #fff1e6;
+}
+
+.checkbox input {
+    accent-color: #e85d04;
+    margin-right: 6px;
+}
+
+
+/* BOTÃO WHATSAPP */
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: 13px;
+    background: #25d366;
+    color: white;
+    padding: 17px;
+    font-size: 17px;
+    font-weight: 900;
+    cursor: pointer;
+    margin-top: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+button:hover {
+    background: #1ebe5d;
+}
+
+
+/* RODAPÉ */
+
+footer {
+    text-align: center;
+    padding: 15px;
+    color: #704b3a;
+    line-height: 1.7;
+}
+
+
+/* TELA DE SUCESSO */
+
+.sucesso {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.confirmacao {
+    font-size: 65px;
+    margin-bottom: 10px;
+}
+
+.sucesso h1 {
+    font-size: 28px;
+}
+
+.sucesso p {
+    color: #666;
+    line-height: 1.6;
+}
+
+
+/* BOTÃO WHATSAPP DA CONFIRMAÇÃO */
+
+.whatsapp {
+    display: block;
+    width: 100%;
+    background: #25d366;
+    color: white;
+    text-decoration: none;
+    padding: 17px;
+    border-radius: 13px;
+    font-weight: 900;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.whatsapp:hover {
+    background: #1ebe5d;
+}
+
+
+/* VOLTAR */
+
+.voltar {
+    display: block;
+    margin-top: 18px;
+    color: #e85d04;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 480px) {
+
+    .container {
+        padding: 10px;
+    }
+
+    .hero {
+        padding: 24px 12px;
+    }
+
+    .hero h1 {
+        font-size: 25px;
+    }
+
+    .opcoes {
+        grid-template-columns: 1fr;
+    }
+
+    .lista {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 17px;
+    }
+}

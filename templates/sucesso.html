@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#25D366"
+    >
+
+    <title>
+        Pedido Boldrine Lanches
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container sucesso">
+
+    <section class="card">
+
+        <div class="confirmacao">
+            ✅
+        </div>
+
+        <h1>
+            Pedido pronto!
+        </h1>
+
+        <p>
+            Seu pedido foi montado com sucesso.
+        </p>
+
+        <p>
+            Clique no botão abaixo para abrir o WhatsApp
+            e enviar seu pedido para a Boldrine Lanches.
+        </p>
+
+
+        <a
+            class="whatsapp"
+            href="{{ whatsapp_url }}"
+        >
+
+            📲 ENVIAR PEDIDO NO WHATSAPP
+
+        </a>
+
+
+        <a
+            class="voltar"
+            href="/"
+        >
+
+            ← Fazer outro pedido
+
+        </a>
+
+    </section>
+
+</div>
+
+</body>
+
+</html>

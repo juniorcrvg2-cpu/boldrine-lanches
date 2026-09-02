@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#e85d04">
+
+    <title>Boldrine Lanches 🌭</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- CABEÇALHO -->
+    <header class="hero">
+
+        <div class="logo">
+            🌭
+        </div>
+
+        <h1>
+            BOLDRINE LANCHES
+        </h1>
+
+        <p>
+            Monte do seu jeito!
+        </p>
+
+    </header>
+
+
+    <!-- HORÁRIOS -->
+    <section class="card horario">
+
+        <h2>
+            🕐 FUNCIONAMOS
+        </h2>
+
+        <p>
+            <strong>Quinta-feira:</strong>
+            às 19:00h
+        </p>
+
+        <p>
+            <strong>Sexta-feira:</strong>
+            às 19:00h
+        </p>
+
+        <p>
+            <strong>Sábado:</strong>
+            às 19:00h
+        </p>
+
+        <p>
+            <strong>Domingo:</strong>
+            às 21:10h
+        </p>
+
+        <p class="esperamos">
+            Esperamos por você! ❤️
+        </p>
+
+    </section>
+
+
+    <!-- FORMULÁRIO -->
+    <form action="/pedido" method="POST">
+
+
+        <!-- LANCHES -->
+        <section class="card">
+
+            <h2>
+                🌭 MONTE SEU DOG
+            </h2>
+
+
+            <!-- TAMANHO -->
+            <label>
+                Escolha o tamanho:
+            </label>
+
+            <div class="opcoes">
+
+                <label class="opcao">
+
+                    <input
+                        type="radio"
+                        name="tamanho"
+                        value="NORMAL"
+                        required
+                    >
+
+                    <div>
+
+                        <strong>
+                            NORMAL
+                        </strong>
+
+                        <span>
+                            14 CM
+                        </span>
+
+                    </div>
+
+                </label>
+
+
+                <label class="opcao">
+
+                    <input
+                        type="radio"
+                        name="tamanho"
+                        value="SUPER"
+                    >
+
+                    <div>
+
+                        <strong>
+                            SUPER
+                        </strong>
+
+                        <span>
+                            32 CM
+                        </span>
+
+                    </div>
+
+                </label>
+
+            </div>
+
+
+            <!-- TIPO -->
+            <label>
+                Escolha o sabor:
+            </label>
+
+            <div class="opcoes">
+
+                <label class="opcao">
+
+                    <input
+                        type="radio"
+                        name="tipo"
+                        value="Salsicha"
+                        required
+                    >
+
+                    <div>
+
+                        🌭
+                        <strong>
+                            Salsicha
+                        </strong>
+
+                    </div>
+
+                </label>
+
+
+                <label class="opcao">
+
+                    <input
+                        type="radio"
+                        name="tipo"
+                        value="Linguiça"
+                    >
+
+                    <div>
+
+                        🌭
+                        <strong>
+                            Linguiça
+                        </strong>
+
+                    </div>
+
+                </label>
+
+            </div>
+
+
+            <!-- QUANTIDADE -->
+            <label for="quantidade">
+                Quantidade:
+            </label>
+
+            <input
+                type="number"
+                id="quantidade"
+                name="quantidade"
+                value="1"
+                min="1"
+                required
+            >
+
+
+            <!-- MOLHOS -->
+            <h2>
+                🥫 MOLHOS
+            </h2>
+
+            <p class="descricao">
+                Escolha os molhos que deseja:
+            </p>
+
+            <div class="lista">
+
+                {% for molho in molhos %}
+
+                <label class="checkbox">
+
+                    <input
+                        type="checkbox"
+                        name="molhos"
+                        value="{{ molho }}"
+                    >
+
+                    <span>
+                        {{ molho }}
+                    </span>
+
+                </label>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- ACOMPANHAMENTOS -->
+            <h2>
+                🥗 ACOMPANHAMENTOS
+            </h2>
+
+            <p class="descricao">
+                Escolha os acompanhamentos:
+            </p>
+
+            <div class="lista">
+
+                {% for acompanhamento in acompanhamentos %}
+
+                <label class="checkbox">
+
+                    <input
+                        type="checkbox"
+                        name="acompanhamentos"
+                        value="{{ acompanhamento }}"
+                    >
+
+                    <span>
+                        {{ acompanhamento }}
+                    </span>
+
+                </label>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DADOS DO CLIENTE -->
+        <section class="card">
+
+            <h2>
+                📋 DADOS DO PEDIDO
+            </h2>
+
+
+            <!-- NOME -->
+            <label for="nome">
+                Seu nome:
+            </label>
+
+            <input
+                type="text"
+                id="nome"
+                name="nome"
+                placeholder="Digite seu nome"
+                required
+            >
+
+
+            <!-- ENDEREÇO -->
+            <label for="endereco">
+                Endereço:
+            </label>
+
+            <textarea
+                id="endereco"
+                name="endereco"
+                rows="3"
+                placeholder="Rua, número, bairro..."
+                required
+            ></textarea>
+
+
+            <!-- PAGAMENTO -->
+            <label for="pagamento">
+                Forma de pagamento:
+            </label>
+
+            <select
+                id="pagamento"
+                name="pagamento"
+                required
+            >
+
+                <option value="">
+                    Selecione
+                </option>
+
+                <option value="PIX">
+                    PIX
+                </option>
+
+                <option value="Dinheiro">
+                    Dinheiro
+                </option>
+
+                <option value="Cartão de débito">
+                    Cartão de débito
+                </option>
+
+                <option value="Cartão de crédito">
+                    Cartão de crédito
+                </option>
+
+            </select>
+
+
+            <!-- OBSERVAÇÕES -->
+            <label for="observacoes">
+                Observações:
+            </label>
+
+            <textarea
+                id="observacoes"
+                name="observacoes"
+                rows="3"
+                placeholder="Ex.: sem cebola, tocar interfone..."
+            ></textarea>
+
+
+            <!-- BOTÃO -->
+            <button type="submit">
+
+                📲 ENVIAR PEDIDO
+                <br>
+
+                PELO WHATSAPP
+
+            </button>
+
+        </section>
+
+    </form>
+
+
+    <!-- RODAPÉ -->
+    <footer>
+
+        <p>
+            ❤️ Qualidade, sabor e carinho em cada dog!
+        </p>
+
+        <p>
+            📲 WhatsApp:
+            (21) 98800-0094
+        </p>
+
+    </footer>
+
+</div>
+
+</body>
+
+</html>
