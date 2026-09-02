@@ -8,7 +8,7 @@ app = Flask(__name__)
 WHATSAPP = os.getenv("WHATSAPP_NUMBER", "5521988000094")
 
 # Preços
-PREÇOS = {
+PRECOS = {
     ("NORMAL", "Salsicha"): 18.00,
     ("NORMAL", "Linguiça"): 20.00,
     ("SUPER", "Salsicha"): 23.00,
@@ -65,7 +65,7 @@ def pedido():
     if quantidade < 1:
         quantidade = 1
 
-    preco = PREÇOS.get((tamanho, tipo))
+    preco = PRECOS.get((tamanho, tipo))
 
     if preco is None:
         return "Pedido inválido.", 400
@@ -91,11 +91,13 @@ def pedido():
         f"👤 *Cliente:* {nome or 'Não informado'}",
         f"📍 *Endereço:* {endereco or 'Não informado'}",
         "",
-        f"🌭 *{tamanho} — {tipo}*",
+        "🛒 *ITENS DO PEDIDO*",
+        "",
+        f"1. *{tamanho} — {tipo}*",
         f"📏 Tamanho: {tamanho_cm}",
         f"🔢 Quantidade: {quantidade}",
         f"💰 Valor unitário: R$ {preco:.2f}".replace(".", ","),
-        f"💵 *TOTAL: R$ {total:.2f}*".replace(".", ","),
+        f"💵 Subtotal: R$ {total:.2f}".replace(".", ","),
         "",
         "🥫 *Molhos:* "
         + (", ".join(molhos) if molhos else "Nenhum"),
@@ -118,6 +120,8 @@ def pedido():
         ])
 
     mensagem.extend([
+        "",
+        f"💵 *TOTAL DO PEDIDO: R$ {total:.2f}*".replace(".", ","),
         "",
         "❤️ Obrigado por pedir na Boldrine Lanches!"
     ])

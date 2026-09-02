@@ -72,305 +72,336 @@
     </section>
 
 
-    <!-- FORMULÁRIO -->
-    <form action="/pedido" method="POST">
+    <!-- CARRINHO -->
+    <section class="card carrinho">
 
+        <h2>
+            🛒 SEU CARRINHO
+        </h2>
 
-        <!-- LANCHES -->
-        <section class="card">
+        <div id="carrinho-vazio">
 
-            <h2>
-                🌭 MONTE SEU DOG
-            </h2>
-
-
-            <!-- TAMANHO -->
-            <label>
-                Escolha o tamanho:
-            </label>
-
-            <div class="opcoes">
-
-                <label class="opcao">
-
-                    <input
-                        type="radio"
-                        name="tamanho"
-                        value="NORMAL"
-                        required
-                    >
-
-                    <div>
-
-                        <strong>
-                            NORMAL
-                        </strong>
-
-                        <span>
-                            14 CM
-                        </span>
-
-                    </div>
-
-                </label>
-
-
-                <label class="opcao">
-
-                    <input
-                        type="radio"
-                        name="tamanho"
-                        value="SUPER"
-                    >
-
-                    <div>
-
-                        <strong>
-                            SUPER
-                        </strong>
-
-                        <span>
-                            32 CM
-                        </span>
-
-                    </div>
-
-                </label>
-
-            </div>
-
-
-            <!-- TIPO -->
-            <label>
-                Escolha o sabor:
-            </label>
-
-            <div class="opcoes">
-
-                <label class="opcao">
-
-                    <input
-                        type="radio"
-                        name="tipo"
-                        value="Salsicha"
-                        required
-                    >
-
-                    <div>
-
-                        🌭
-                        <strong>
-                            Salsicha
-                        </strong>
-
-                    </div>
-
-                </label>
-
-
-                <label class="opcao">
-
-                    <input
-                        type="radio"
-                        name="tipo"
-                        value="Linguiça"
-                    >
-
-                    <div>
-
-                        🌭
-                        <strong>
-                            Linguiça
-                        </strong>
-
-                    </div>
-
-                </label>
-
-            </div>
-
-
-            <!-- QUANTIDADE -->
-            <label for="quantidade">
-                Quantidade:
-            </label>
-
-            <input
-                type="number"
-                id="quantidade"
-                name="quantidade"
-                value="1"
-                min="1"
-                required
-            >
-
-
-            <!-- MOLHOS -->
-            <h2>
-                🥫 MOLHOS
-            </h2>
-
-            <p class="descricao">
-                Escolha os molhos que deseja:
+            <p>
+                Seu carrinho está vazio.
             </p>
 
-            <div class="lista">
+        </div>
 
-                {% for molho in molhos %}
+        <div id="itens-carrinho">
+        </div>
 
-                <label class="checkbox">
+        <div id="total-carrinho">
 
-                    <input
-                        type="checkbox"
-                        name="molhos"
-                        value="{{ molho }}"
-                    >
+            <strong>
+                TOTAL: R$ 0,00
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- MONTAR LANCHE -->
+    <section class="card">
+
+        <h2>
+            🌭 MONTE SEU DOG
+        </h2>
+
+
+        <!-- TAMANHO -->
+
+        <label>
+            Escolha o tamanho:
+        </label>
+
+        <div class="opcoes">
+
+            <label class="opcao">
+
+                <input
+                    type="radio"
+                    name="tamanho"
+                    value="NORMAL"
+                >
+
+                <div>
+
+                    <strong>
+                        NORMAL
+                    </strong>
 
                     <span>
-                        {{ molho }}
+                        14 CM
                     </span>
 
-                </label>
+                </div>
 
-                {% endfor %}
-
-            </div>
+            </label>
 
 
-            <!-- ACOMPANHAMENTOS -->
-            <h2>
-                🥗 ACOMPANHAMENTOS
-            </h2>
+            <label class="opcao">
 
-            <p class="descricao">
-                Escolha os acompanhamentos:
-            </p>
+                <input
+                    type="radio"
+                    name="tamanho"
+                    value="SUPER"
+                >
 
-            <div class="lista">
+                <div>
 
-                {% for acompanhamento in acompanhamentos %}
-
-                <label class="checkbox">
-
-                    <input
-                        type="checkbox"
-                        name="acompanhamentos"
-                        value="{{ acompanhamento }}"
-                    >
+                    <strong>
+                        SUPER
+                    </strong>
 
                     <span>
-                        {{ acompanhamento }}
+                        32 CM
                     </span>
 
-                </label>
+                </div>
 
-                {% endfor %}
-
-            </div>
-
-        </section>
-
-
-
-        <!-- DADOS DO CLIENTE -->
-        <section class="card">
-
-            <h2>
-                📋 DADOS DO PEDIDO
-            </h2>
-
-
-            <!-- NOME -->
-            <label for="nome">
-                Seu nome:
             </label>
 
-            <input
-                type="text"
-                id="nome"
-                name="nome"
-                placeholder="Digite seu nome"
-                required
-            >
+        </div>
 
 
-            <!-- ENDEREÇO -->
-            <label for="endereco">
-                Endereço:
+        <!-- TIPO -->
+
+        <label>
+            Escolha o sabor:
+        </label>
+
+        <div class="opcoes">
+
+            <label class="opcao">
+
+                <input
+                    type="radio"
+                    name="tipo"
+                    value="Salsicha"
+                >
+
+                <div>
+                    🌭
+                    <strong>
+                        Salsicha
+                    </strong>
+                </div>
+
             </label>
 
-            <textarea
-                id="endereco"
-                name="endereco"
-                rows="3"
-                placeholder="Rua, número, bairro..."
-                required
-            ></textarea>
 
+            <label class="opcao">
 
-            <!-- PAGAMENTO -->
-            <label for="pagamento">
-                Forma de pagamento:
+                <input
+                    type="radio"
+                    name="tipo"
+                    value="Linguiça"
+                >
+
+                <div>
+                    🌭
+                    <strong>
+                        Linguiça
+                    </strong>
+                </div>
+
             </label>
 
-            <select
-                id="pagamento"
-                name="pagamento"
-                required
-            >
-
-                <option value="">
-                    Selecione
-                </option>
-
-                <option value="PIX">
-                    PIX
-                </option>
-
-                <option value="Dinheiro">
-                    Dinheiro
-                </option>
-
-                <option value="Cartão de débito">
-                    Cartão de débito
-                </option>
-
-                <option value="Cartão de crédito">
-                    Cartão de crédito
-                </option>
-
-            </select>
+        </div>
 
 
-            <!-- OBSERVAÇÕES -->
-            <label for="observacoes">
-                Observações:
+        <!-- QUANTIDADE -->
+
+        <label for="quantidade">
+            Quantidade:
+        </label>
+
+        <input
+            type="number"
+            id="quantidade"
+            value="1"
+            min="1"
+        >
+
+
+        <!-- MOLHOS -->
+
+        <h2>
+            🥫 MOLHOS
+        </h2>
+
+        <p class="descricao">
+            Escolha os molhos que deseja:
+        </p>
+
+        <div class="lista">
+
+            {% for molho in molhos %}
+
+            <label class="checkbox">
+
+                <input
+                    type="checkbox"
+                    name="molhos"
+                    value="{{ molho }}"
+                >
+
+                <span>
+                    {{ molho }}
+                </span>
+
             </label>
 
-            <textarea
-                id="observacoes"
-                name="observacoes"
-                rows="3"
-                placeholder="Ex.: sem cebola, tocar interfone..."
-            ></textarea>
+            {% endfor %}
+
+        </div>
 
 
-            <!-- BOTÃO -->
-            <button type="submit">
+        <!-- ACOMPANHAMENTOS -->
 
-                📲 ENVIAR PEDIDO
-                <br>
+        <h2>
+            🥗 ACOMPANHAMENTOS
+        </h2>
 
-                PELO WHATSAPP
+        <p class="descricao">
+            Escolha os acompanhamentos:
+        </p>
 
-            </button>
+        <div class="lista">
 
-        </section>
+            {% for acompanhamento in acompanhamentos %}
 
-    </form>
+            <label class="checkbox">
+
+                <input
+                    type="checkbox"
+                    name="acompanhamentos"
+                    value="{{ acompanhamento }}"
+                >
+
+                <span>
+                    {{ acompanhamento }}
+                </span>
+
+            </label>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- BOTÃO ADICIONAR -->
+
+        <button
+            type="button"
+            onclick="adicionarAoCarrinho()"
+        >
+
+            ➕ ADICIONAR AO CARRINHO
+
+        </button>
+
+    </section>
+
+
+    <!-- DADOS DO CLIENTE -->
+
+    <section class="card">
+
+        <h2>
+            📋 FINALIZAR PEDIDO
+        </h2>
+
+
+        <!-- NOME -->
+
+        <label for="nome">
+            Seu nome:
+        </label>
+
+        <input
+            type="text"
+            id="nome"
+            placeholder="Digite seu nome"
+        >
+
+
+        <!-- ENDEREÇO -->
+
+        <label for="endereco">
+            Endereço:
+        </label>
+
+        <textarea
+            id="endereco"
+            rows="3"
+            placeholder="Rua, número, bairro..."
+        ></textarea>
+
+
+        <!-- PAGAMENTO -->
+
+        <label for="pagamento">
+            Forma de pagamento:
+        </label>
+
+        <select id="pagamento">
+
+            <option value="">
+                Selecione
+            </option>
+
+            <option value="PIX">
+                PIX
+            </option>
+
+            <option value="Dinheiro">
+                Dinheiro
+            </option>
+
+            <option value="Cartão de débito">
+                Cartão de débito
+            </option>
+
+            <option value="Cartão de crédito">
+                Cartão de crédito
+            </option>
+
+        </select>
+
+
+        <!-- OBSERVAÇÕES -->
+
+        <label for="observacoes">
+            Observações:
+        </label>
+
+        <textarea
+            id="observacoes"
+            rows="3"
+            placeholder="Ex.: sem cebola, tocar interfone..."
+        ></textarea>
+
+
+        <!-- FINALIZAR -->
+
+        <button
+            type="button"
+            onclick="finalizarPedido()"
+        >
+
+            📲 FINALIZAR PEDIDO
+            <br>
+            PELO WHATSAPP
+
+        </button>
+
+    </section>
 
 
     <!-- RODAPÉ -->
+
     <footer>
 
         <p>
@@ -385,6 +416,530 @@
     </footer>
 
 </div>
+
+
+<script>
+
+const precos = {
+
+    "NORMAL-Salsicha": 18.00,
+    "NORMAL-Linguiça": 20.00,
+
+    "SUPER-Salsicha": 23.00,
+    "SUPER-Linguiça": 25.00
+
+};
+
+
+let carrinho = [];
+
+
+function adicionarAoCarrinho() {
+
+    const tamanhoSelecionado =
+        document.querySelector(
+            'input[name="tamanho"]:checked'
+        );
+
+    const tipoSelecionado =
+        document.querySelector(
+            'input[name="tipo"]:checked'
+        );
+
+
+    if (!tamanhoSelecionado) {
+
+        alert("Escolha o tamanho do lanche.");
+
+        return;
+    }
+
+
+    if (!tipoSelecionado) {
+
+        alert("Escolha Salsicha ou Linguiça.");
+
+        return;
+    }
+
+
+    const tamanho =
+        tamanhoSelecionado.value;
+
+    const tipo =
+        tipoSelecionado.value;
+
+
+    let quantidade =
+        parseInt(
+            document.getElementById("quantidade").value
+        );
+
+
+    if (!quantidade || quantidade < 1) {
+
+        quantidade = 1;
+    }
+
+
+    const chave =
+        tamanho + "-" + tipo;
+
+
+    const preco =
+        precos[chave];
+
+
+    const molhos =
+        Array.from(
+            document.querySelectorAll(
+                'input[name="molhos"]:checked'
+            )
+        ).map(
+            item => item.value
+        );
+
+
+    const acompanhamentos =
+        Array.from(
+            document.querySelectorAll(
+                'input[name="acompanhamentos"]:checked'
+            )
+        ).map(
+            item => item.value
+        );
+
+
+    const item = {
+
+        tamanho: tamanho,
+
+        tipo: tipo,
+
+        quantidade: quantidade,
+
+        preco: preco,
+
+        molhos: molhos,
+
+        acompanhamentos: acompanhamentos
+
+    };
+
+
+    carrinho.push(item);
+
+
+    atualizarCarrinho();
+
+
+    limparLanche();
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+function atualizarCarrinho() {
+
+    const area =
+        document.getElementById(
+            "itens-carrinho"
+        );
+
+
+    const vazio =
+        document.getElementById(
+            "carrinho-vazio"
+        );
+
+
+    const totalArea =
+        document.getElementById(
+            "total-carrinho"
+        );
+
+
+    area.innerHTML = "";
+
+
+    if (carrinho.length === 0) {
+
+        vazio.style.display = "block";
+
+        totalArea.innerHTML =
+            "<strong>TOTAL: R$ 0,00</strong>";
+
+        return;
+    }
+
+
+    vazio.style.display = "none";
+
+
+    let total = 0;
+
+
+    carrinho.forEach(
+        (item, index) => {
+
+            const subtotal =
+                item.preco *
+                item.quantidade;
+
+
+            total += subtotal;
+
+
+            const div =
+                document.createElement("div");
+
+
+            div.className =
+                "item-carrinho";
+
+
+            div.innerHTML = `
+
+                <div>
+
+                    <strong>
+                        ${index + 1}.
+                        ${item.tamanho}
+                        — ${item.tipo}
+                    </strong>
+
+                    <p>
+                        📏 ${item.tamanho === "NORMAL" ? "14 CM" : "32 CM"}
+                    </p>
+
+                    <p>
+                        🔢 Quantidade:
+                        ${item.quantidade}
+                    </p>
+
+                    <p>
+                        🥫 Molhos:
+                        ${item.molhos.length
+                            ? item.molhos.join(", ")
+                            : "Nenhum"}
+                    </p>
+
+                    <p>
+                        🥗 Acompanhamentos:
+                        ${item.acompanhamentos.length
+                            ? item.acompanhamentos.join(", ")
+                            : "Nenhum"}
+                    </p>
+
+                    <strong>
+                        R$ ${subtotal.toFixed(2).replace(".", ",")}
+                    </strong>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="remover"
+                    onclick="removerItem(${index})"
+                >
+                    🗑️
+                </button>
+
+            `;
+
+
+            area.appendChild(div);
+
+        }
+    );
+
+
+    totalArea.innerHTML = `
+
+        <strong>
+            TOTAL:
+            R$ ${total.toFixed(2).replace(".", ",")}
+        </strong>
+
+    `;
+
+}
+
+
+function removerItem(index) {
+
+    carrinho.splice(index, 1);
+
+    atualizarCarrinho();
+
+}
+
+
+function limparLanche() {
+
+    document.querySelectorAll(
+        'input[name="tamanho"]'
+    ).forEach(
+        input => input.checked = false
+    );
+
+
+    document.querySelectorAll(
+        'input[name="tipo"]'
+    ).forEach(
+        input => input.checked = false
+    );
+
+
+    document.getElementById(
+        "quantidade"
+    ).value = 1;
+
+
+    document.querySelectorAll(
+        'input[name="molhos"]'
+    ).forEach(
+        input => input.checked = false
+    );
+
+
+    document.querySelectorAll(
+        'input[name="acompanhamentos"]'
+    ).forEach(
+        input => input.checked = false
+    );
+
+}
+
+
+function finalizarPedido() {
+
+    if (carrinho.length === 0) {
+
+        alert(
+            "Seu carrinho está vazio. Adicione pelo menos um lanche."
+        );
+
+        return;
+    }
+
+
+    const nome =
+        document.getElementById(
+            "nome"
+        ).value.trim();
+
+
+    const endereco =
+        document.getElementById(
+            "endereco"
+        ).value.trim();
+
+
+    const pagamento =
+        document.getElementById(
+            "pagamento"
+        ).value;
+
+
+    const observacoes =
+        document.getElementById(
+            "observacoes"
+        ).value.trim();
+
+
+    if (!nome) {
+
+        alert("Digite seu nome.");
+
+        document.getElementById(
+            "nome"
+        ).focus();
+
+        return;
+    }
+
+
+    if (!endereco) {
+
+        alert("Digite seu endereço.");
+
+        document.getElementById(
+            "endereco"
+        ).focus();
+
+        return;
+    }
+
+
+    if (!pagamento) {
+
+        alert(
+            "Escolha a forma de pagamento."
+        );
+
+        document.getElementById(
+            "pagamento"
+        ).focus();
+
+        return;
+    }
+
+
+    let total = 0;
+
+
+    let mensagem =
+
+        "🌭 *NOVO PEDIDO — BOLDRINE LANCHES*\n\n";
+
+
+    mensagem +=
+        "👤 *Cliente:* " +
+        nome +
+        "\n";
+
+
+    mensagem +=
+        "📍 *Endereço:* " +
+        endereco +
+        "\n\n";
+
+
+    mensagem +=
+        "🛒 *ITENS DO PEDIDO*\n\n";
+
+
+    carrinho.forEach(
+        (item, index) => {
+
+            const subtotal =
+                item.preco *
+                item.quantidade;
+
+
+            total += subtotal;
+
+
+            mensagem +=
+
+                `*${index + 1}. ${item.tamanho} — ${item.tipo}*\n`;
+
+
+            mensagem +=
+
+                `📏 Tamanho: ${
+                    item.tamanho === "NORMAL"
+                    ? "14 CM"
+                    : "32 CM"
+                }\n`;
+
+
+            mensagem +=
+
+                `🔢 Quantidade: ${item.quantidade}\n`;
+
+
+            mensagem +=
+
+                `💰 Valor unitário: R$ ${
+                    item.preco
+                    .toFixed(2)
+                    .replace(".", ",")
+                }\n`;
+
+
+            mensagem +=
+
+                `💵 Subtotal: R$ ${
+                    subtotal
+                    .toFixed(2)
+                    .replace(".", ",")
+                }\n`;
+
+
+            mensagem +=
+
+                `🥫 Molhos: ${
+                    item.molhos.length
+                    ? item.molhos.join(", ")
+                    : "Nenhum"
+                }\n`;
+
+
+            mensagem +=
+
+                `🥗 Acompanhamentos: ${
+                    item.acompanhamentos.length
+                    ? item.acompanhamentos.join(", ")
+                    : "Nenhum"
+                }\n\n`;
+
+        }
+    );
+
+
+    mensagem +=
+
+        `💵 *TOTAL DO PEDIDO: R$ ${
+            total
+            .toFixed(2)
+            .replace(".", ",")
+        }*\n\n`;
+
+
+    mensagem +=
+
+        "💳 *Pagamento:* " +
+        pagamento +
+        "\n";
+
+
+    if (observacoes) {
+
+        mensagem +=
+
+            "\n📝 *Observações:* " +
+            observacoes +
+            "\n";
+
+    }
+
+
+    mensagem +=
+
+        "\n❤️ Obrigado por pedir na Boldrine Lanches!";
+
+
+    const numero =
+        "5521988000094";
+
+
+    const url =
+
+        "https://wa.me/" +
+        numero +
+        "?text=" +
+        encodeURIComponent(mensagem);
+
+
+    window.location.href = url;
+
+}
+
+
+atualizarCarrinho();
+
+</script>
+
 
 </body>
 
