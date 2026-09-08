@@ -1,13 +1,12 @@
 import os
 from urllib.parse import quote
+from datetime import datetime
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# WhatsApp da Boldrine Lanches
 WHATSAPP = os.getenv("WHATSAPP_NUMBER", "5521988000094")
 
-# Preços
 PRECOS = {
     ("NORMAL", "Salsicha"): 18.00,
     ("NORMAL", "Linguiça"): 20.00,
@@ -15,39 +14,57 @@ PRECOS = {
     ("SUPER", "Linguiça"): 25.00,
 }
 
-# Molhos
+PROMOCOES_QUINTA = {
+    ("NORMAL", "Salsicha"): 32.00,
+    ("NORMAL", "Linguiça"): 35.00,
+    ("SUPER", "Salsicha"): 42.00,
+    ("SUPER", "Linguiça"): 45.00,
+}
+
 MOLHOS = [
-    "Maionese",
-    "Ketchup",
-    "Mostarda",
-    "Maionese com alho",
-    "Ketchup de goiabada",
     "Billy Jack",
-    "Cheddar"
+    "Cheddar",
+    "Ketchup",
+    "Ketchup de goiabada",
+    "Maionese",
+    "Maionese com alho",
+    "Mostarda"
 ]
 
-# Acompanhamentos
 ACOMPANHAMENTOS = [
-    "Cebola",
-    "Tomate",
-    "Pimentão",
-    "Ervilha",
-    "Milho",
-    "Passas",
-    "Ovo de codorna",
-    "Queijo ralado",
+    "Alho torrado",
     "Azeitona",
     "Batata palha",
-    "Alho torrado"
+    "Cebola",
+    "Ervilha",
+    "Milho",
+    "Ovo de codorna",
+    "Passas",
+    "Pimentão",
+    "Queijo ralado",
+    "Tomate"
 ]
+
+
+def eh_quinta_feira():
+    return datetime.now().weekday() == 1
 
 
 @app.route("/", methods=["GET"])
 def inicio():
+
+    promocao_ativa = eh_quinta_feira()
+
     return render_template(
         "index.html",
         molhos=MOLHOS,
-        acompanhamentos=ACOMPANHAMENTOS
+        acompanhamentos=ACOMPANHAMENTOS,
+        promocao_ativa=promocao_ativa,
+        promocoes=(
+            PROMOCOES_QUINTA
+            if promocao_ativa
+            else {}
+        )
     )
 
 
@@ -58,25 +75,45 @@ def pedido():
     tipo = request.form.get("tipo")
 
     try:
-        quantidade = int(request.form.get("quantidade", "1"))
+        quantidade = int(
+            request.form.get("quantidade", "1")
+        )
     except ValueError:
         quantidade = 1
 
     if quantidade < 1:
         quantidade = 1
 
-    preco = PRECOS.get((tamanho, tipo))
+    preco = PRECOS.get(
+        (tamanho, tipo)
+    )
 
     if preco is None:
         return "Pedido inválido.", 400
 
-    nome = request.form.get("nome", "").strip()
-    endereco = request.form.get("endereco", "").strip()
-    pagamento = request.form.get("pagamento", "").strip()
-    observacoes = request.form.get("observacoes", "").strip()
+    nome = request.form.get(
+        "nome", ""
+    ).strip()
 
-    molhos = request.form.getlist("molhos")
-    acompanhamentos = request.form.getlist("acompanhamentos")
+    endereco = request.form.get(
+        "endereco", ""
+    ).strip()
+
+    pagamento = request.form.get(
+        "pagamento", ""
+    ).strip()
+
+    observacoes = request.form.get(
+        "observacoes", ""
+    ).strip()
+
+    molhos = request.form.getlist(
+        "molhos"
+    )
+
+    acompanhamentos = request.form.getlist(
+        "acompanhamentos"
+    )
 
     total = preco * quantidade
 
@@ -100,7 +137,11 @@ def pedido():
         f"💵 Subtotal: R$ {total:.2f}".replace(".", ","),
         "",
         "🥫 *Molhos:* "
-        + (", ".join(molhos) if molhos else "Nenhum"),
+        + (
+            ", ".join(molhos)
+            if molhos
+            else "Nenhum"
+        ),
         "",
         "🥗 *Acompanhamentos:* "
         + (
@@ -141,6 +182,7 @@ def pedido():
 
 @app.route("/health")
 def health():
+
     return {
         "status": "ok",
         "app": "Boldrine Lanches"
@@ -149,7 +191,9 @@ def health():
 
 if __name__ == "__main__":
 
-    port = int(os.getenv("PORT", 5000))
+    port = int(
+        os.getenv("PORT", 5000)
+    )
 
     app.run(
         host="0.0.0.0",
