@@ -586,11 +586,15 @@
 
     <!-- ==================================================
          PROMOÇÕES
+         O FLASK SÓ ENVIA ESTA ÁREA NA QUINTA-FEIRA
     ================================================== -->
 
     {% if promocao_ativa %}
 
-    <section class="card">
+    <section
+        class="card"
+        id="areaPromocoes"
+    >
 
         <h2>
             Promoções de Quinta-feira
@@ -1273,6 +1277,92 @@
 
 
     // ======================================================
+    // VERIFICAR PROMOÇÃO DE QUINTA-FEIRA
+    // HORÁRIO OFICIAL: BRASÍLIA
+    // ======================================================
+
+    function verificarPromocaoQuinta() {
+
+        const agoraBrasil =
+            new Date(
+                new Date().toLocaleString(
+                    "en-US",
+                    {
+                        timeZone: "America/Sao_Paulo"
+                    }
+                )
+            );
+
+
+        const quintaFeira =
+            agoraBrasil.getDay() === 4;
+
+
+        const areaPromocoes =
+            document.getElementById(
+                "areaPromocoes"
+            );
+
+
+        const montagemPromocao =
+            document.getElementById(
+                "montagemPromocao"
+            );
+
+
+        /*
+         * Se NÃO for quinta-feira,
+         * esconde todas as áreas de promoção.
+         */
+
+        if (!quintaFeira) {
+
+            if (areaPromocoes) {
+
+                areaPromocoes.style.display =
+                    "none";
+
+            }
+
+
+            if (montagemPromocao) {
+
+                montagemPromocao.style.display =
+                    "none";
+
+            }
+
+
+            promocaoSelecionada =
+                null;
+
+        }
+
+    }
+
+
+    // ======================================================
+    // VERIFICA PROMOÇÃO AO ABRIR A PÁGINA
+    // ======================================================
+
+    verificarPromocaoQuinta();
+
+
+    // ======================================================
+    // VERIFICA NOVAMENTE A CADA 1 MINUTO
+    //
+    // Isso evita que alguém deixe a página aberta
+    // na quinta-feira e continue vendo a promoção
+    // depois da meia-noite.
+    // ======================================================
+
+    setInterval(
+        verificarPromocaoQuinta,
+        60000
+    );
+
+
+    // ======================================================
     // ATUALIZAR PREÇOS EXIBIDOS
     // ======================================================
 
@@ -1474,6 +1564,35 @@
 
     function selecionarPromocao(valor) {
 
+        /*
+         * Segurança adicional:
+         * promoção só pode ser selecionada na quinta.
+         */
+
+        const agoraBrasil =
+            new Date(
+                new Date().toLocaleString(
+                    "en-US",
+                    {
+                        timeZone: "America/Sao_Paulo"
+                    }
+                )
+            );
+
+
+        if (
+            agoraBrasil.getDay() !== 4
+        ) {
+
+            alert(
+                "As promoções são válidas somente às quintas-feiras."
+            );
+
+            return;
+
+        }
+
+
         const dados =
             valor.split("|");
 
@@ -1501,20 +1620,6 @@
             preco: preco
 
         };
-
-
-        const promocoes =
-            document.querySelectorAll(
-                'input[name="promo"]'
-            );
-
-
-        promocoes.forEach(function(input) {
-
-            input.checked =
-                input.value === valor;
-
-        });
 
 
         const area =
@@ -1718,6 +1823,37 @@
     // ======================================================
 
     function confirmarPromocao() {
+
+        /*
+         * Segurança adicional:
+         * promoção só pode ser confirmada na quinta.
+         */
+
+        const agoraBrasil =
+            new Date(
+                new Date().toLocaleString(
+                    "en-US",
+                    {
+                        timeZone: "America/Sao_Paulo"
+                    }
+                )
+            );
+
+
+        if (
+            agoraBrasil.getDay() !== 4
+        ) {
+
+            alert(
+                "As promoções são válidas somente às quintas-feiras."
+            );
+
+            fecharMontagemPromocao();
+
+            return;
+
+        }
+
 
         if (!promocaoSelecionada) {
 

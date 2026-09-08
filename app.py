@@ -1,4 +1,3 @@
-```python
 import os
 from urllib.parse import quote
 from datetime import datetime
@@ -106,6 +105,7 @@ def eh_quinta_feira():
     Sábado        = 5
     Domingo       = 6
     """
+
     return agora_brasil().weekday() == 3
 
 
@@ -116,13 +116,20 @@ def eh_quinta_feira():
 @app.route("/", methods=["GET"])
 def inicio():
 
-    # Promoções disponíveis somente na quinta-feira
+    # ======================================================
+    # PROMOÇÃO SOMENTE NA QUINTA-FEIRA
+    # ======================================================
+
     promocao_ativa = eh_quinta_feira()
 
     if promocao_ativa:
-        promocoes = PROMOCOES_QUINTA
+
+        promocoes = PROMOCOES_QUINTA.copy()
+
     else:
+
         promocoes = {}
+
 
     return render_template(
         "index.html",
@@ -160,8 +167,13 @@ def pedido():
         ""
     ).strip()
 
-    tamanho = request.form.get("tamanho")
-    tipo = request.form.get("tipo")
+    tamanho = request.form.get(
+        "tamanho"
+    )
+
+    tipo = request.form.get(
+        "tipo"
+    )
 
 
     # ======================================================
@@ -183,6 +195,7 @@ def pedido():
 
 
     if quantidade < 1:
+
         quantidade = 1
 
 
@@ -194,7 +207,9 @@ def pedido():
         (tamanho, tipo)
     )
 
+
     if preco is None:
+
         return "Pedido inválido.", 400
 
 
@@ -283,7 +298,9 @@ def pedido():
     # ======================================================
 
     mensagem.append("PEDIDO")
+
     mensagem.append("")
+
 
     mensagem.append(
         f"1. {tamanho} - {tipo}"
@@ -320,6 +337,7 @@ def pedido():
 
     mensagem.append("Molhos:")
 
+
     if molhos_ordenados:
 
         mensagem.append(
@@ -330,7 +348,9 @@ def pedido():
 
     else:
 
-        mensagem.append("Nenhum")
+        mensagem.append(
+            "Nenhum"
+        )
 
     mensagem.append("")
 
@@ -339,7 +359,10 @@ def pedido():
     # ACOMPANHAMENTOS
     # ======================================================
 
-    mensagem.append("Acompanhamentos:")
+    mensagem.append(
+        "Acompanhamentos:"
+    )
+
 
     if acompanhamentos_ordenados:
 
@@ -351,7 +374,9 @@ def pedido():
 
     else:
 
-        mensagem.append("Nenhum")
+        mensagem.append(
+            "Nenhum"
+        )
 
 
     # ======================================================
@@ -373,7 +398,9 @@ def pedido():
 
     mensagem.append("")
 
-    mensagem.append("----------------")
+    mensagem.append(
+        "----------------"
+    )
 
     mensagem.append("")
 
@@ -398,6 +425,7 @@ def pedido():
     )
 
     mensagem.append("")
+
 
     mensagem.append(
         "Obrigado por pedir na Boldrine Lanches!"
@@ -460,4 +488,3 @@ if __name__ == "__main__":
         port=port,
         debug=True
     )
-```
