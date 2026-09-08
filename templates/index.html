@@ -2,35 +2,430 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
     <meta name="theme-color"
-      content="#000000">
+          content="#000000">
 
     <title>Boldrine Lanches 🌭</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        /* ==================================================
+           QUINTA DA BOLDRINE
+        ================================================== */
+
+        .promocao-quinta {
+            padding: 18px;
+            background: #ffffff;
+        }
+
+        .promo-cabecalho {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .promo-cabecalho h2 {
+            margin: 0 0 5px 0;
+            font-size: 24px;
+            font-weight: 900;
+            color: #e85d04;
+        }
+
+        .promo-cabecalho p {
+            margin: 0;
+            font-size: 14px;
+            color: #704b3a;
+            line-height: 1.4;
+        }
+
+        .promo-aviso {
+            display: block;
+            width: fit-content;
+            margin: 10px auto 15px auto;
+            padding: 7px 13px;
+            background: #fff1e6;
+            color: #e85d04;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .promo-lista {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .promo-item {
+            border: 2px solid #eeeeee;
+            border-radius: 15px;
+            padding: 14px;
+            background: #fffaf6;
+            transition: 0.2s;
+        }
+
+        .promo-item:hover {
+            border-color: #e85d04;
+            box-shadow: 0 5px 15px rgba(232, 93, 4, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .promo-tag {
+            display: inline-block;
+            background: #fff1e6;
+            color: #e85d04;
+            padding: 5px 8px;
+            border-radius: 7px;
+            font-size: 11px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .promo-item h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #2b160b;
+        }
+
+        .promo-item p {
+            margin: 6px 0 9px 0;
+            color: #777;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .promo-preco {
+            display: block;
+            color: #e85d04;
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .btn-promo {
+            width: 100%;
+            border: none;
+            border-radius: 9px;
+            background: #000000;
+            color: white;
+            padding: 10px;
+            margin: 0;
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: none;
+        }
+
+        .btn-promo:hover {
+            background: #222222;
+        }
+
+
+        /* ==================================================
+           CABEÇALHO DA MONTAGEM DA PROMOÇÃO
+        ================================================== */
+
+        .promo-montagem-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .promo-montagem-header h2 {
+            margin: 0;
+        }
+
+        .fechar-promocao {
+            width: auto;
+            margin: 0;
+            padding: 8px 12px;
+            background: #eeeeee;
+            color: #333;
+            font-size: 16px;
+            border-radius: 9px;
+            box-shadow: none;
+        }
+
+        .fechar-promocao:hover {
+            background: #dddddd;
+        }
+
+        .resumo-promocao {
+            margin: 15px 0;
+            padding: 13px;
+            border-radius: 12px;
+            background: #fff1e6;
+            border: 1px solid #ffd5b8;
+        }
+
+        .resumo-promocao h3 {
+            margin: 0 0 5px 0;
+            color: #e85d04;
+            font-size: 18px;
+        }
+
+        .resumo-promocao p {
+            margin: 0 0 5px 0;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .resumo-promocao strong {
+            color: #e85d04;
+            font-size: 22px;
+        }
+
+        .descricao {
+            color: #777;
+            font-size: 13px;
+            margin-top: -10px;
+        }
+
+
+        /* ==================================================
+           MOLHOS - VISUAL DE APLICATIVO
+        ================================================== */
+
+        .lista-molhos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+        }
+
+        .lista-molhos .checkbox {
+            display: flex;
+            align-items: center;
+
+            min-height: 48px;
+
+            margin: 0;
+            padding: 10px 12px;
+
+            background: #fafafa;
+
+            border: 1px solid #eeeeee;
+            border-radius: 12px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: all 0.2s ease;
+        }
+
+        .lista-molhos .checkbox:hover {
+            background: #fff1e6;
+            border-color: #e85d04;
+            transform: translateY(-1px);
+        }
+
+        .lista-molhos .checkbox input {
+            width: 18px;
+            height: 18px;
+
+            margin: 0 8px 0 0;
+
+            accent-color: #e85d04;
+
+            cursor: pointer;
+
+            flex-shrink: 0;
+        }
+
+        .lista-molhos .checkbox:has(input:checked) {
+            background: #fff1e6;
+            border: 2px solid #e85d04;
+
+            color: #c94f00;
+
+            box-shadow:
+                0 3px 8px rgba(232, 93, 4, 0.12);
+        }
+
+
+        /* ==================================================
+           ACOMPANHAMENTOS - VISUAL DE APLICATIVO
+        ================================================== */
+
+        .lista-acompanhamentos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+        }
+
+        .lista-acompanhamentos .checkbox {
+            display: flex;
+            align-items: center;
+
+            min-height: 48px;
+
+            margin: 0;
+            padding: 10px 12px;
+
+            background: #fafafa;
+
+            border: 1px solid #eeeeee;
+            border-radius: 12px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: all 0.2s ease;
+        }
+
+        .lista-acompanhamentos .checkbox:hover {
+            background: #fff1e6;
+            border-color: #e85d04;
+            transform: translateY(-1px);
+        }
+
+        .lista-acompanhamentos .checkbox input {
+            width: 18px;
+            height: 18px;
+
+            margin: 0 8px 0 0;
+
+            accent-color: #e85d04;
+
+            cursor: pointer;
+
+            flex-shrink: 0;
+        }
+
+        .lista-acompanhamentos .checkbox:has(input:checked) {
+            background: #fff1e6;
+            border: 2px solid #e85d04;
+
+            color: #c94f00;
+
+            box-shadow:
+                0 3px 8px rgba(232, 93, 4, 0.12);
+        }
+
+
+        /* ==================================================
+           CELULAR
+        ================================================== */
+
+        @media (max-width: 480px) {
+
+            .promocao-quinta {
+                padding: 14px;
+            }
+
+            .promo-cabecalho h2 {
+                font-size: 21px;
+            }
+
+            .promo-cabecalho p {
+                font-size: 13px;
+            }
+
+            .promo-lista {
+                grid-template-columns: 1fr;
+                gap: 9px;
+            }
+
+            .promo-item {
+                padding: 12px;
+            }
+
+            .promo-item h3 {
+                font-size: 17px;
+            }
+
+            .promo-preco {
+                font-size: 20px;
+            }
+
+            .btn-promo {
+                padding: 9px;
+                font-size: 12px;
+            }
+
+
+            /* MOLHOS NO CELULAR */
+
+            .lista-molhos {
+                grid-template-columns: 1fr 1fr;
+                gap: 7px;
+            }
+
+            .lista-molhos .checkbox {
+                min-height: 45px;
+                padding: 8px 9px;
+                font-size: 13px;
+            }
+
+            .lista-molhos .checkbox input {
+                width: 17px;
+                height: 17px;
+                margin-right: 6px;
+            }
+
+
+            /* ACOMPANHAMENTOS NO CELULAR */
+
+            .lista-acompanhamentos {
+                grid-template-columns: 1fr 1fr;
+                gap: 7px;
+            }
+
+            .lista-acompanhamentos .checkbox {
+                min-height: 45px;
+                padding: 8px 9px;
+                font-size: 13px;
+            }
+
+            .lista-acompanhamentos .checkbox input {
+                width: 17px;
+                height: 17px;
+                margin-right: 6px;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-    <!-- CABEÇALHO -->
+
+    <!-- ==================================================
+         CABEÇALHO
+    ================================================== -->
+
     <header class="hero">
 
-     <div class="logo">
-    <img
-        src="{{ url_for('static', filename='logo.png') }}"
-        alt="Boldrine Lanches"
-    >
-</div>
+        <div class="logo">
 
-      
+            <img
+                src="{{ url_for('static', filename='logo.png') }}"
+                alt="Boldrine Lanches"
+            >
+
+        </div>
+
         <p>
             Monte do seu jeito!
         </p>
@@ -38,7 +433,10 @@
     </header>
 
 
-    <!-- HORÁRIOS -->
+    <!-- ==================================================
+         HORÁRIOS
+    ================================================== -->
+
     <section class="card horario">
 
         <h2>
@@ -72,7 +470,307 @@
     </section>
 
 
-    <!-- CARRINHO -->
+    <!-- ==================================================
+         PROMOÇÃO DE QUINTA-FEIRA
+    ================================================== -->
+
+    {% if promocao_ativa %}
+
+    <section class="card promocao-quinta">
+
+        <div class="promo-cabecalho">
+
+            <h2>
+                🔥 QUINTA DA BOLDRINE
+            </h2>
+
+            <p>
+                Combos especiais para deixar sua quinta ainda melhor!
+            </p>
+
+        </div>
+
+        <div class="promo-aviso">
+            ⭐ Promoções válidas somente hoje!
+        </div>
+
+
+        <div class="promo-lista">
+
+
+            <!-- PROMOÇÃO 1 -->
+
+            <div class="promo-item">
+
+                <span class="promo-tag">
+                    NORMAL • 14 CM
+                </span>
+
+                <h3>
+                    🌭 2 Salsichas
+                </h3>
+
+                <p>
+                    Combo com 2 dogs de salsicha.
+                </p>
+
+                <strong class="promo-preco">
+                    R$ 32,00
+                </strong>
+
+                <button
+                    type="button"
+                    class="btn-promo"
+                    onclick="abrirPromocao('NORMAL', 'Salsicha', 32.00)"
+                >
+                    🔥 MONTAR PROMOÇÃO
+                </button>
+
+            </div>
+
+
+            <!-- PROMOÇÃO 2 -->
+
+            <div class="promo-item">
+
+                <span class="promo-tag">
+                    NORMAL • 14 CM
+                </span>
+
+                <h3>
+                    🌭 2 Linguiças
+                </h3>
+
+                <p>
+                    Combo com 2 dogs de linguiça.
+                </p>
+
+                <strong class="promo-preco">
+                    R$ 35,00
+                </strong>
+
+                <button
+                    type="button"
+                    class="btn-promo"
+                    onclick="abrirPromocao('NORMAL', 'Linguiça', 35.00)"
+                >
+                    🔥 MONTAR PROMOÇÃO
+                </button>
+
+            </div>
+
+
+            <!-- PROMOÇÃO 3 -->
+
+            <div class="promo-item">
+
+                <span class="promo-tag">
+                    SUPER • 32 CM
+                </span>
+
+                <h3>
+                    🌭 2 Salsichas
+                </h3>
+
+                <p>
+                    Combo com 2 dogs super de salsicha.
+                </p>
+
+                <strong class="promo-preco">
+                    R$ 42,00
+                </strong>
+
+                <button
+                    type="button"
+                    class="btn-promo"
+                    onclick="abrirPromocao('SUPER', 'Salsicha', 42.00)"
+                >
+                    🔥 MONTAR PROMOÇÃO
+                </button>
+
+            </div>
+
+
+            <!-- PROMOÇÃO 4 -->
+
+            <div class="promo-item">
+
+                <span class="promo-tag">
+                    SUPER • 32 CM
+                </span>
+
+                <h3>
+                    🌭 2 Linguiças
+                </h3>
+
+                <p>
+                    Combo com 2 dogs super de linguiça.
+                </p>
+
+                <strong class="promo-preco">
+                    R$ 45,00
+                </strong>
+
+                <button
+                    type="button"
+                    class="btn-promo"
+                    onclick="abrirPromocao('SUPER', 'Linguiça', 45.00)"
+                >
+                    🔥 MONTAR PROMOÇÃO
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- ==================================================
+         ÁREA DE MONTAGEM DA PROMOÇÃO
+    ================================================== -->
+
+    <section
+        class="card montagem-promocao"
+        id="montagem-promocao"
+        style="display: none;"
+    >
+
+        <div class="promo-montagem-header">
+
+            <h2>
+                🔥 MONTE SUA PROMOÇÃO
+            </h2>
+
+            <button
+                type="button"
+                class="fechar-promocao"
+                onclick="fecharMontagemPromocao()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <div class="resumo-promocao">
+
+            <h3 id="titulo-promocao">
+                Promoção
+            </h3>
+
+            <p id="descricao-promocao">
+                2 unidades
+            </p>
+
+            <strong id="preco-promocao">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+
+        <!-- ==================================================
+             MOLHOS DA PROMOÇÃO
+        ================================================== -->
+
+        <h2>
+            🥫 MOLHOS
+        </h2>
+
+        <p class="descricao">
+            Escolha os molhos para o seu combo:
+        </p>
+
+        <div class="lista-molhos">
+
+            {% for molho in molhos %}
+
+            <label class="checkbox">
+
+                <input
+                    type="checkbox"
+                    name="promo_molhos"
+                    value="{{ molho }}"
+                >
+
+                <span>
+                    {{ molho }}
+                </span>
+
+            </label>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- ==================================================
+             ACOMPANHAMENTOS DA PROMOÇÃO
+        ================================================== -->
+
+        <h2>
+            🥗 ACOMPANHAMENTOS
+        </h2>
+
+        <p class="descricao">
+            Escolha os acompanhamentos para o seu combo:
+        </p>
+
+        <div class="lista-acompanhamentos">
+
+            {% for acompanhamento in acompanhamentos %}
+
+            <label class="checkbox">
+
+                <input
+                    type="checkbox"
+                    name="promo_acompanhamentos"
+                    value="{{ acompanhamento }}"
+                >
+
+                <span>
+                    {{ acompanhamento }}
+                </span>
+
+            </label>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- OBSERVAÇÃO -->
+
+        <label for="promo_observacao">
+            📝 Observação da promoção:
+        </label>
+
+        <textarea
+            id="promo_observacao"
+            rows="3"
+            placeholder="Ex.: um sem cebola e outro com cheddar..."
+        ></textarea>
+
+
+        <!-- ADICIONAR -->
+
+        <button
+            type="button"
+            onclick="confirmarPromocao()"
+        >
+            🔥 ADICIONAR PROMOÇÃO AO CARRINHO
+        </button>
+
+    </section>
+
+
+    <!-- ==================================================
+         CARRINHO
+    ================================================== -->
+
     <section class="card carrinho">
 
         <h2>
@@ -101,7 +799,10 @@
     </section>
 
 
-    <!-- MONTAR LANCHE -->
+    <!-- ==================================================
+         MONTE SEU DOG
+    ================================================== -->
+
     <section class="card">
 
         <h2>
@@ -182,10 +883,13 @@
                 >
 
                 <div>
+
                     🌭
+
                     <strong>
                         Salsicha
                     </strong>
+
                 </div>
 
             </label>
@@ -200,10 +904,13 @@
                 >
 
                 <div>
+
                     🌭
+
                     <strong>
                         Linguiça
                     </strong>
+
                 </div>
 
             </label>
@@ -225,7 +932,9 @@
         >
 
 
-        <!-- MOLHOS -->
+        <!-- ==================================================
+             MOLHOS
+        ================================================== -->
 
         <h2>
             🥫 MOLHOS
@@ -235,7 +944,7 @@
             Escolha os molhos que deseja:
         </p>
 
-        <div class="lista">
+        <div class="lista-molhos">
 
             {% for molho in molhos %}
 
@@ -258,7 +967,9 @@
         </div>
 
 
-        <!-- ACOMPANHAMENTOS -->
+        <!-- ==================================================
+             ACOMPANHAMENTOS
+        ================================================== -->
 
         <h2>
             🥗 ACOMPANHAMENTOS
@@ -268,7 +979,7 @@
             Escolha os acompanhamentos:
         </p>
 
-        <div class="lista">
+        <div class="lista-acompanhamentos">
 
             {% for acompanhamento in acompanhamentos %}
 
@@ -291,21 +1002,21 @@
         </div>
 
 
-        <!-- BOTÃO ADICIONAR -->
+        <!-- BOTÃO -->
 
         <button
             type="button"
             onclick="adicionarAoCarrinho()"
         >
-
             ➕ ADICIONAR AO CARRINHO
-
         </button>
 
     </section>
 
 
-    <!-- DADOS DO CLIENTE -->
+    <!-- ==================================================
+         DADOS DO CLIENTE
+    ================================================== -->
 
     <section class="card">
 
@@ -313,8 +1024,6 @@
             📋 FINALIZAR PEDIDO
         </h2>
 
-
-        <!-- NOME -->
 
         <label for="nome">
             Seu nome:
@@ -327,8 +1036,6 @@
         >
 
 
-        <!-- ENDEREÇO -->
-
         <label for="endereco">
             Endereço:
         </label>
@@ -339,8 +1046,6 @@
             placeholder="Rua, número, bairro..."
         ></textarea>
 
-
-        <!-- PAGAMENTO -->
 
         <label for="pagamento">
             Forma de pagamento:
@@ -363,8 +1068,6 @@
         </select>
 
 
-        <!-- OBSERVAÇÕES -->
-
         <label for="observacoes">
             Observações:
         </label>
@@ -372,27 +1075,25 @@
         <textarea
             id="observacoes"
             rows="3"
-            placeholder="Ex.: sem cebola, tocar interfone..."
+            placeholder="Ex.: tocar interfone..."
         ></textarea>
 
-
-        <!-- FINALIZAR -->
 
         <button
             type="button"
             onclick="finalizarPedido()"
         >
-
             📲 FINALIZAR PEDIDO
             <br>
             PELO WHATSAPP
-
         </button>
 
     </section>
 
 
-    <!-- RODAPÉ -->
+    <!-- ==================================================
+         RODAPÉ
+    ================================================== -->
 
     <footer>
 
@@ -412,19 +1113,41 @@
 
 <script>
 
+
+// ==========================================================
+// PREÇOS NORMAIS
+// ==========================================================
+
 const precos = {
 
     "NORMAL-Salsicha": 18.00,
+
     "NORMAL-Linguiça": 20.00,
 
     "SUPER-Salsicha": 23.00,
+
     "SUPER-Linguiça": 25.00
 
 };
 
 
+// ==========================================================
+// CARRINHO
+// ==========================================================
+
 let carrinho = [];
 
+
+// ==========================================================
+// DADOS DA PROMOÇÃO ATUAL
+// ==========================================================
+
+let promocaoSelecionada = null;
+
+
+// ==========================================================
+// ADICIONAR LANCHE NORMAL
+// ==========================================================
 
 function adicionarAoCarrinho() {
 
@@ -441,17 +1164,23 @@ function adicionarAoCarrinho() {
 
     if (!tamanhoSelecionado) {
 
-        alert("Escolha o tamanho do lanche.");
+        alert(
+            "Escolha o tamanho do lanche."
+        );
 
         return;
+
     }
 
 
     if (!tipoSelecionado) {
 
-        alert("Escolha Salsicha ou Linguiça.");
+        alert(
+            "Escolha Salsicha ou Linguiça."
+        );
 
         return;
+
     }
 
 
@@ -464,13 +1193,16 @@ function adicionarAoCarrinho() {
 
     let quantidade =
         parseInt(
-            document.getElementById("quantidade").value
+            document.getElementById(
+                "quantidade"
+            ).value
         );
 
 
     if (!quantidade || quantidade < 1) {
 
         quantidade = 1;
+
     }
 
 
@@ -514,7 +1246,13 @@ function adicionarAoCarrinho() {
 
         molhos: molhos,
 
-        acompanhamentos: acompanhamentos
+        acompanhamentos: acompanhamentos,
+
+        observacao: "",
+
+        promocao: false,
+
+        nomePromocao: ""
 
     };
 
@@ -523,7 +1261,6 @@ function adicionarAoCarrinho() {
 
 
     atualizarCarrinho();
-
 
     limparLanche();
 
@@ -538,6 +1275,215 @@ function adicionarAoCarrinho() {
 
 }
 
+
+// ==========================================================
+// ABRIR MONTAGEM DA PROMOÇÃO
+// ==========================================================
+
+function abrirPromocao(
+    tamanho,
+    tipo,
+    preco
+) {
+
+    promocaoSelecionada = {
+
+        tamanho: tamanho,
+
+        tipo: tipo,
+
+        preco: preco
+
+    };
+
+
+    const tamanhoTexto =
+        tamanho === "NORMAL"
+        ? "14 CM"
+        : "32 CM";
+
+
+    document.getElementById(
+        "titulo-promocao"
+    ).textContent =
+        `🔥 2 ${tipo} — ${tamanhoTexto}`;
+
+
+    document.getElementById(
+        "descricao-promocao"
+    ).textContent =
+        "Escolha os complementos do seu combo";
+
+
+    document.getElementById(
+        "preco-promocao"
+    ).textContent =
+        `R$ ${preco.toFixed(2).replace(".", ",")}`;
+
+
+    document.querySelectorAll(
+        'input[name="promo_molhos"]'
+    ).forEach(
+        input => input.checked = false
+    );
+
+
+    document.querySelectorAll(
+        'input[name="promo_acompanhamentos"]'
+    ).forEach(
+        input => input.checked = false
+    );
+
+
+    document.getElementById(
+        "promo_observacao"
+    ).value = "";
+
+
+    const area =
+        document.getElementById(
+            "montagem-promocao"
+        );
+
+
+    area.style.display = "block";
+
+
+    area.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+    });
+
+}
+
+
+// ==========================================================
+// FECHAR MONTAGEM DA PROMOÇÃO
+// ==========================================================
+
+function fecharMontagemPromocao() {
+
+    promocaoSelecionada = null;
+
+
+    document.getElementById(
+        "montagem-promocao"
+    ).style.display = "none";
+
+}
+
+
+// ==========================================================
+// CONFIRMAR PROMOÇÃO
+// ==========================================================
+
+function confirmarPromocao() {
+
+    if (!promocaoSelecionada) {
+
+        alert(
+            "Escolha uma promoção primeiro."
+        );
+
+        return;
+
+    }
+
+
+    const molhos =
+        Array.from(
+            document.querySelectorAll(
+                'input[name="promo_molhos"]:checked'
+            )
+        ).map(
+            item => item.value
+        );
+
+
+    const acompanhamentos =
+        Array.from(
+            document.querySelectorAll(
+                'input[name="promo_acompanhamentos"]:checked'
+            )
+        ).map(
+            item => item.value
+        );
+
+
+    const observacao =
+        document.getElementById(
+            "promo_observacao"
+        ).value.trim();
+
+
+    const tamanho =
+        promocaoSelecionada.tamanho;
+
+
+    const tipo =
+        promocaoSelecionada.tipo;
+
+
+    const preco =
+        promocaoSelecionada.preco;
+
+
+    const tamanhoTexto =
+        tamanho === "NORMAL"
+        ? "14 CM"
+        : "32 CM";
+
+
+    const item = {
+
+        tamanho: tamanho,
+
+        tipo: tipo,
+
+        quantidade: 2,
+
+        preco: preco,
+
+        molhos: molhos,
+
+        acompanhamentos: acompanhamentos,
+
+        observacao: observacao,
+
+        promocao: true,
+
+        nomePromocao:
+            `PROMOÇÃO — 2 ${tipo} ${tamanhoTexto}`
+
+    };
+
+
+    carrinho.push(item);
+
+
+    atualizarCarrinho();
+
+
+    fecharMontagemPromocao();
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+// ==========================================================
+// ATUALIZAR CARRINHO
+// ==========================================================
 
 function atualizarCarrinho() {
 
@@ -566,10 +1512,13 @@ function atualizarCarrinho() {
 
         vazio.style.display = "block";
 
+
         totalArea.innerHTML =
             "<strong>TOTAL: R$ 0,00</strong>";
 
+
         return;
+
     }
 
 
@@ -582,20 +1531,40 @@ function atualizarCarrinho() {
     carrinho.forEach(
         (item, index) => {
 
-            const subtotal =
-                item.preco *
-                item.quantidade;
+
+            let subtotal;
+
+
+            if (item.promocao) {
+
+                subtotal = item.preco;
+
+            } else {
+
+                subtotal =
+                    item.preco *
+                    item.quantidade;
+
+            }
 
 
             total += subtotal;
 
 
             const div =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
 
             div.className =
                 "item-carrinho";
+
+
+            const titulo =
+                item.promocao
+                ? "🔥 " + item.nomePromocao
+                : `${item.tamanho} — ${item.tipo}`;
 
 
             div.innerHTML = `
@@ -604,12 +1573,15 @@ function atualizarCarrinho() {
 
                     <strong>
                         ${index + 1}.
-                        ${item.tamanho}
-                        — ${item.tipo}
+                        ${titulo}
                     </strong>
 
                     <p>
-                        📏 ${item.tamanho === "NORMAL" ? "14 CM" : "32 CM"}
+                        📏 ${
+                            item.tamanho === "NORMAL"
+                            ? "14 CM"
+                            : "32 CM"
+                        }
                     </p>
 
                     <p>
@@ -617,32 +1589,103 @@ function atualizarCarrinho() {
                         ${item.quantidade}
                     </p>
 
-                    <p>
-                        🥫 Molhos:
-                        ${item.molhos.length
-                            ? item.molhos.join(", ")
-                            : "Nenhum"}
-                    </p>
+                    ${
+                        item.promocao
+
+                        ? `
+
+                        <p>
+                            ⭐ Combo promocional
+                        </p>
+
+                        <p>
+                            💰 Valor do combo:
+                            R$ ${
+                                item.preco
+                                .toFixed(2)
+                                .replace(".", ",")
+                            }
+                        </p>
+
+                        `
+
+                        : `
+
+                        <p>
+                            💰 Valor unitário:
+                            R$ ${
+                                item.preco
+                                .toFixed(2)
+                                .replace(".", ",")
+                            }
+                        </p>
+
+                        `
+                    }
+
 
                     <p>
-                        🥗 Acompanhamentos:
-                        ${item.acompanhamentos.length
-                            ? item.acompanhamentos.join(", ")
-                            : "Nenhum"}
+
+                        🥫 Molhos:
+                        ${
+                            item.molhos.length
+                            ? item.molhos.join(", ")
+                            : "Nenhum"
+                        }
+
                     </p>
+
+
+                    <p>
+
+                        🥗 Acompanhamentos:
+                        ${
+                            item.acompanhamentos.length
+                            ? item.acompanhamentos.join(", ")
+                            : "Nenhum"
+                        }
+
+                    </p>
+
+
+                    ${
+                        item.observacao
+
+                        ? `
+
+                        <p>
+                            📝 Observação:
+                            ${item.observacao}
+                        </p>
+
+                        `
+
+                        : ""
+
+                    }
+
 
                     <strong>
-                        R$ ${subtotal.toFixed(2).replace(".", ",")}
+
+                        R$ ${
+                            subtotal
+                            .toFixed(2)
+                            .replace(".", ",")
+                        }
+
                     </strong>
 
                 </div>
+
 
                 <button
                     type="button"
                     class="remover"
                     onclick="removerItem(${index})"
                 >
+
                     🗑️
+
                 </button>
 
             `;
@@ -657,8 +1700,14 @@ function atualizarCarrinho() {
     totalArea.innerHTML = `
 
         <strong>
+
             TOTAL:
-            R$ ${total.toFixed(2).replace(".", ",")}
+            R$ ${
+                total
+                .toFixed(2)
+                .replace(".", ",")
+            }
+
         </strong>
 
     `;
@@ -666,14 +1715,26 @@ function atualizarCarrinho() {
 }
 
 
+// ==========================================================
+// REMOVER ITEM
+// ==========================================================
+
 function removerItem(index) {
 
-    carrinho.splice(index, 1);
+    carrinho.splice(
+        index,
+        1
+    );
+
 
     atualizarCarrinho();
 
 }
 
+
+// ==========================================================
+// LIMPAR MONTAGEM NORMAL
+// ==========================================================
 
 function limparLanche() {
 
@@ -712,6 +1773,10 @@ function limparLanche() {
 }
 
 
+// ==========================================================
+// FINALIZAR PEDIDO
+// ==========================================================
+
 function finalizarPedido() {
 
     if (carrinho.length === 0) {
@@ -721,6 +1786,7 @@ function finalizarPedido() {
         );
 
         return;
+
     }
 
 
@@ -750,25 +1816,31 @@ function finalizarPedido() {
 
     if (!nome) {
 
-        alert("Digite seu nome.");
+        alert(
+            "Digite seu nome."
+        );
 
         document.getElementById(
             "nome"
         ).focus();
 
         return;
+
     }
 
 
     if (!endereco) {
 
-        alert("Digite seu endereço.");
+        alert(
+            "Digite seu endereço."
+        );
 
         document.getElementById(
             "endereco"
         ).focus();
 
         return;
+
     }
 
 
@@ -783,6 +1855,7 @@ function finalizarPedido() {
         ).focus();
 
         return;
+
     }
 
 
@@ -790,7 +1863,6 @@ function finalizarPedido() {
 
 
     let mensagem =
-
         "🌭 *NOVO PEDIDO — BOLDRINE LANCHES*\n\n";
 
 
@@ -813,53 +1885,89 @@ function finalizarPedido() {
     carrinho.forEach(
         (item, index) => {
 
-            const subtotal =
-                item.preco *
-                item.quantidade;
+
+            let subtotal;
+
+
+            if (item.promocao) {
+
+                subtotal =
+                    item.preco;
+
+            } else {
+
+                subtotal =
+                    item.preco *
+                    item.quantidade;
+
+            }
 
 
             total += subtotal;
 
 
+            if (item.promocao) {
+
+                mensagem +=
+                    `🔥 *${index + 1}. ${item.nomePromocao}*\n`;
+
+
+                mensagem +=
+                    `📏 Tamanho: ${
+                        item.tamanho === "NORMAL"
+                        ? "14 CM"
+                        : "32 CM"
+                    }\n`;
+
+
+                mensagem +=
+                    `🔢 Quantidade: 2 unidades\n`;
+
+
+                mensagem +=
+                    `💰 *Valor da promoção: R$ ${
+                        item.preco
+                        .toFixed(2)
+                        .replace(".", ",")
+                    }*\n`;
+
+            } else {
+
+                mensagem +=
+                    `*${index + 1}. ${item.tamanho} — ${item.tipo}*\n`;
+
+
+                mensagem +=
+                    `📏 Tamanho: ${
+                        item.tamanho === "NORMAL"
+                        ? "14 CM"
+                        : "32 CM"
+                    }\n`;
+
+
+                mensagem +=
+                    `🔢 Quantidade: ${item.quantidade}\n`;
+
+
+                mensagem +=
+                    `💰 Valor unitário: R$ ${
+                        item.preco
+                        .toFixed(2)
+                        .replace(".", ",")
+                    }\n`;
+
+
+                mensagem +=
+                    `💵 Subtotal: R$ ${
+                        subtotal
+                        .toFixed(2)
+                        .replace(".", ",")
+                    }\n`;
+
+            }
+
+
             mensagem +=
-
-                `*${index + 1}. ${item.tamanho} — ${item.tipo}*\n`;
-
-
-            mensagem +=
-
-                `📏 Tamanho: ${
-                    item.tamanho === "NORMAL"
-                    ? "14 CM"
-                    : "32 CM"
-                }\n`;
-
-
-            mensagem +=
-
-                `🔢 Quantidade: ${item.quantidade}\n`;
-
-
-            mensagem +=
-
-                `💰 Valor unitário: R$ ${
-                    item.preco
-                    .toFixed(2)
-                    .replace(".", ",")
-                }\n`;
-
-
-            mensagem +=
-
-                `💵 Subtotal: R$ ${
-                    subtotal
-                    .toFixed(2)
-                    .replace(".", ",")
-                }\n`;
-
-
-            mensagem +=
-
                 `🥫 Molhos: ${
                     item.molhos.length
                     ? item.molhos.join(", ")
@@ -868,19 +1976,30 @@ function finalizarPedido() {
 
 
             mensagem +=
-
                 `🥗 Acompanhamentos: ${
                     item.acompanhamentos.length
                     ? item.acompanhamentos.join(", ")
                     : "Nenhum"
-                }\n\n`;
+                }\n`;
+
+
+            if (item.observacao) {
+
+                mensagem +=
+                    `📝 Observação do combo: ${
+                        item.observacao
+                    }\n`;
+
+            }
+
+
+            mensagem += "\n";
 
         }
     );
 
 
     mensagem +=
-
         `💵 *TOTAL DO PEDIDO: R$ ${
             total
             .toFixed(2)
@@ -889,7 +2008,6 @@ function finalizarPedido() {
 
 
     mensagem +=
-
         "💳 *Pagamento:* " +
         pagamento +
         "\n";
@@ -898,8 +2016,7 @@ function finalizarPedido() {
     if (observacoes) {
 
         mensagem +=
-
-            "\n📝 *Observações:* " +
+            "\n📝 *Observações gerais:* " +
             observacoes +
             "\n";
 
@@ -907,7 +2024,6 @@ function finalizarPedido() {
 
 
     mensagem +=
-
         "\n❤️ Obrigado por pedir na Boldrine Lanches!";
 
 
@@ -916,22 +2032,27 @@ function finalizarPedido() {
 
 
     const url =
-
         "https://wa.me/" +
         numero +
         "?text=" +
-        encodeURIComponent(mensagem);
+        encodeURIComponent(
+            mensagem
+        );
 
 
-    window.location.href = url;
+    window.location.href =
+        url;
 
 }
 
 
+// ==========================================================
+// INICIALIZAÇÃO
+// ==========================================================
+
 atualizarCarrinho();
 
 </script>
-
 
 </body>
 

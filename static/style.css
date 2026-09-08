@@ -10,7 +10,9 @@ body {
 }
 
 
-/* CONTAINER */
+/* ==========================================================
+   CONTAINER
+   ========================================================== */
 
 .container {
     width: 100%;
@@ -20,7 +22,9 @@ body {
 }
 
 
-/* CABEÇALHO */
+/* ==========================================================
+   CABEÇALHO
+   ========================================================== */
 
 .hero {
     background: #000000;
@@ -56,7 +60,9 @@ body {
 }
 
 
-/* CARTÕES */
+/* ==========================================================
+   CARTÕES
+   ========================================================== */
 
 .card {
     background: white;
@@ -73,7 +79,9 @@ body {
 }
 
 
-/* HORÁRIOS */
+/* ==========================================================
+   HORÁRIOS
+   ========================================================== */
 
 .horario p {
     margin: 7px 0;
@@ -86,7 +94,9 @@ body {
 }
 
 
-/* LABELS */
+/* ==========================================================
+   LABELS
+   ========================================================== */
 
 label {
     display: block;
@@ -96,7 +106,9 @@ label {
 }
 
 
-/* OPÇÕES */
+/* ==========================================================
+   OPÇÕES DE TAMANHO / TIPO
+   ========================================================== */
 
 .opcoes {
     display: grid;
@@ -111,15 +123,18 @@ label {
     margin: 0;
     cursor: pointer;
     transition: 0.2s;
+    background: #ffffff;
 }
 
 .opcao:hover {
     border-color: #e85d04;
+    transform: translateY(-1px);
 }
 
 .opcao:has(input:checked) {
     border-color: #e85d04;
     background: #fff1e6;
+    box-shadow: 0 3px 8px rgba(232, 93, 4, 0.12);
 }
 
 .opcao input {
@@ -138,7 +153,9 @@ label {
 }
 
 
-/* CAMPOS */
+/* ==========================================================
+   CAMPOS
+   ========================================================== */
 
 input[type="text"],
 input[type="number"],
@@ -160,11 +177,181 @@ select:focus {
 }
 
 
-/* LISTA DE CHECKBOX */
+/* ==========================================================
+   MOLHOS
+   VISUAL DE APLICATIVO
+   ========================================================== */
+
+.lista-molhos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+
+/* Cada molho */
+
+.lista-molhos .checkbox {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 48px;
+
+    margin: 0;
+    padding: 11px 12px;
+
+    background: #ffffff;
+
+    border: 1px solid #eeeeee;
+    border-radius: 12px;
+
+    font-weight: 600;
+    color: #2b160b;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Efeito ao passar o mouse */
+
+.lista-molhos .checkbox:hover {
+    border-color: #e85d04;
+    background: #fff8f2;
+    transform: translateY(-1px);
+}
+
+
+/* Checkbox */
+
+.lista-molhos .checkbox input {
+    width: 18px;
+    height: 18px;
+
+    margin: 0 9px 0 0;
+
+    accent-color: #e85d04;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+}
+
+
+/* Molho selecionado */
+
+.lista-molhos .checkbox:has(input:checked) {
+    background: #fff1e6;
+
+    border: 2px solid #e85d04;
+
+    box-shadow:
+        0 3px 8px rgba(232, 93, 4, 0.12);
+
+    color: #c44b00;
+}
+
+
+/* ==========================================================
+   ACOMPANHAMENTOS
+   VISUAL DE APLICATIVO
+   ========================================================== */
+
+.lista-acompanhamentos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+
+/* Cada acompanhamento */
+
+.lista-acompanhamentos .checkbox {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 48px;
+
+    margin: 0;
+    padding: 11px 12px;
+
+    background: #ffffff;
+
+    border: 1px solid #eeeeee;
+    border-radius: 12px;
+
+    font-weight: 600;
+    color: #2b160b;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Efeito ao passar o mouse */
+
+.lista-acompanhamentos .checkbox:hover {
+    border-color: #e85d04;
+    background: #fff8f2;
+    transform: translateY(-1px);
+}
+
+
+/* Checkbox */
+
+.lista-acompanhamentos .checkbox input {
+    width: 18px;
+    height: 18px;
+
+    margin: 0 9px 0 0;
+
+    accent-color: #e85d04;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+}
+
+
+/* Acompanhamento selecionado */
+
+.lista-acompanhamentos .checkbox:has(input:checked) {
+    background: #fff1e6;
+
+    border: 2px solid #e85d04;
+
+    box-shadow:
+        0 3px 8px rgba(232, 93, 4, 0.12);
+
+    color: #c44b00;
+}
+
+
+/* ==========================================================
+   LISTA PADRÃO
+   ========================================================== */
 
 .lista {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 8px;
 }
 
@@ -187,19 +374,27 @@ select:focus {
 }
 
 
-/* BOTÃO WHATSAPP */
+/* ==========================================================
+   BOTÃO WHATSAPP
+   ========================================================== */
 
 button {
     width: 100%;
     border: none;
     border-radius: 13px;
+
     background: #25d366;
     color: white;
+
     padding: 17px;
+
     font-size: 17px;
     font-weight: 900;
+
     cursor: pointer;
+
     margin-top: 25px;
+
     box-shadow: 0 4px 10px rgba(0,0,0,0.12);
 }
 
@@ -208,7 +403,25 @@ button:hover {
 }
 
 
-/* RODAPÉ */
+/* ==========================================================
+   BOTÃO MONTAR PROMOÇÃO
+   ========================================================== */
+
+.btn-promo {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+}
+
+.btn-promo:hover {
+    background: #222222;
+    color: #ffffff;
+}
+
+
+/* ==========================================================
+   RODAPÉ
+   ========================================================== */
 
 footer {
     text-align: center;
@@ -218,13 +431,17 @@ footer {
 }
 
 
-/* TELA DE SUCESSO */
+/* ==========================================================
+   TELA DE SUCESSO
+   ========================================================== */
 
 .sucesso {
     min-height: 80vh;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     text-align: center;
 }
 
@@ -243,18 +460,27 @@ footer {
 }
 
 
-/* BOTÃO WHATSAPP DA CONFIRMAÇÃO */
+/* ==========================================================
+   BOTÃO WHATSAPP DA CONFIRMAÇÃO
+   ========================================================== */
 
 .whatsapp {
     display: block;
+
     width: 100%;
+
     background: #25d366;
     color: white;
+
     text-decoration: none;
+
     padding: 17px;
+
     border-radius: 13px;
+
     font-weight: 900;
     font-size: 16px;
+
     margin-top: 20px;
 }
 
@@ -263,18 +489,26 @@ footer {
 }
 
 
-/* VOLTAR */
+/* ==========================================================
+   VOLTAR
+   ========================================================== */
 
 .voltar {
     display: block;
+
     margin-top: 18px;
+
     color: #e85d04;
+
     text-decoration: none;
+
     font-weight: bold;
 }
 
 
-/* CELULAR */
+/* ==========================================================
+   CELULAR
+   ========================================================== */
 
 @media (max-width: 480px) {
 
@@ -294,11 +528,66 @@ footer {
         grid-template-columns: 1fr;
     }
 
+
+    /* ======================================================
+       MOLHOS NO CELULAR
+       ====================================================== */
+
+    .lista-molhos {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .lista-molhos .checkbox {
+        min-height: 46px;
+        padding: 9px;
+        font-size: 14px;
+    }
+
+    .lista-molhos .checkbox input {
+        width: 17px;
+        height: 17px;
+        margin-right: 7px;
+    }
+
+
+    /* ======================================================
+       ACOMPANHAMENTOS NO CELULAR
+       ====================================================== */
+
+    .lista-acompanhamentos {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .lista-acompanhamentos .checkbox {
+        min-height: 46px;
+        padding: 9px;
+        font-size: 14px;
+    }
+
+    .lista-acompanhamentos .checkbox input {
+        width: 17px;
+        height: 17px;
+        margin-right: 7px;
+    }
+
+
+    /* ======================================================
+       LISTA PADRÃO
+       ====================================================== */
+
     .lista {
         grid-template-columns: 1fr;
     }
 
+
+    /* ======================================================
+       CARTÕES
+       ====================================================== */
+
     .card {
         padding: 17px;
     }
+
 }
