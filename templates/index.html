@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -116,7 +117,7 @@
             border: none;
             border-radius: 9px;
             background: #000000;
-            color: white;
+            color: #ffffff;
             padding: 10px;
             margin: 0;
             font-size: 13px;
@@ -376,6 +377,10 @@
 
 <div class="container">
 
+    <!-- ==================================================
+         CABEÇALHO
+    ================================================== -->
+
     <header class="hero">
 
         <div class="logo">
@@ -393,6 +398,10 @@
 
     </header>
 
+
+    <!-- ==================================================
+         HORÁRIO
+    ================================================== -->
 
     <section class="card horario">
 
@@ -427,6 +436,10 @@
     </section>
 
 
+    <!-- ==================================================
+         PROMOÇÕES DE QUINTA
+    ================================================== -->
+
     {% if promocao_ativa %}
 
     <section class="card promocao-quinta">
@@ -448,6 +461,9 @@
         </div>
 
         <div class="promo-lista">
+
+
+            <!-- PROMOÇÃO 1 -->
 
             <div class="promo-item">
 
@@ -478,6 +494,8 @@
             </div>
 
 
+            <!-- PROMOÇÃO 2 -->
+
             <div class="promo-item">
 
                 <span class="promo-tag">
@@ -507,6 +525,8 @@
             </div>
 
 
+            <!-- PROMOÇÃO 3 -->
+
             <div class="promo-item">
 
                 <span class="promo-tag">
@@ -535,6 +555,8 @@
 
             </div>
 
+
+            <!-- PROMOÇÃO 4 -->
 
             <div class="promo-item">
 
@@ -570,6 +592,10 @@
 
     {% endif %}
 
+
+    <!-- ==================================================
+         MONTAGEM DA PROMOÇÃO
+    ================================================== -->
 
     <section
         class="card montagem-promocao"
@@ -694,6 +720,10 @@
     </section>
 
 
+    <!-- ==================================================
+         CARRINHO
+    ================================================== -->
+
     <section class="card carrinho">
 
         <h2>
@@ -722,11 +752,16 @@
     </section>
 
 
+    <!-- ==================================================
+         MONTE SEU DOG
+    ================================================== -->
+
     <section class="card">
 
         <h2>
             🌭 MONTE SEU DOG
         </h2>
+
 
         <label>
             Escolha o tamanho:
@@ -797,10 +832,13 @@
                 >
 
                 <div>
+
                     🌭
+
                     <strong>
                         Salsicha
                     </strong>
+
                 </div>
 
             </label>
@@ -815,10 +853,13 @@
                 >
 
                 <div>
+
                     🌭
+
                     <strong>
                         Linguiça
                     </strong>
+
                 </div>
 
             </label>
@@ -837,6 +878,8 @@
             min="1"
         >
 
+
+        <!-- MOLHOS -->
 
         <h2>
             🥫 MOLHOS
@@ -868,6 +911,8 @@
 
         </div>
 
+
+        <!-- ACOMPANHAMENTOS -->
 
         <h2>
             🥗 ACOMPANHAMENTOS
@@ -909,6 +954,10 @@
 
     </section>
 
+
+    <!-- ==================================================
+         FINALIZAR PEDIDO
+    ================================================== -->
 
     <section class="card">
 
@@ -983,6 +1032,10 @@
     </section>
 
 
+    <!-- ==================================================
+         RODAPÉ
+    ================================================== -->
+
     <footer>
 
         <p>
@@ -1044,6 +1097,7 @@ function adicionarAoCarrinho() {
             'input[name="tamanho"]:checked'
         );
 
+
     const tipoSelecionado =
         document.querySelector(
             'input[name="tipo"]:checked'
@@ -1057,7 +1111,6 @@ function adicionarAoCarrinho() {
         );
 
         return;
-
     }
 
 
@@ -1068,12 +1121,12 @@ function adicionarAoCarrinho() {
         );
 
         return;
-
     }
 
 
     const tamanho =
         tamanhoSelecionado.value;
+
 
     const tipo =
         tipoSelecionado.value;
@@ -1090,7 +1143,6 @@ function adicionarAoCarrinho() {
     if (!quantidade || quantidade < 1) {
 
         quantidade = 1;
-
     }
 
 
@@ -1149,6 +1201,7 @@ function adicionarAoCarrinho() {
 
 
     atualizarCarrinho();
+
 
     limparLanche();
 
@@ -1277,7 +1330,6 @@ function confirmarPromocao() {
         );
 
         return;
-
     }
 
 
@@ -1406,7 +1458,6 @@ function atualizarCarrinho() {
 
 
         return;
-
     }
 
 
@@ -1419,13 +1470,13 @@ function atualizarCarrinho() {
     carrinho.forEach(
         (item, index) => {
 
-
             let subtotal;
 
 
             if (item.promocao) {
 
-                subtotal = item.preco;
+                subtotal =
+                    item.preco;
 
             } else {
 
@@ -1662,7 +1713,7 @@ function limparLanche() {
 
 
 // ==========================================================
-// MONTAR MOLHOS E ACOMPANHAMENTOS PARA WHATSAPP
+// MOLHOS + ACOMPANHAMENTOS PARA WHATSAPP
 // ==========================================================
 
 function montarComplementosWhatsApp(
@@ -1718,7 +1769,7 @@ function montarComplementosWhatsApp(
 
 
 // ==========================================================
-// FINALIZAR PEDIDO
+// FINALIZAR PEDIDO PELO WHATSAPP
 // ==========================================================
 
 function finalizarPedido() {
@@ -1730,7 +1781,6 @@ function finalizarPedido() {
         );
 
         return;
-
     }
 
 
@@ -1773,7 +1823,6 @@ function finalizarPedido() {
         ).focus();
 
         return;
-
     }
 
 
@@ -1788,7 +1837,6 @@ function finalizarPedido() {
         ).focus();
 
         return;
-
     }
 
 
@@ -1803,67 +1851,31 @@ function finalizarPedido() {
         ).focus();
 
         return;
-
     }
 
 
     // ======================================================
-    // TOTAL
+    // CALCULAR TOTAL
     // ======================================================
 
     let total = 0;
 
 
     // ======================================================
-    // EMOJIS EM UNICODE
-    // ======================================================
-
-    const EMOJI = {
-
-        lanche: "\uD83C\uDF2D",
-
-        cliente: "\uD83D\uDC64",
-
-        endereco: "\uD83D\uDCCD",
-
-        carrinho: "\uD83D\uDED2",
-
-        molho: "\uD83E\uDDC2",
-
-        acompanhamento: "\uD83E\uDD57",
-
-        dinheiro: "\uD83D\uDCB5",
-
-        pagamento: "\uD83D\uDCB3",
-
-        quantidade: "\uD83D\uDD22",
-
-        tamanho: "\uD83D\uDCCF",
-
-        observacao: "\uD83D\uDCDD",
-
-        celular: "\uD83D\uDCF2",
-
-        fogo: "\uD83D\uDD25",
-
-        estrela: "\u2B50",
-
-        coracao: "\u2764\uFE0F"
-
-    };
-
-
-    // ======================================================
-    // CABEÇALHO
+    // MENSAGEM
     // ======================================================
 
     let mensagem =
-        `${EMOJI.lanche} *NOVO PEDIDO - BOLDRINE LANCHES*\n\n`;
+        "🌭 *NOVO PEDIDO - BOLDRINE LANCHES*\n\n";
 
 
     mensagem +=
-        "==============================\n" +
-        `${EMOJI.cliente} *CLIENTE*\n` +
+        "==============================\n";
+
+    mensagem +=
+        "👤 *CLIENTE*\n";
+
+    mensagem +=
         "==============================\n";
 
 
@@ -1872,22 +1884,25 @@ function finalizarPedido() {
 
 
     mensagem +=
-        `Endereço: ${endereco}\n\n`;
+        `📍 Endereço: ${endereco}\n\n`;
 
 
     // ======================================================
-    // ITENS
+    // ITENS DO PEDIDO
     // ======================================================
 
     mensagem +=
-        "==============================\n" +
-        `${EMOJI.carrinho} *ITENS DO PEDIDO*\n` +
+        "==============================\n";
+
+    mensagem +=
+        "🛒 *ITENS DO PEDIDO*\n";
+
+    mensagem +=
         "==============================\n\n";
 
 
     carrinho.forEach(
         (item, index) => {
-
 
             let subtotal;
 
@@ -1916,11 +1931,11 @@ function finalizarPedido() {
             if (item.promocao) {
 
                 mensagem +=
-                    `${EMOJI.fogo} *ITEM ${index + 1} - PROMOÇÃO*\n`;
+                    `🔥 *ITEM ${index + 1} - PROMOÇÃO*\n`;
 
 
                 mensagem +=
-                    `${EMOJI.lanche} *2 ${item.tipo} - ${
+                    `🌭 *2 ${item.tipo} - ${
                         item.tamanho === "NORMAL"
                         ? "14 CM"
                         : "32 CM"
@@ -1929,7 +1944,7 @@ function finalizarPedido() {
             } else {
 
                 mensagem +=
-                    `${EMOJI.lanche} *ITEM ${index + 1} - LANCHE*\n`;
+                    `🌭 *ITEM ${index + 1} - LANCHE*\n`;
 
 
                 mensagem +=
@@ -1943,7 +1958,7 @@ function finalizarPedido() {
             // ==================================================
 
             mensagem +=
-                `${EMOJI.tamanho} Tamanho: ${
+                `📏 Tamanho: ${
                     item.tamanho === "NORMAL"
                     ? "14 CM"
                     : "32 CM"
@@ -1955,7 +1970,7 @@ function finalizarPedido() {
             // ==================================================
 
             mensagem +=
-                `${EMOJI.quantidade} Quantidade: ${
+                `🔢 Quantidade: ${
                     item.quantidade
                 } ${
                     item.quantidade === 1
@@ -1971,7 +1986,7 @@ function finalizarPedido() {
             if (item.promocao) {
 
                 mensagem +=
-                    `${EMOJI.dinheiro} *Valor da promoção: R$ ${
+                    `💵 *Valor da promoção: R$ ${
                         item.preco
                         .toFixed(2)
                         .replace(".", ",")
@@ -1980,7 +1995,7 @@ function finalizarPedido() {
             } else {
 
                 mensagem +=
-                    `${EMOJI.dinheiro} Valor unitário: R$ ${
+                    `💵 Valor unitário: R$ ${
                         item.preco
                         .toFixed(2)
                         .replace(".", ",")
@@ -1988,7 +2003,7 @@ function finalizarPedido() {
 
 
                 mensagem +=
-                    `Subtotal: R$ ${
+                    `💰 Subtotal: R$ ${
                         subtotal
                         .toFixed(2)
                         .replace(".", ",")
@@ -2005,8 +2020,7 @@ function finalizarPedido() {
 
 
             mensagem +=
-                `${EMOJI.molho} *MOLHOS* | ` +
-                `${EMOJI.acompanhamento} *ACOMPANHAMENTOS*\n`;
+                "🥫 *MOLHOS* | 🥗 *ACOMPANHAMENTOS*\n";
 
 
             mensagem +=
@@ -2021,7 +2035,7 @@ function finalizarPedido() {
 
 
             // ==================================================
-            // OBSERVAÇÃO
+            // OBSERVAÇÃO DO ITEM
             // ==================================================
 
             if (
@@ -2030,7 +2044,10 @@ function finalizarPedido() {
             ) {
 
                 mensagem +=
-                    `\n${EMOJI.observacao} *OBSERVAÇÃO DO ITEM*\n` +
+                    `\n📝 *OBSERVAÇÃO DO ITEM*\n`;
+
+
+                mensagem +=
                     `${item.observacao}\n`;
 
             }
@@ -2052,17 +2069,23 @@ function finalizarPedido() {
     // ======================================================
 
     mensagem +=
-        "==============================\n" +
-        `${EMOJI.dinheiro} *TOTAL DO PEDIDO*\n` +
         "==============================\n";
 
 
     mensagem +=
-        `R$ ${
+        "💰 *TOTAL DO PEDIDO*\n";
+
+
+    mensagem +=
+        "==============================\n";
+
+
+    mensagem +=
+        `💵 *R$ ${
             total
             .toFixed(2)
             .replace(".", ",")
-        }\n\n`;
+        }*\n\n`;
 
 
     // ======================================================
@@ -2070,7 +2093,10 @@ function finalizarPedido() {
     // ======================================================
 
     mensagem +=
-        `${EMOJI.pagamento} *PAGAMENTO*\n` +
+        "💳 *PAGAMENTO*\n";
+
+
+    mensagem +=
         `${pagamento}\n`;
 
 
@@ -2081,19 +2107,28 @@ function finalizarPedido() {
     if (observacoes) {
 
         mensagem +=
-            `\n${EMOJI.observacao} *OBSERVAÇÕES GERAIS*\n` +
+            `\n📝 *OBSERVAÇÕES GERAIS*\n`;
+
+
+        mensagem +=
             `${observacoes}\n`;
 
     }
 
 
     // ======================================================
-    // FINAL
+    // FINAL DA MENSAGEM
     // ======================================================
 
     mensagem +=
-        `\n==============================\n` +
-        `${EMOJI.coracao} *Obrigado por pedir na Boldrine Lanches!*\n` +
+        "\n==============================\n";
+
+
+    mensagem +=
+        "❤️ *Obrigado por pedir na Boldrine Lanches!*\n";
+
+
+    mensagem +=
         "==============================";
 
 
@@ -2131,3 +2166,4 @@ atualizarCarrinho();
 </body>
 
 </html>
+```
