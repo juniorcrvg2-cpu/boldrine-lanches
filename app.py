@@ -45,7 +45,7 @@ PROMOCOES_QUINTA = {
 
 
 # ==========================================================
-# MOLHOS - ORDEM ALFABÉTICA
+# MOLHOS
 # ==========================================================
 
 MOLHOS = [
@@ -60,7 +60,7 @@ MOLHOS = [
 
 
 # ==========================================================
-# ACOMPANHAMENTOS - ORDEM ALFABÉTICA
+# ACOMPANHAMENTOS
 # ==========================================================
 
 ACOMPANHAMENTOS = [
@@ -86,7 +86,6 @@ def agora_brasil():
     """
     Retorna a data e hora atual no horário de Brasília.
     """
-
     return datetime.now(FUSO_HORARIO)
 
 
@@ -107,7 +106,6 @@ def eh_quinta_feira():
     Sábado        = 5
     Domingo       = 6
     """
-
     return agora_brasil().weekday() == 3
 
 
@@ -118,11 +116,9 @@ def eh_quinta_feira():
 @app.route("/", methods=["GET"])
 def inicio():
 
-    # Promoções ativas somente na quinta-feira
+    # Promoções disponíveis somente na quinta-feira
     promocao_ativa = eh_quinta_feira()
 
-    # Se for quinta-feira, envia as promoções para o HTML.
-    # Nos demais dias, envia uma lista vazia.
     if promocao_ativa:
         promocoes = PROMOCOES_QUINTA
     else:
@@ -164,13 +160,8 @@ def pedido():
         ""
     ).strip()
 
-    tamanho = request.form.get(
-        "tamanho"
-    )
-
-    tipo = request.form.get(
-        "tipo"
-    )
+    tamanho = request.form.get("tamanho")
+    tipo = request.form.get("tipo")
 
 
     # ======================================================
@@ -204,7 +195,6 @@ def pedido():
     )
 
     if preco is None:
-
         return "Pedido inválido.", 400
 
 
@@ -262,10 +252,9 @@ def pedido():
 
     # ======================================================
     # MENSAGEM WHATSAPP
-    # ==========================================================
+    # ======================================================
 
     mensagem = []
-
 
     mensagem.append(
         "NOVO PEDIDO - BOLDRINE LANCHES"
@@ -293,12 +282,8 @@ def pedido():
     # PEDIDO
     # ======================================================
 
-    mensagem.append(
-        "PEDIDO"
-    )
-
+    mensagem.append("PEDIDO")
     mensagem.append("")
-
 
     mensagem.append(
         f"1. {tamanho} - {tipo}"
@@ -333,9 +318,7 @@ def pedido():
     # MOLHOS
     # ======================================================
 
-    mensagem.append(
-        "Molhos:"
-    )
+    mensagem.append("Molhos:")
 
     if molhos_ordenados:
 
@@ -347,9 +330,7 @@ def pedido():
 
     else:
 
-        mensagem.append(
-            "Nenhum"
-        )
+        mensagem.append("Nenhum")
 
     mensagem.append("")
 
@@ -358,9 +339,7 @@ def pedido():
     # ACOMPANHAMENTOS
     # ======================================================
 
-    mensagem.append(
-        "Acompanhamentos:"
-    )
+    mensagem.append("Acompanhamentos:")
 
     if acompanhamentos_ordenados:
 
@@ -372,9 +351,7 @@ def pedido():
 
     else:
 
-        mensagem.append(
-            "Nenhum"
-        )
+        mensagem.append("Nenhum")
 
 
     # ======================================================
@@ -396,9 +373,7 @@ def pedido():
 
     mensagem.append("")
 
-    mensagem.append(
-        "----------------"
-    )
+    mensagem.append("----------------")
 
     mensagem.append("")
 
@@ -423,7 +398,6 @@ def pedido():
     )
 
     mensagem.append("")
-
 
     mensagem.append(
         "Obrigado por pedir na Boldrine Lanches!"
