@@ -1,3 +1,4 @@
+```python
 import os
 from urllib.parse import quote
 from datetime import datetime
@@ -95,17 +96,19 @@ def agora_brasil():
 
 def eh_quinta_feira():
     """
-    TESTE TEMPORÁRIO
+    Retorna True somente quando for quinta-feira
+    no horário de Brasília.
 
-    Durante o teste, o sistema considera que
-    hoje é quinta-feira, independentemente do dia real.
-
-    Depois do teste, volte para:
-
-    return agora_brasil().weekday() == 3
+    Segunda-feira = 0
+    Terça-feira   = 1
+    Quarta-feira  = 2
+    Quinta-feira  = 3
+    Sexta-feira   = 4
+    Sábado        = 5
+    Domingo       = 6
     """
 
-    return True
+    return agora_brasil().weekday() == 3
 
 
 # ==========================================================
@@ -115,10 +118,11 @@ def eh_quinta_feira():
 @app.route("/", methods=["GET"])
 def inicio():
 
-    # Durante o teste, a promoção estará sempre ativa
+    # Promoções ativas somente na quinta-feira
     promocao_ativa = eh_quinta_feira()
 
-    # As promoções são enviadas ao HTML
+    # Se for quinta-feira, envia as promoções para o HTML.
+    # Nos demais dias, envia uma lista vazia.
     if promocao_ativa:
         promocoes = PROMOCOES_QUINTA
     else:
@@ -482,3 +486,4 @@ if __name__ == "__main__":
         port=port,
         debug=True
     )
+```
