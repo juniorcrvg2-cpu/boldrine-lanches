@@ -193,7 +193,7 @@
 
 
         /* ==================================================
-           MOLHOS - VISUAL DE APLICATIVO
+           MOLHOS
         ================================================== */
 
         .lista-molhos {
@@ -207,22 +207,15 @@
         .lista-molhos .checkbox {
             display: flex;
             align-items: center;
-
             min-height: 48px;
-
             margin: 0;
             padding: 10px 12px;
-
             background: #fafafa;
-
             border: 1px solid #eeeeee;
             border-radius: 12px;
-
             font-size: 14px;
             font-weight: 600;
-
             cursor: pointer;
-
             transition: all 0.2s ease;
         }
 
@@ -235,29 +228,22 @@
         .lista-molhos .checkbox input {
             width: 18px;
             height: 18px;
-
             margin: 0 8px 0 0;
-
             accent-color: #e85d04;
-
             cursor: pointer;
-
             flex-shrink: 0;
         }
 
         .lista-molhos .checkbox:has(input:checked) {
             background: #fff1e6;
             border: 2px solid #e85d04;
-
             color: #c94f00;
-
-            box-shadow:
-                0 3px 8px rgba(232, 93, 4, 0.12);
+            box-shadow: 0 3px 8px rgba(232, 93, 4, 0.12);
         }
 
 
         /* ==================================================
-           ACOMPANHAMENTOS - VISUAL DE APLICATIVO
+           ACOMPANHAMENTOS
         ================================================== */
 
         .lista-acompanhamentos {
@@ -271,22 +257,15 @@
         .lista-acompanhamentos .checkbox {
             display: flex;
             align-items: center;
-
             min-height: 48px;
-
             margin: 0;
             padding: 10px 12px;
-
             background: #fafafa;
-
             border: 1px solid #eeeeee;
             border-radius: 12px;
-
             font-size: 14px;
             font-weight: 600;
-
             cursor: pointer;
-
             transition: all 0.2s ease;
         }
 
@@ -299,24 +278,17 @@
         .lista-acompanhamentos .checkbox input {
             width: 18px;
             height: 18px;
-
             margin: 0 8px 0 0;
-
             accent-color: #e85d04;
-
             cursor: pointer;
-
             flex-shrink: 0;
         }
 
         .lista-acompanhamentos .checkbox:has(input:checked) {
             background: #fff1e6;
             border: 2px solid #e85d04;
-
             color: #c94f00;
-
-            box-shadow:
-                0 3px 8px rgba(232, 93, 4, 0.12);
+            box-shadow: 0 3px 8px rgba(232, 93, 4, 0.12);
         }
 
 
@@ -404,10 +376,6 @@
 
 <div class="container">
 
-    <!-- ==================================================
-         CABEÇALHO
-    ================================================== -->
-
     <header class="hero">
 
         <div class="logo">
@@ -425,10 +393,6 @@
 
     </header>
 
-
-    <!-- ==================================================
-         HORÁRIOS
-    ================================================== -->
 
     <section class="card horario">
 
@@ -463,10 +427,6 @@
     </section>
 
 
-    <!-- ==================================================
-         PROMOÇÃO DE QUINTA-FEIRA
-    ================================================== -->
-
     {% if promocao_ativa %}
 
     <section class="card promocao-quinta">
@@ -492,7 +452,7 @@
             <div class="promo-item">
 
                 <span class="promo-tag">
-                    NORMAL • 14 CM
+                    NORMAL - 14 CM
                 </span>
 
                 <h3>
@@ -521,7 +481,7 @@
             <div class="promo-item">
 
                 <span class="promo-tag">
-                    NORMAL • 14 CM
+                    NORMAL - 14 CM
                 </span>
 
                 <h3>
@@ -550,7 +510,7 @@
             <div class="promo-item">
 
                 <span class="promo-tag">
-                    SUPER • 32 CM
+                    SUPER - 32 CM
                 </span>
 
                 <h3>
@@ -579,7 +539,7 @@
             <div class="promo-item">
 
                 <span class="promo-tag">
-                    SUPER • 32 CM
+                    SUPER - 32 CM
                 </span>
 
                 <h3>
@@ -610,10 +570,6 @@
 
     {% endif %}
 
-
-    <!-- ==================================================
-         ÁREA DE MONTAGEM DA PROMOÇÃO
-    ================================================== -->
 
     <section
         class="card montagem-promocao"
@@ -738,10 +694,6 @@
     </section>
 
 
-    <!-- ==================================================
-         CARRINHO
-    ================================================== -->
-
     <section class="card carrinho">
 
         <h2>
@@ -769,10 +721,6 @@
 
     </section>
 
-
-    <!-- ==================================================
-         MONTE SEU DOG
-    ================================================== -->
 
     <section class="card">
 
@@ -962,10 +910,6 @@
     </section>
 
 
-    <!-- ==================================================
-         DADOS DO CLIENTE
-    ================================================== -->
-
     <section class="card">
 
         <h2>
@@ -1039,10 +983,6 @@
     </section>
 
 
-    <!-- ==================================================
-         RODAPÉ
-    ================================================== -->
-
     <footer>
 
         <p>
@@ -1087,7 +1027,7 @@ let carrinho = [];
 
 
 // ==========================================================
-// DADOS DA PROMOÇÃO ATUAL
+// DADOS DA PROMOÇÃO
 // ==========================================================
 
 let promocaoSelecionada = null;
@@ -1225,7 +1165,7 @@ function adicionarAoCarrinho() {
 
 
 // ==========================================================
-// ABRIR MONTAGEM DA PROMOÇÃO
+// ABRIR PROMOÇÃO
 // ==========================================================
 
 function abrirPromocao(
@@ -1309,7 +1249,7 @@ function abrirPromocao(
 
 
 // ==========================================================
-// FECHAR MONTAGEM DA PROMOÇÃO
+// FECHAR PROMOÇÃO
 // ==========================================================
 
 function fecharMontagemPromocao() {
@@ -1681,7 +1621,7 @@ function removerItem(index) {
 
 
 // ==========================================================
-// LIMPAR MONTAGEM NORMAL
+// LIMPAR LANCHE
 // ==========================================================
 
 function limparLanche() {
@@ -1717,6 +1657,62 @@ function limparLanche() {
     ).forEach(
         input => input.checked = false
     );
+
+}
+
+
+// ==========================================================
+// MONTAR MOLHOS E ACOMPANHAMENTOS PARA WHATSAPP
+// ==========================================================
+
+function montarComplementosWhatsApp(
+    molhos,
+    acompanhamentos
+) {
+
+    const listaMolhos =
+        molhos && molhos.length
+        ? molhos
+        : ["Nenhum"];
+
+
+    const listaAcompanhamentos =
+        acompanhamentos && acompanhamentos.length
+        ? acompanhamentos
+        : ["Nenhum"];
+
+
+    const quantidadeLinhas =
+        Math.max(
+            listaMolhos.length,
+            listaAcompanhamentos.length
+        );
+
+
+    let resultado = "";
+
+
+    for (
+        let i = 0;
+        i < quantidadeLinhas;
+        i++
+    ) {
+
+        const molho =
+            listaMolhos[i] || "";
+
+
+        const acompanhamento =
+            listaAcompanhamentos[i] || "";
+
+
+        resultado +=
+            `${molho} | ${acompanhamento}\n`;
+
+    }
+
+
+    return resultado;
 
 }
 
@@ -1819,39 +1815,74 @@ function finalizarPedido() {
 
 
     // ======================================================
-    // CABEÇALHO DA MENSAGEM
+    // EMOJIS EM UNICODE
+    // ======================================================
+
+    const EMOJI = {
+
+        lanche: "\uD83C\uDF2D",
+
+        cliente: "\uD83D\uDC64",
+
+        endereco: "\uD83D\uDCCD",
+
+        carrinho: "\uD83D\uDED2",
+
+        molho: "\uD83E\uDDC2",
+
+        acompanhamento: "\uD83E\uDD57",
+
+        dinheiro: "\uD83D\uDCB5",
+
+        pagamento: "\uD83D\uDCB3",
+
+        quantidade: "\uD83D\uDD22",
+
+        tamanho: "\uD83D\uDCCF",
+
+        observacao: "\uD83D\uDCDD",
+
+        celular: "\uD83D\uDCF2",
+
+        fogo: "\uD83D\uDD25",
+
+        estrela: "\u2B50",
+
+        coracao: "\u2764\uFE0F"
+
+    };
+
+
+    // ======================================================
+    // CABEÇALHO
     // ======================================================
 
     let mensagem =
-        "🌭 *NOVO PEDIDO — BOLDRINE LANCHES*\n\n";
+        `${EMOJI.lanche} *NOVO PEDIDO - BOLDRINE LANCHES*\n\n`;
 
 
     mensagem +=
-        "━━━━━━━━━━━━━━━━━━\n" +
-        "👤 *CLIENTE*\n" +
-        "━━━━━━━━━━━━━━━━━━\n";
+        "==============================\n" +
+        `${EMOJI.cliente} *CLIENTE*\n` +
+        "==============================\n";
 
 
     mensagem +=
-        "Nome: " +
-        nome +
-        "\n";
+        `Nome: ${nome}\n`;
 
 
     mensagem +=
-        "Endereço: " +
-        endereco +
-        "\n\n";
+        `Endereço: ${endereco}\n\n`;
 
 
     // ======================================================
-    // ITENS DO PEDIDO
+    // ITENS
     // ======================================================
 
     mensagem +=
-        "━━━━━━━━━━━━━━━━━━\n" +
-        "🛒 *ITENS DO PEDIDO*\n" +
-        "━━━━━━━━━━━━━━━━━━\n\n";
+        "==============================\n" +
+        `${EMOJI.carrinho} *ITENS DO PEDIDO*\n` +
+        "==============================\n\n";
 
 
     carrinho.forEach(
@@ -1879,16 +1910,17 @@ function finalizarPedido() {
 
 
             // ==================================================
-            // IDENTIFICAÇÃO DO ITEM
+            // IDENTIFICAÇÃO
             // ==================================================
 
             if (item.promocao) {
 
                 mensagem +=
-                    `🔥 *ITEM ${index + 1} — PROMOÇÃO*\n`;
+                    `${EMOJI.fogo} *ITEM ${index + 1} - PROMOÇÃO*\n`;
+
 
                 mensagem +=
-                    `🌭 *2 ${item.tipo} — ${
+                    `${EMOJI.lanche} *2 ${item.tipo} - ${
                         item.tamanho === "NORMAL"
                         ? "14 CM"
                         : "32 CM"
@@ -1897,10 +1929,11 @@ function finalizarPedido() {
             } else {
 
                 mensagem +=
-                    `🌭 *ITEM ${index + 1} — LANCHE*\n`;
+                    `${EMOJI.lanche} *ITEM ${index + 1} - LANCHE*\n`;
+
 
                 mensagem +=
-                    `*${item.tamanho} — ${item.tipo}*\n`;
+                    `*${item.tamanho} - ${item.tipo}*\n`;
 
             }
 
@@ -1910,7 +1943,7 @@ function finalizarPedido() {
             // ==================================================
 
             mensagem +=
-                `📏 Tamanho: ${
+                `${EMOJI.tamanho} Tamanho: ${
                     item.tamanho === "NORMAL"
                     ? "14 CM"
                     : "32 CM"
@@ -1922,7 +1955,7 @@ function finalizarPedido() {
             // ==================================================
 
             mensagem +=
-                `🔢 Quantidade: ${
+                `${EMOJI.quantidade} Quantidade: ${
                     item.quantidade
                 } ${
                     item.quantidade === 1
@@ -1938,7 +1971,7 @@ function finalizarPedido() {
             if (item.promocao) {
 
                 mensagem +=
-                    `💰 *Valor da promoção: R$ ${
+                    `${EMOJI.dinheiro} *Valor da promoção: R$ ${
                         item.preco
                         .toFixed(2)
                         .replace(".", ",")
@@ -1947,56 +1980,48 @@ function finalizarPedido() {
             } else {
 
                 mensagem +=
-                    `💰 Valor unitário: R$ ${
+                    `${EMOJI.dinheiro} Valor unitário: R$ ${
                         item.preco
                         .toFixed(2)
                         .replace(".", ",")
                     }\n`;
 
+
                 mensagem +=
-                    `💵 *Subtotal: R$ ${
+                    `Subtotal: R$ ${
                         subtotal
                         .toFixed(2)
                         .replace(".", ",")
-                    }*\n`;
+                    }\n`;
 
             }
 
 
             // ==================================================
-            // MOLHOS
+            // MOLHOS + ACOMPANHAMENTOS LADO A LADO
             // ==================================================
 
-            const listaMolhos =
-                item.molhos &&
-                item.molhos.length > 0
-                ? item.molhos.join(" • ")
-                : "Nenhum";
+            mensagem += "\n";
 
 
             mensagem +=
-                `\n🥫 *MOLHOS*\n` +
-                `${listaMolhos}\n`;
-
-
-            // ==================================================
-            // ACOMPANHAMENTOS
-            // ==================================================
-
-            const listaAcompanhamentos =
-                item.acompanhamentos &&
-                item.acompanhamentos.length > 0
-                ? item.acompanhamentos.join(" • ")
-                : "Nenhum";
+                `${EMOJI.molho} *MOLHOS* | ` +
+                `${EMOJI.acompanhamento} *ACOMPANHAMENTOS*\n`;
 
 
             mensagem +=
-                `\n🥗 *ACOMPANHAMENTOS*\n` +
-                `${listaAcompanhamentos}\n`;
+                "------------------------------\n";
+
+
+            mensagem +=
+                montarComplementosWhatsApp(
+                    item.molhos,
+                    item.acompanhamentos
+                );
 
 
             // ==================================================
-            // OBSERVAÇÃO DO ITEM
+            // OBSERVAÇÃO
             // ==================================================
 
             if (
@@ -2005,7 +2030,7 @@ function finalizarPedido() {
             ) {
 
                 mensagem +=
-                    `\n📝 *OBSERVAÇÃO DO ITEM*\n` +
+                    `\n${EMOJI.observacao} *OBSERVAÇÃO DO ITEM*\n` +
                     `${item.observacao}\n`;
 
             }
@@ -2016,28 +2041,28 @@ function finalizarPedido() {
             // ==================================================
 
             mensagem +=
-                "\n──────────────────\n\n";
+                "\n------------------------------\n\n";
 
         }
     );
 
 
     // ======================================================
-    // TOTAL DO PEDIDO
+    // TOTAL
     // ======================================================
 
     mensagem +=
-        "━━━━━━━━━━━━━━━━━━\n" +
-        "💰 *TOTAL DO PEDIDO*\n" +
-        "━━━━━━━━━━━━━━━━━━\n";
+        "==============================\n" +
+        `${EMOJI.dinheiro} *TOTAL DO PEDIDO*\n` +
+        "==============================\n";
 
 
     mensagem +=
-        `💵 *R$ ${
+        `R$ ${
             total
             .toFixed(2)
             .replace(".", ",")
-        }*\n\n`;
+        }\n\n`;
 
 
     // ======================================================
@@ -2045,9 +2070,8 @@ function finalizarPedido() {
     // ======================================================
 
     mensagem +=
-        "💳 *PAGAMENTO*\n" +
-        pagamento +
-        "\n";
+        `${EMOJI.pagamento} *PAGAMENTO*\n` +
+        `${pagamento}\n`;
 
 
     // ======================================================
@@ -2057,21 +2081,20 @@ function finalizarPedido() {
     if (observacoes) {
 
         mensagem +=
-            "\n📝 *OBSERVAÇÕES GERAIS*\n" +
-            observacoes +
-            "\n";
+            `\n${EMOJI.observacao} *OBSERVAÇÕES GERAIS*\n` +
+            `${observacoes}\n`;
 
     }
 
 
     // ======================================================
-    // FINAL DA MENSAGEM
+    // FINAL
     // ======================================================
 
     mensagem +=
-        "\n━━━━━━━━━━━━━━━━━━\n" +
-        "❤️ *Obrigado por pedir na Boldrine Lanches!*\n" +
-        "━━━━━━━━━━━━━━━━━━";
+        `\n==============================\n` +
+        `${EMOJI.coracao} *Obrigado por pedir na Boldrine Lanches!*\n` +
+        "==============================";
 
 
     // ======================================================
