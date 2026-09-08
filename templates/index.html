@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -6,190 +5,158 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <meta name="theme-color"
-          content="#000000">
+    <meta
+        name="theme-color"
+        content="#000000"
+    >
 
-    <title>Boldrine Lanches 🌭</title>
+    <title>
+        Boldrine Lanches
+    </title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
 
     <style>
 
         /* ==================================================
-           QUINTA DA BOLDRINE
+           PROMOÇÕES
         ================================================== */
 
-        .promocao-quinta {
-            padding: 18px;
-            background: #ffffff;
-        }
-
-        .promo-cabecalho {
-            text-align: center;
-            margin-bottom: 12px;
-        }
-
-        .promo-cabecalho h2 {
-            margin: 0 0 5px 0;
-            font-size: 24px;
-            font-weight: 900;
-            color: #e85d04;
-        }
-
-        .promo-cabecalho p {
-            margin: 0;
-            font-size: 14px;
-            color: #704b3a;
-            line-height: 1.4;
-        }
-
-        .promo-aviso {
-            display: block;
-            width: fit-content;
-            margin: 10px auto 15px auto;
-            padding: 7px 13px;
-            background: #fff1e6;
-            color: #e85d04;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 800;
-            text-align: center;
-        }
-
-        .promo-lista {
+        .promocoes-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            grid-template-columns: 1fr;
+            gap: 5px;
         }
 
-        .promo-item {
-            border: 2px solid #eeeeee;
-            border-radius: 15px;
-            padding: 14px;
-            background: #fffaf6;
-            transition: 0.2s;
+
+        .promo-card {
+            background: #fff7ed;
+            border: 1px solid #eeeeee;
+            border-radius: 8px;
+            padding: 7px 10px;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.15s ease,
+                box-shadow 0.2s ease;
         }
 
-        .promo-item:hover {
-            border-color: #e85d04;
-            box-shadow: 0 5px 15px rgba(232, 93, 4, 0.12);
-            transform: translateY(-2px);
-        }
 
-        .promo-tag {
-            display: inline-block;
+        .promo-card:hover {
             background: #fff1e6;
-            color: #e85d04;
-            padding: 5px 8px;
-            border-radius: 7px;
-            font-size: 11px;
-            font-weight: 900;
-            margin-bottom: 8px;
+            border-color: #e85d04;
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 3px 8px
+                rgba(232, 93, 4, 0.12);
         }
 
-        .promo-item h3 {
+
+        .promo-card:active {
+            transform: scale(0.98);
+        }
+
+
+        .promo-card strong {
+            font-size: 13px;
             margin: 0;
-            font-size: 18px;
-            color: #2b160b;
+            white-space: nowrap;
         }
 
-        .promo-item p {
-            margin: 6px 0 9px 0;
-            color: #777;
-            font-size: 12px;
-            line-height: 1.4;
+
+        .promo-card small {
+            font-size: 11px;
+            color: #666666;
+            margin: 0;
+            flex: 1;
         }
 
-        .promo-preco {
-            display: block;
+
+        .promo-card span {
             color: #e85d04;
-            font-size: 22px;
             font-weight: 900;
-            margin-bottom: 10px;
+            font-size: 14px;
+            white-space: nowrap;
         }
+
 
         .btn-promo {
-            width: 100%;
-            border: none;
-            border-radius: 9px;
             background: #000000;
             color: #ffffff;
-            padding: 10px;
-            margin: 0;
-            font-size: 13px;
-            font-weight: 900;
-            cursor: pointer;
-            box-shadow: none;
+            border: none;
         }
+
 
         .btn-promo:hover {
             background: #222222;
+            color: #ffffff;
         }
 
 
         /* ==================================================
-           CABEÇALHO DA MONTAGEM DA PROMOÇÃO
+           ÁREA DE MONTAGEM DA PROMOÇÃO
         ================================================== */
 
-        .promo-montagem-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
+        .montagem-promocao {
+            background: #fff7ed;
+            border: 2px solid #eeeeee;
+            border-radius: 14px;
+            padding: 15px;
+            margin-top: 15px;
         }
 
-        .promo-montagem-header h2 {
-            margin: 0;
+
+        .montagem-promocao h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
         }
 
-        .fechar-promocao {
-            width: auto;
-            margin: 0;
-            padding: 8px 12px;
-            background: #eeeeee;
-            color: #333;
-            font-size: 16px;
-            border-radius: 9px;
-            box-shadow: none;
+
+        .titulo-lanche-promocao {
+            background: #ffffff;
+            border: 2px solid #eeeeee;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 15px;
+            margin-bottom: 10px;
         }
 
-        .fechar-promocao:hover {
-            background: #dddddd;
+
+        .titulo-lanche-promocao strong {
+            display: block;
+            font-size: 15px;
         }
 
-        .resumo-promocao {
-            margin: 15px 0;
-            padding: 13px;
-            border-radius: 12px;
-            background: #fff1e6;
-            border: 1px solid #ffd5b8;
+
+        .titulo-lanche-promocao small {
+            display: block;
+            color: #666666;
+            margin-top: 3px;
         }
 
-        .resumo-promocao h3 {
-            margin: 0 0 5px 0;
-            color: #e85d04;
-            font-size: 18px;
-        }
 
-        .resumo-promocao p {
-            margin: 0 0 5px 0;
-            color: #666;
-            font-size: 13px;
-        }
-
-        .resumo-promocao strong {
-            color: #e85d04;
-            font-size: 22px;
-        }
-
-        .descricao {
-            color: #777;
-            font-size: 13px;
-            margin-top: -10px;
+        .separador-lanche-promocao {
+            border: 0;
+            border-top: 1px solid #eeeeee;
+            margin: 18px 0;
         }
 
 
@@ -198,48 +165,101 @@
         ================================================== */
 
         .lista-molhos {
+
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 9px;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 10px;
+
             margin-top: 8px;
+
             margin-bottom: 20px;
         }
 
+
         .lista-molhos .checkbox {
+
             display: flex;
+
             align-items: center;
+
             min-height: 48px;
+
             margin: 0;
+
             padding: 10px 12px;
-            background: #fafafa;
-            border: 1px solid #eeeeee;
+
+            background: #ffffff;
+
+            border: 2px solid #eeeeee;
+
             border-radius: 12px;
-            font-size: 14px;
+
             font-weight: 600;
+
+            color: #2b160b;
+
             cursor: pointer;
-            transition: all 0.2s ease;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.15s ease,
+                box-shadow 0.2s ease;
         }
 
+
         .lista-molhos .checkbox:hover {
-            background: #fff1e6;
+
             border-color: #e85d04;
+
+            background: #fff8f2;
+
             transform: translateY(-1px);
         }
 
-        .lista-molhos .checkbox input {
-            width: 18px;
-            height: 18px;
-            margin: 0 8px 0 0;
-            accent-color: #e85d04;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
 
         .lista-molhos .checkbox:has(input:checked) {
+
             background: #fff1e6;
-            border: 2px solid #e85d04;
-            color: #c94f00;
-            box-shadow: 0 3px 8px rgba(232, 93, 4, 0.12);
+
+            border-color: #e85d04;
+
+            color: #c44b00;
+
+            box-shadow:
+                0 3px 8px
+                rgba(232, 93, 4, 0.12);
+        }
+
+
+        .lista-molhos .checkbox input {
+
+            width: 18px;
+
+            height: 18px;
+
+            margin: 0 9px 0 0;
+
+            accent-color: #e85d04;
+
+            flex-shrink: 0;
+
+            cursor: pointer;
+        }
+
+
+        .lista-molhos .checkbox span {
+
+            display: block;
+
+            margin: 0;
+
+            color: inherit;
+
+            font-size: 14px;
         }
 
 
@@ -248,123 +268,242 @@
         ================================================== */
 
         .lista-acompanhamentos {
+
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 9px;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 10px;
+
             margin-top: 8px;
+
             margin-bottom: 20px;
         }
 
+
         .lista-acompanhamentos .checkbox {
+
             display: flex;
+
             align-items: center;
+
             min-height: 48px;
+
             margin: 0;
+
             padding: 10px 12px;
-            background: #fafafa;
-            border: 1px solid #eeeeee;
+
+            background: #ffffff;
+
+            border: 2px solid #eeeeee;
+
             border-radius: 12px;
-            font-size: 14px;
+
             font-weight: 600;
+
+            color: #2b160b;
+
             cursor: pointer;
-            transition: all 0.2s ease;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.15s ease,
+                box-shadow 0.2s ease;
         }
 
+
         .lista-acompanhamentos .checkbox:hover {
-            background: #fff1e6;
+
             border-color: #e85d04;
+
+            background: #fff8f2;
+
             transform: translateY(-1px);
         }
 
-        .lista-acompanhamentos .checkbox input {
-            width: 18px;
-            height: 18px;
-            margin: 0 8px 0 0;
-            accent-color: #e85d04;
-            cursor: pointer;
-            flex-shrink: 0;
+
+        .lista-acompanhamentos
+        .checkbox:has(input:checked) {
+
+            background: #fff1e6;
+
+            border-color: #e85d04;
+
+            color: #c44b00;
+
+            box-shadow:
+                0 3px 8px
+                rgba(232, 93, 4, 0.12);
         }
 
-        .lista-acompanhamentos .checkbox:has(input:checked) {
-            background: #fff1e6;
-            border: 2px solid #e85d04;
-            color: #c94f00;
-            box-shadow: 0 3px 8px rgba(232, 93, 4, 0.12);
+
+        .lista-acompanhamentos
+        .checkbox input {
+
+            width: 18px;
+
+            height: 18px;
+
+            margin: 0 9px 0 0;
+
+            accent-color: #e85d04;
+
+            flex-shrink: 0;
+
+            cursor: pointer;
+        }
+
+
+        .lista-acompanhamentos
+        .checkbox span {
+
+            display: block;
+
+            margin: 0;
+
+            color: inherit;
+
+            font-size: 14px;
         }
 
 
         /* ==================================================
-           CELULAR
+           CARRINHO
+        ================================================== */
+
+        .item-carrinho {
+
+            background: #fff7ed;
+
+            border: 2px solid #eeeeee;
+
+            border-radius: 14px;
+
+            padding: 14px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .item-carrinho strong {
+
+            display: block;
+
+            margin-bottom: 7px;
+        }
+
+
+        .item-carrinho small {
+
+            display: block;
+
+            line-height: 1.6;
+
+            color: #666;
+        }
+
+
+        .item-promocao-lanche {
+
+            background: #ffffff;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 10px;
+
+            padding: 10px;
+
+            margin-top: 8px;
+        }
+
+
+        .item-promocao-lanche strong {
+
+            font-size: 14px;
+
+            margin-bottom: 5px;
+        }
+
+
+        /* ==================================================
+           MOBILE
         ================================================== */
 
         @media (max-width: 480px) {
 
-            .promocao-quinta {
-                padding: 14px;
+            .promocoes-grid {
+
+                grid-template-columns:
+                    1fr;
+
+                gap: 5px;
             }
 
-            .promo-cabecalho h2 {
-                font-size: 21px;
+
+            .promo-card {
+
+                padding: 6px 8px;
+
+                border-radius: 7px;
             }
 
-            .promo-cabecalho p {
-                font-size: 13px;
-            }
 
-            .promo-lista {
-                grid-template-columns: 1fr;
-                gap: 9px;
-            }
+            .promo-card strong {
 
-            .promo-item {
-                padding: 12px;
-            }
-
-            .promo-item h3 {
-                font-size: 17px;
-            }
-
-            .promo-preco {
-                font-size: 20px;
-            }
-
-            .btn-promo {
-                padding: 9px;
                 font-size: 12px;
             }
 
-            .lista-molhos {
-                grid-template-columns: 1fr 1fr;
-                gap: 7px;
+
+            .promo-card small {
+
+                font-size: 10px;
             }
 
-            .lista-molhos .checkbox {
-                min-height: 45px;
-                padding: 8px 9px;
+
+            .promo-card span {
+
                 font-size: 13px;
             }
 
-            .lista-molhos .checkbox input {
-                width: 17px;
-                height: 17px;
-                margin-right: 6px;
-            }
 
+            .lista-molhos,
             .lista-acompanhamentos {
-                grid-template-columns: 1fr 1fr;
-                gap: 7px;
+
+                grid-template-columns:
+                    1fr 1fr;
+
+                gap: 8px;
             }
 
+
+            .lista-molhos .checkbox,
             .lista-acompanhamentos .checkbox {
-                min-height: 45px;
-                padding: 8px 9px;
+
+                min-height: 46px;
+
+                padding: 9px;
+
                 font-size: 13px;
             }
 
-            .lista-acompanhamentos .checkbox input {
+
+            .lista-molhos .checkbox input,
+            .lista-acompanhamentos
+            .checkbox input {
+
                 width: 17px;
+
                 height: 17px;
-                margin-right: 6px;
+
+                margin-right: 7px;
+            }
+
+
+            .montagem-promocao {
+
+                padding: 12px;
             }
 
         }
@@ -373,9 +512,11 @@
 
 </head>
 
+
 <body>
 
 <div class="container">
+
 
     <!-- ==================================================
          CABEÇALHO
@@ -392,8 +533,14 @@
 
         </div>
 
+
+        <h1>
+            Boldrine Lanches
+        </h1>
+
+
         <p>
-            Monte do seu jeito!
+            O melhor lanche para você!
         </p>
 
     </header>
@@ -406,185 +553,89 @@
     <section class="card horario">
 
         <h2>
-            🕐 FUNCIONAMOS
+            Horário de funcionamento
         </h2>
 
-        <p>
-            <strong>Quinta-feira:</strong>
-            às 19:00h
-        </p>
 
         <p>
-            <strong>Sexta-feira:</strong>
-            às 19:00h
+            <strong>Quinta:</strong> 19:00
         </p>
 
-        <p>
-            <strong>Sábado:</strong>
-            às 19:00h
-        </p>
 
         <p>
-            <strong>Domingo:</strong>
-            às 21:10h
+            <strong>Sexta:</strong> 19:00
         </p>
+
+
+        <p>
+            <strong>Sábado:</strong> 19:00
+        </p>
+
+
+        <p>
+            <strong>Domingo:</strong> 21:10
+        </p>
+
 
         <p class="esperamos">
-            Esperamos por você! ❤️
+            Esperamos você!
         </p>
 
     </section>
 
 
     <!-- ==================================================
-         PROMOÇÕES DE QUINTA
+         PROMOÇÕES
     ================================================== -->
 
     {% if promocao_ativa %}
 
-    <section class="card promocao-quinta">
+    <section class="card">
 
-        <div class="promo-cabecalho">
-
-            <h2>
-                🔥 QUINTA DA BOLDRINE
-            </h2>
-
-            <p>
-                Combos especiais para deixar sua quinta ainda melhor!
-            </p>
-
-        </div>
-
-        <div class="promo-aviso">
-            ⭐ Promoções válidas somente hoje!
-        </div>
-
-        <div class="promo-lista">
+        <h2>
+            Promoções de Quinta-feira
+        </h2>
 
 
-            <!-- PROMOÇÃO 1 -->
+        <div class="promocoes-grid">
 
-            <div class="promo-item">
+            {% for chave, preco in promocoes.items() %}
 
-                <span class="promo-tag">
-                    NORMAL - 14 CM
-                </span>
+            <div
+                class="promo-card"
+                onclick="selecionarPromocao('{{ chave[0] }}|{{ chave[1] }}|{{ preco }}')"
+            >
 
-                <h3>
-                    🌭 2 Salsichas
-                </h3>
-
-                <p>
-                    Combo com 2 dogs de salsicha.
-                </p>
-
-                <strong class="promo-preco">
-                    R$ 32,00
+                <strong>
+                    2 {{ chave[1] }}
                 </strong>
 
-                <button
-                    type="button"
-                    class="btn-promo"
-                    onclick="abrirPromocao('NORMAL', 'Salsicha', 32.00)"
-                >
-                    🔥 MONTAR PROMOÇÃO
-                </button>
+
+                <small>
+
+                    {{ chave[0] }}
+
+                    -
+
+                    {% if chave[0] == "NORMAL" %}
+                        14 CM
+                    {% else %}
+                        32 CM
+                    {% endif %}
+
+                </small>
+
+
+                <span>
+
+                    R$
+                    {{ "%.2f"|format(preco)|replace(".", ",") }}
+
+                </span>
 
             </div>
 
-
-            <!-- PROMOÇÃO 2 -->
-
-            <div class="promo-item">
-
-                <span class="promo-tag">
-                    NORMAL - 14 CM
-                </span>
-
-                <h3>
-                    🌭 2 Linguiças
-                </h3>
-
-                <p>
-                    Combo com 2 dogs de linguiça.
-                </p>
-
-                <strong class="promo-preco">
-                    R$ 35,00
-                </strong>
-
-                <button
-                    type="button"
-                    class="btn-promo"
-                    onclick="abrirPromocao('NORMAL', 'Linguiça', 35.00)"
-                >
-                    🔥 MONTAR PROMOÇÃO
-                </button>
-
-            </div>
-
-
-            <!-- PROMOÇÃO 3 -->
-
-            <div class="promo-item">
-
-                <span class="promo-tag">
-                    SUPER - 32 CM
-                </span>
-
-                <h3>
-                    🌭 2 Salsichas
-                </h3>
-
-                <p>
-                    Combo com 2 dogs super de salsicha.
-                </p>
-
-                <strong class="promo-preco">
-                    R$ 42,00
-                </strong>
-
-                <button
-                    type="button"
-                    class="btn-promo"
-                    onclick="abrirPromocao('SUPER', 'Salsicha', 42.00)"
-                >
-                    🔥 MONTAR PROMOÇÃO
-                </button>
-
-            </div>
-
-
-            <!-- PROMOÇÃO 4 -->
-
-            <div class="promo-item">
-
-                <span class="promo-tag">
-                    SUPER - 32 CM
-                </span>
-
-                <h3>
-                    🌭 2 Linguiças
-                </h3>
-
-                <p>
-                    Combo com 2 dogs super de linguiça.
-                </p>
-
-                <strong class="promo-preco">
-                    R$ 45,00
-                </strong>
-
-                <button
-                    type="button"
-                    class="btn-promo"
-                    onclick="abrirPromocao('SUPER', 'Linguiça', 45.00)"
-                >
-                    🔥 MONTAR PROMOÇÃO
-                </button>
-
-            </div>
+            {% endfor %}
 
         </div>
 
@@ -594,56 +645,56 @@
 
 
     <!-- ==================================================
-         MONTAGEM DA PROMOÇÃO
+         MONTAR PROMOÇÃO
     ================================================== -->
 
+    {% if promocao_ativa %}
+
     <section
-        class="card montagem-promocao"
-        id="montagem-promocao"
-        style="display: none;"
+        class="card"
+        id="montagemPromocao"
+        style="display:none;"
     >
 
-        <div class="promo-montagem-header">
-
-            <h2>
-                🔥 MONTE SUA PROMOÇÃO
-            </h2>
-
-            <button
-                type="button"
-                class="fechar-promocao"
-                onclick="fecharMontagemPromocao()"
-            >
-                ✕
-            </button>
-
-        </div>
-
-
-        <div class="resumo-promocao">
-
-            <h3 id="titulo-promocao">
-                Promoção
-            </h3>
-
-            <p id="descricao-promocao">
-                2 unidades
-            </p>
-
-            <strong id="preco-promocao">
-                R$ 0,00
-            </strong>
-
-        </div>
-
-
         <h2>
-            🥫 MOLHOS
+            Monte sua promoção
         </h2>
 
-        <p class="descricao">
-            Escolha os molhos para o seu combo:
-        </p>
+
+        <div
+            id="promocaoSelecionadaTitulo"
+            class="titulo-lanche-promocao"
+            style="display:none;"
+        >
+
+            <strong id="textoPromocaoSelecionada"></strong>
+
+            <small id="valorPromocaoSelecionada"></small>
+
+        </div>
+
+
+        <!-- ==================================================
+             LANCHE 1
+        ================================================== -->
+
+        <div class="titulo-lanche-promocao">
+
+            <strong>
+                Lanche 1
+            </strong>
+
+            <small id="descricaoLanche1">
+                Escolha os molhos e acompanhamentos
+            </small>
+
+        </div>
+
+
+        <label>
+            Molhos do lanche 1
+        </label>
+
 
         <div class="lista-molhos">
 
@@ -653,9 +704,10 @@
 
                 <input
                     type="checkbox"
-                    name="promo_molhos"
+                    name="promo_lanche1_molhos"
                     value="{{ molho }}"
                 >
+
 
                 <span>
                     {{ molho }}
@@ -668,13 +720,10 @@
         </div>
 
 
-        <h2>
-            🥗 ACOMPANHAMENTOS
-        </h2>
+        <label>
+            Acompanhamentos do lanche 1
+        </label>
 
-        <p class="descricao">
-            Escolha os acompanhamentos para o seu combo:
-        </p>
 
         <div class="lista-acompanhamentos">
 
@@ -684,9 +733,10 @@
 
                 <input
                     type="checkbox"
-                    name="promo_acompanhamentos"
+                    name="promo_lanche1_acompanhamentos"
                     value="{{ acompanhamento }}"
                 >
+
 
                 <span>
                     {{ acompanhamento }}
@@ -699,73 +749,148 @@
         </div>
 
 
-        <label for="promo_observacao">
-            📝 Observação da promoção:
+        <hr class="separador-lanche-promocao">
+
+
+        <!-- ==================================================
+             LANCHE 2
+        ================================================== -->
+
+        <div class="titulo-lanche-promocao">
+
+            <strong>
+                Lanche 2
+            </strong>
+
+            <small id="descricaoLanche2">
+                Escolha os molhos e acompanhamentos
+            </small>
+
+        </div>
+
+
+        <label>
+            Molhos do lanche 2
         </label>
 
+
+        <div class="lista-molhos">
+
+            {% for molho in molhos %}
+
+            <label class="checkbox">
+
+                <input
+                    type="checkbox"
+                    name="promo_lanche2_molhos"
+                    value="{{ molho }}"
+                >
+
+
+                <span>
+                    {{ molho }}
+                </span>
+
+            </label>
+
+            {% endfor %}
+
+        </div>
+
+
+        <label>
+            Acompanhamentos do lanche 2
+        </label>
+
+
+        <div class="lista-acompanhamentos">
+
+            {% for acompanhamento in acompanhamentos %}
+
+            <label class="checkbox">
+
+                <input
+                    type="checkbox"
+                    name="promo_lanche2_acompanhamentos"
+                    value="{{ acompanhamento }}"
+                >
+
+
+                <span>
+                    {{ acompanhamento }}
+                </span>
+
+            </label>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- ==================================================
+             OBSERVAÇÃO
+        ================================================== -->
+
+        <label>
+            Observação da promoção
+        </label>
+
+
         <textarea
-            id="promo_observacao"
-            rows="3"
-            placeholder="Ex.: um sem cebola e outro com cheddar..."
+            id="promoObservacao"
+            rows="2"
+            placeholder="Alguma observação?"
         ></textarea>
 
+
+        <!-- ==================================================
+             ADICIONAR PROMOÇÃO
+        ================================================== -->
 
         <button
             type="button"
             onclick="confirmarPromocao()"
         >
-            🔥 ADICIONAR PROMOÇÃO AO CARRINHO
+            Adicionar promoção ao pedido
+        </button>
+
+
+        <!-- ==================================================
+             CANCELAR
+        ================================================== -->
+
+        <button
+            type="button"
+            class="btn-promo"
+            onclick="fecharMontagemPromocao()"
+        >
+            Cancelar
         </button>
 
     </section>
 
-
-    <!-- ==================================================
-         CARRINHO
-    ================================================== -->
-
-    <section class="card carrinho">
-
-        <h2>
-            🛒 SEU CARRINHO
-        </h2>
-
-        <div id="carrinho-vazio">
-
-            <p>
-                Seu carrinho está vazio.
-            </p>
-
-        </div>
-
-        <div id="itens-carrinho">
-        </div>
-
-        <div id="total-carrinho">
-
-            <strong>
-                TOTAL: R$ 0,00
-            </strong>
-
-        </div>
-
-    </section>
+    {% endif %}
 
 
     <!-- ==================================================
-         MONTE SEU DOG
+         CARDÁPIO
     ================================================== -->
 
     <section class="card">
 
         <h2>
-            🌭 MONTE SEU DOG
+            Monte seu lanche
         </h2>
 
 
+        <!-- ==================================================
+             TAMANHO
+        ================================================== -->
+
         <label>
-            Escolha o tamanho:
+            Tamanho
         </label>
+
 
         <div class="opcoes">
 
@@ -775,13 +900,16 @@
                     type="radio"
                     name="tamanho"
                     value="NORMAL"
+                    checked
                 >
+
 
                 <div>
 
                     <strong>
                         NORMAL
                     </strong>
+
 
                     <span>
                         14 CM
@@ -800,11 +928,13 @@
                     value="SUPER"
                 >
 
+
                 <div>
 
                     <strong>
                         SUPER
                     </strong>
+
 
                     <span>
                         32 CM
@@ -817,9 +947,14 @@
         </div>
 
 
+        <!-- ==================================================
+             SABOR
+        ================================================== -->
+
         <label>
-            Escolha o sabor:
+            Sabor
         </label>
+
 
         <div class="opcoes">
 
@@ -829,15 +964,24 @@
                     type="radio"
                     name="tipo"
                     value="Salsicha"
+                    checked
                 >
 
-                <div>
 
-                    🌭
+                <div>
 
                     <strong>
                         Salsicha
                     </strong>
+
+
+                    <span
+                        class="preco-sabor"
+                        data-normal="18.00"
+                        data-super="23.00"
+                    >
+                        R$ 18,00
+                    </span>
 
                 </div>
 
@@ -852,13 +996,21 @@
                     value="Linguiça"
                 >
 
-                <div>
 
-                    🌭
+                <div>
 
                     <strong>
                         Linguiça
                     </strong>
+
+
+                    <span
+                        class="preco-sabor"
+                        data-normal="20.00"
+                        data-super="25.00"
+                    >
+                        R$ 20,00
+                    </span>
 
                 </div>
 
@@ -867,9 +1019,14 @@
         </div>
 
 
-        <label for="quantidade">
-            Quantidade:
+        <!-- ==================================================
+             QUANTIDADE
+        ================================================== -->
+
+        <label>
+            Quantidade
         </label>
+
 
         <input
             type="number"
@@ -879,15 +1036,14 @@
         >
 
 
-        <!-- MOLHOS -->
+        <!-- ==================================================
+             MOLHOS
+        ================================================== -->
 
-        <h2>
-            🥫 MOLHOS
-        </h2>
+        <label>
+            Molhos
+        </label>
 
-        <p class="descricao">
-            Escolha os molhos que deseja:
-        </p>
 
         <div class="lista-molhos">
 
@@ -901,6 +1057,7 @@
                     value="{{ molho }}"
                 >
 
+
                 <span>
                     {{ molho }}
                 </span>
@@ -912,15 +1069,14 @@
         </div>
 
 
-        <!-- ACOMPANHAMENTOS -->
+        <!-- ==================================================
+             ACOMPANHAMENTOS
+        ================================================== -->
 
-        <h2>
-            🥗 ACOMPANHAMENTOS
-        </h2>
+        <label>
+            Acompanhamentos
+        </label>
 
-        <p class="descricao">
-            Escolha os acompanhamentos:
-        </p>
 
         <div class="lista-acompanhamentos">
 
@@ -934,6 +1090,7 @@
                     value="{{ acompanhamento }}"
                 >
 
+
                 <span>
                     {{ acompanhamento }}
                 </span>
@@ -945,52 +1102,81 @@
         </div>
 
 
+        <!-- ==================================================
+             ADICIONAR LANCHE
+        ================================================== -->
+
         <button
             type="button"
             onclick="adicionarAoCarrinho()"
         >
-            ➕ ADICIONAR AO CARRINHO
+            Adicionar ao pedido
         </button>
 
     </section>
 
 
     <!-- ==================================================
-         FINALIZAR PEDIDO
+         CARRINHO
     ================================================== -->
 
     <section class="card">
 
         <h2>
-            📋 FINALIZAR PEDIDO
+            Seu pedido
+        </h2>
+
+
+        <div id="carrinho">
+
+            <p>
+                Nenhum lanche adicionado.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         FINALIZAÇÃO
+    ================================================== -->
+
+    <section class="card">
+
+        <h2>
+            Finalizar pedido
         </h2>
 
 
         <label for="nome">
-            Seu nome:
+            Nome
         </label>
+
 
         <input
             type="text"
             id="nome"
-            placeholder="Digite seu nome"
+            placeholder="Seu nome"
         >
 
 
         <label for="endereco">
-            Endereço:
+            Endereço
         </label>
 
-        <textarea
+
+        <input
+            type="text"
             id="endereco"
-            rows="3"
-            placeholder="Rua, número, bairro..."
-        ></textarea>
+            placeholder="Rua, número, complemento..."
+        >
 
 
         <label for="pagamento">
-            Forma de pagamento:
+            Forma de pagamento
         </label>
+
 
         <select id="pagamento">
 
@@ -998,25 +1184,28 @@
                 Selecione
             </option>
 
+
             <option value="PIX">
-                💚 PIX
+                PIX
             </option>
 
+
             <option value="Dinheiro">
-                💵 Dinheiro
+                Dinheiro
             </option>
 
         </select>
 
 
         <label for="observacoes">
-            Observações:
+            Observações gerais
         </label>
+
 
         <textarea
             id="observacoes"
             rows="3"
-            placeholder="Ex.: tocar interfone..."
+            placeholder="Alguma observação sobre o pedido?"
         ></textarea>
 
 
@@ -1024,9 +1213,7 @@
             type="button"
             onclick="finalizarPedido()"
         >
-            📲 FINALIZAR PEDIDO
-            <br>
-            PELO WHATSAPP
+            Finalizar pedido
         </button>
 
     </section>
@@ -1038,14 +1225,13 @@
 
     <footer>
 
-        <p>
-            ❤️ Qualidade, sabor e carinho em cada dog!
-        </p>
+        <strong>
+            Boldrine Lanches
+        </strong>
 
-        <p>
-            📲 WhatsApp:
-            (21) 98800-0094
-        </p>
+        <br>
+
+        Feito com carinho
 
     </footer>
 
@@ -1055,1115 +1241,1491 @@
 <script>
 
 
-// ==========================================================
-// PREÇOS NORMAIS
-// ==========================================================
+    // ======================================================
+    // PREÇOS NORMAIS
+    // ======================================================
 
-const precos = {
+    const precos = {
 
-    "NORMAL-Salsicha": 18.00,
+        "NORMAL-Salsicha": 18.00,
 
-    "NORMAL-Linguiça": 20.00,
+        "NORMAL-Linguiça": 20.00,
 
-    "SUPER-Salsicha": 23.00,
+        "SUPER-Salsicha": 23.00,
 
-    "SUPER-Linguiça": 25.00
+        "SUPER-Linguiça": 25.00
 
-};
-
-
-// ==========================================================
-// CARRINHO
-// ==========================================================
-
-let carrinho = [];
+    };
 
 
-// ==========================================================
-// DADOS DA PROMOÇÃO
-// ==========================================================
+    // ======================================================
+    // CARRINHO
+    // ======================================================
 
-let promocaoSelecionada = null;
-
-
-// ==========================================================
-// ADICIONAR LANCHE NORMAL
-// ==========================================================
-
-function adicionarAoCarrinho() {
-
-    const tamanhoSelecionado =
-        document.querySelector(
-            'input[name="tamanho"]:checked'
-        );
+    let carrinho = [];
 
 
-    const tipoSelecionado =
-        document.querySelector(
-            'input[name="tipo"]:checked'
-        );
+    // ======================================================
+    // PROMOÇÃO ATUALMENTE SELECIONADA
+    // ======================================================
+
+    let promocaoSelecionada = null;
 
 
-    if (!tamanhoSelecionado) {
+    // ======================================================
+    // ATUALIZAR PREÇOS EXIBIDOS
+    // ======================================================
 
-        alert(
-            "Escolha o tamanho do lanche."
-        );
+    function atualizarPrecosSabores() {
 
-        return;
+        const tamanhoSelecionado =
+            document.querySelector(
+                'input[name="tamanho"]:checked'
+            );
+
+
+        if (!tamanhoSelecionado) {
+            return;
+        }
+
+
+        const tamanho =
+            tamanhoSelecionado.value;
+
+
+        document
+            .querySelectorAll(".preco-sabor")
+            .forEach(function(elemento) {
+
+                let preco;
+
+
+                if (tamanho === "NORMAL") {
+
+                    preco =
+                        parseFloat(
+                            elemento.dataset.normal
+                        );
+
+                } else {
+
+                    preco =
+                        parseFloat(
+                            elemento.dataset.super
+                        );
+
+                }
+
+
+                elemento.textContent =
+                    "R$ " +
+                    preco
+                        .toFixed(2)
+                        .replace(".", ",");
+
+            });
+
     }
 
 
-    if (!tipoSelecionado) {
+    // ======================================================
+    // ALTERAÇÃO DO TAMANHO
+    // ======================================================
 
-        alert(
-            "Escolha Salsicha ou Linguiça."
-        );
+    document
+        .querySelectorAll(
+            'input[name="tamanho"]'
+        )
+        .forEach(function(radio) {
 
-        return;
-    }
+            radio.addEventListener(
+                "change",
+                atualizarPrecosSabores
+            );
 
-
-    const tamanho =
-        tamanhoSelecionado.value;
-
-
-    const tipo =
-        tipoSelecionado.value;
+        });
 
 
-    let quantidade =
-        parseInt(
+    // ======================================================
+    // ADICIONAR LANCHE NORMAL
+    // ======================================================
+
+    function adicionarAoCarrinho() {
+
+        const tamanho =
+            document.querySelector(
+                'input[name="tamanho"]:checked'
+            ).value;
+
+
+        const tipo =
+            document.querySelector(
+                'input[name="tipo"]:checked'
+            ).value;
+
+
+        const quantidadeInput =
             document.getElementById(
                 "quantidade"
-            ).value
-        );
+            );
 
 
-    if (!quantidade || quantidade < 1) {
+        let quantidade =
+            parseInt(
+                quantidadeInput.value
+            );
 
-        quantidade = 1;
-    }
 
+        if (
+            isNaN(quantidade) ||
+            quantidade < 1
+        ) {
 
-    const chave =
-        tamanho + "-" + tipo;
-
-
-    const preco =
-        precos[chave];
-
-
-    const molhos =
-        Array.from(
-            document.querySelectorAll(
-                'input[name="molhos"]:checked'
-            )
-        ).map(
-            item => item.value
-        );
-
-
-    const acompanhamentos =
-        Array.from(
-            document.querySelectorAll(
-                'input[name="acompanhamentos"]:checked'
-            )
-        ).map(
-            item => item.value
-        );
-
-
-    const item = {
-
-        tamanho: tamanho,
-
-        tipo: tipo,
-
-        quantidade: quantidade,
-
-        preco: preco,
-
-        molhos: molhos,
-
-        acompanhamentos: acompanhamentos,
-
-        observacao: "",
-
-        promocao: false,
-
-        nomePromocao: ""
-
-    };
-
-
-    carrinho.push(item);
-
-
-    atualizarCarrinho();
-
-
-    limparLanche();
-
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
-}
-
-
-// ==========================================================
-// ABRIR PROMOÇÃO
-// ==========================================================
-
-function abrirPromocao(
-    tamanho,
-    tipo,
-    preco
-) {
-
-    promocaoSelecionada = {
-
-        tamanho: tamanho,
-
-        tipo: tipo,
-
-        preco: preco
-
-    };
-
-
-    const tamanhoTexto =
-        tamanho === "NORMAL"
-        ? "14 CM"
-        : "32 CM";
-
-
-    document.getElementById(
-        "titulo-promocao"
-    ).textContent =
-        `🔥 2 ${tipo} — ${tamanhoTexto}`;
-
-
-    document.getElementById(
-        "descricao-promocao"
-    ).textContent =
-        "Escolha os complementos do seu combo";
-
-
-    document.getElementById(
-        "preco-promocao"
-    ).textContent =
-        `R$ ${preco.toFixed(2).replace(".", ",")}`;
-
-
-    document.querySelectorAll(
-        'input[name="promo_molhos"]'
-    ).forEach(
-        input => input.checked = false
-    );
-
-
-    document.querySelectorAll(
-        'input[name="promo_acompanhamentos"]'
-    ).forEach(
-        input => input.checked = false
-    );
-
-
-    document.getElementById(
-        "promo_observacao"
-    ).value = "";
-
-
-    const area =
-        document.getElementById(
-            "montagem-promocao"
-        );
-
-
-    area.style.display = "block";
-
-
-    area.scrollIntoView({
-
-        behavior: "smooth",
-
-        block: "start"
-
-    });
-
-}
-
-
-// ==========================================================
-// FECHAR PROMOÇÃO
-// ==========================================================
-
-function fecharMontagemPromocao() {
-
-    promocaoSelecionada = null;
-
-
-    document.getElementById(
-        "montagem-promocao"
-    ).style.display = "none";
-
-}
-
-
-// ==========================================================
-// CONFIRMAR PROMOÇÃO
-// ==========================================================
-
-function confirmarPromocao() {
-
-    if (!promocaoSelecionada) {
-
-        alert(
-            "Escolha uma promoção primeiro."
-        );
-
-        return;
-    }
-
-
-    const molhos =
-        Array.from(
-            document.querySelectorAll(
-                'input[name="promo_molhos"]:checked'
-            )
-        ).map(
-            item => item.value
-        );
-
-
-    const acompanhamentos =
-        Array.from(
-            document.querySelectorAll(
-                'input[name="promo_acompanhamentos"]:checked'
-            )
-        ).map(
-            item => item.value
-        );
-
-
-    const observacao =
-        document.getElementById(
-            "promo_observacao"
-        ).value.trim();
-
-
-    const tamanho =
-        promocaoSelecionada.tamanho;
-
-
-    const tipo =
-        promocaoSelecionada.tipo;
-
-
-    const preco =
-        promocaoSelecionada.preco;
-
-
-    const tamanhoTexto =
-        tamanho === "NORMAL"
-        ? "14 CM"
-        : "32 CM";
-
-
-    const item = {
-
-        tamanho: tamanho,
-
-        tipo: tipo,
-
-        quantidade: 2,
-
-        preco: preco,
-
-        molhos: molhos,
-
-        acompanhamentos: acompanhamentos,
-
-        observacao: observacao,
-
-        promocao: true,
-
-        nomePromocao:
-            `PROMOÇÃO — 2 ${tipo} ${tamanhoTexto}`
-
-    };
-
-
-    carrinho.push(item);
-
-
-    atualizarCarrinho();
-
-
-    fecharMontagemPromocao();
-
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
-}
-
-
-// ==========================================================
-// ATUALIZAR CARRINHO
-// ==========================================================
-
-function atualizarCarrinho() {
-
-    const area =
-        document.getElementById(
-            "itens-carrinho"
-        );
-
-
-    const vazio =
-        document.getElementById(
-            "carrinho-vazio"
-        );
-
-
-    const totalArea =
-        document.getElementById(
-            "total-carrinho"
-        );
-
-
-    area.innerHTML = "";
-
-
-    if (carrinho.length === 0) {
-
-        vazio.style.display = "block";
-
-
-        totalArea.innerHTML =
-            "<strong>TOTAL: R$ 0,00</strong>";
-
-
-        return;
-    }
-
-
-    vazio.style.display = "none";
-
-
-    let total = 0;
-
-
-    carrinho.forEach(
-        (item, index) => {
-
-            let subtotal;
-
-
-            if (item.promocao) {
-
-                subtotal =
-                    item.preco;
-
-            } else {
-
-                subtotal =
-                    item.preco *
-                    item.quantidade;
-
-            }
-
-
-            total += subtotal;
-
-
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-
-            div.className =
-                "item-carrinho";
-
-
-            const titulo =
-                item.promocao
-                ? "🔥 " + item.nomePromocao
-                : `${item.tamanho} — ${item.tipo}`;
-
-
-            div.innerHTML = `
-
-                <div>
-
-                    <strong>
-                        ${index + 1}.
-                        ${titulo}
-                    </strong>
-
-                    <p>
-                        📏 ${
-                            item.tamanho === "NORMAL"
-                            ? "14 CM"
-                            : "32 CM"
-                        }
-                    </p>
-
-                    <p>
-                        🔢 Quantidade:
-                        ${item.quantidade}
-                    </p>
-
-                    ${
-                        item.promocao
-
-                        ? `
-
-                        <p>
-                            ⭐ Combo promocional
-                        </p>
-
-                        <p>
-                            💰 Valor do combo:
-                            R$ ${
-                                item.preco
-                                .toFixed(2)
-                                .replace(".", ",")
-                            }
-                        </p>
-
-                        `
-
-                        : `
-
-                        <p>
-                            💰 Valor unitário:
-                            R$ ${
-                                item.preco
-                                .toFixed(2)
-                                .replace(".", ",")
-                            }
-                        </p>
-
-                        `
-                    }
-
-
-                    <p>
-
-                        🥫 Molhos:
-                        ${
-                            item.molhos.length
-                            ? item.molhos.join(", ")
-                            : "Nenhum"
-                        }
-
-                    </p>
-
-
-                    <p>
-
-                        🥗 Acompanhamentos:
-                        ${
-                            item.acompanhamentos.length
-                            ? item.acompanhamentos.join(", ")
-                            : "Nenhum"
-                        }
-
-                    </p>
-
-
-                    ${
-                        item.observacao
-
-                        ? `
-
-                        <p>
-                            📝 Observação:
-                            ${item.observacao}
-                        </p>
-
-                        `
-
-                        : ""
-
-                    }
-
-
-                    <strong>
-
-                        R$ ${
-                            subtotal
-                            .toFixed(2)
-                            .replace(".", ",")
-                        }
-
-                    </strong>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="remover"
-                    onclick="removerItem(${index})"
-                >
-
-                    🗑️
-
-                </button>
-
-            `;
-
-
-            area.appendChild(div);
+            quantidade = 1;
 
         }
-    );
 
 
-    totalArea.innerHTML = `
+        const chave =
+            `${tamanho}-${tipo}`;
 
-        <strong>
 
-            TOTAL:
-            R$ ${
-                total
-                .toFixed(2)
-                .replace(".", ",")
+        const preco =
+            precos[chave];
+
+
+        const molhos =
+            Array.from(
+                document.querySelectorAll(
+                    'input[name="molhos"]:checked'
+                )
+            ).map(
+                input => input.value
+            );
+
+
+        const acompanhamentos =
+            Array.from(
+                document.querySelectorAll(
+                    'input[name="acompanhamentos"]:checked'
+                )
+            ).map(
+                input => input.value
+            );
+
+
+        const item = {
+
+            tamanho: tamanho,
+
+            tipo: tipo,
+
+            quantidade: quantidade,
+
+            preco: preco,
+
+            molhos: molhos,
+
+            acompanhamentos: acompanhamentos,
+
+            observacao: "",
+
+            promocao: false,
+
+            nomePromocao: "",
+
+            precoFechado: false
+
+        };
+
+
+        carrinho.push(item);
+
+
+        atualizarCarrinho();
+
+
+        document
+            .querySelectorAll(
+                'input[name="molhos"]'
+            )
+            .forEach(
+                input => input.checked = false
+            );
+
+
+        document
+            .querySelectorAll(
+                'input[name="acompanhamentos"]'
+            )
+            .forEach(
+                input => input.checked = false
+            );
+
+
+        quantidadeInput.value = 1;
+
+    }
+
+
+    // ======================================================
+    // SELECIONAR PROMOÇÃO
+    // ======================================================
+
+    function selecionarPromocao(valor) {
+
+        const dados =
+            valor.split("|");
+
+
+        const tamanho =
+            dados[0];
+
+
+        const tipo =
+            dados[1];
+
+
+        const preco =
+            parseFloat(
+                dados[2]
+            );
+
+
+        promocaoSelecionada = {
+
+            tamanho: tamanho,
+
+            tipo: tipo,
+
+            preco: preco
+
+        };
+
+
+        const promocoes =
+            document.querySelectorAll(
+                'input[name="promo"]'
+            );
+
+
+        promocoes.forEach(function(input) {
+
+            input.checked =
+                input.value === valor;
+
+        });
+
+
+        const area =
+            document.getElementById(
+                "montagemPromocao"
+            );
+
+
+        if (!area) {
+            return;
+        }
+
+
+        const tamanhoTexto =
+            tamanho === "NORMAL"
+                ? "14 CM"
+                : "32 CM";
+
+
+        const titulo =
+            document.getElementById(
+                "textoPromocaoSelecionada"
+            );
+
+
+        const valorTitulo =
+            document.getElementById(
+                "valorPromocaoSelecionada"
+            );
+
+
+        if (titulo) {
+
+            titulo.textContent =
+                `2 ${tipo} - ${tamanhoTexto}`;
+
+        }
+
+
+        if (valorTitulo) {
+
+            valorTitulo.textContent =
+                `Valor fechado da promoção: R$ ${
+                    preco
+                        .toFixed(2)
+                        .replace(".", ",")
+                }`;
+
+        }
+
+
+        const descricao1 =
+            document.getElementById(
+                "descricaoLanche1"
+            );
+
+
+        const descricao2 =
+            document.getElementById(
+                "descricaoLanche2"
+            );
+
+
+        if (descricao1) {
+
+            descricao1.textContent =
+                `${tipo} - ${tamanhoTexto}`;
+
+        }
+
+
+        if (descricao2) {
+
+            descricao2.textContent =
+                `${tipo} - ${tamanhoTexto}`;
+
+        }
+
+
+        const tituloSelecionado =
+            document.getElementById(
+                "promocaoSelecionadaTitulo"
+            );
+
+
+        if (tituloSelecionado) {
+
+            tituloSelecionado.style.display =
+                "block";
+
+        }
+
+
+        area.style.display =
+            "block";
+
+
+        setTimeout(function() {
+
+            area.scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "start"
+
+            });
+
+        }, 100);
+
+    }
+
+
+    // ======================================================
+    // LIMPAR CAMPOS DA PROMOÇÃO
+    // ======================================================
+
+    function limparCamposPromocao() {
+
+        document
+            .querySelectorAll(
+                'input[name="promo_lanche1_molhos"]'
+            )
+            .forEach(
+                input => input.checked = false
+            );
+
+
+        document
+            .querySelectorAll(
+                'input[name="promo_lanche1_acompanhamentos"]'
+            )
+            .forEach(
+                input => input.checked = false
+            );
+
+
+        document
+            .querySelectorAll(
+                'input[name="promo_lanche2_molhos"]'
+            )
+            .forEach(
+                input => input.checked = false
+            );
+
+
+        document
+            .querySelectorAll(
+                'input[name="promo_lanche2_acompanhamentos"]'
+            )
+            .forEach(
+                input => input.checked = false
+            );
+
+
+        const observacao =
+            document.getElementById(
+                "promoObservacao"
+            );
+
+
+        if (observacao) {
+
+            observacao.value = "";
+
+        }
+
+    }
+
+
+    // ======================================================
+    // FECHAR PROMOÇÃO
+    // ======================================================
+
+    function fecharMontagemPromocao() {
+
+        const area =
+            document.getElementById(
+                "montagemPromocao"
+            );
+
+
+        if (area) {
+
+            area.style.display =
+                "none";
+
+        }
+
+
+        limparCamposPromocao();
+
+
+        promocaoSelecionada =
+            null;
+
+    }
+
+
+    // ======================================================
+    // CONFIRMAR PROMOÇÃO
+    // ======================================================
+
+    function confirmarPromocao() {
+
+        if (!promocaoSelecionada) {
+
+            alert(
+                "Escolha uma promoção."
+            );
+
+            return;
+
+        }
+
+
+        const tamanho =
+            promocaoSelecionada.tamanho;
+
+
+        const tipo =
+            promocaoSelecionada.tipo;
+
+
+        const preco =
+            promocaoSelecionada.preco;
+
+
+        const tamanhoTexto =
+            tamanho === "NORMAL"
+                ? "14 CM"
+                : "32 CM";
+
+
+        // ==================================================
+        // MOLHOS DO LANCHE 1
+        // ==================================================
+
+        const molhosLanche1 =
+            Array.from(
+                document.querySelectorAll(
+                    'input[name="promo_lanche1_molhos"]:checked'
+                )
+            ).map(
+                input => input.value
+            );
+
+
+        // ==================================================
+        // ACOMPANHAMENTOS DO LANCHE 1
+        // ==================================================
+
+        const acompanhamentosLanche1 =
+            Array.from(
+                document.querySelectorAll(
+                    'input[name="promo_lanche1_acompanhamentos"]:checked'
+                )
+            ).map(
+                input => input.value
+            );
+
+
+        // ==================================================
+        // MOLHOS DO LANCHE 2
+        // ==================================================
+
+        const molhosLanche2 =
+            Array.from(
+                document.querySelectorAll(
+                    'input[name="promo_lanche2_molhos"]:checked'
+                )
+            ).map(
+                input => input.value
+            );
+
+
+        // ==================================================
+        // ACOMPANHAMENTOS DO LANCHE 2
+        // ==================================================
+
+        const acompanhamentosLanche2 =
+            Array.from(
+                document.querySelectorAll(
+                    'input[name="promo_lanche2_acompanhamentos"]:checked'
+                )
+            ).map(
+                input => input.value
+            );
+
+
+        // ==================================================
+        // OBSERVAÇÃO
+        // ==================================================
+
+        const observacao =
+            document
+                .getElementById(
+                    "promoObservacao"
+                )
+                .value
+                .trim();
+
+
+        // ==================================================
+        // CRIA PROMOÇÃO
+        // ==================================================
+
+        const item = {
+
+            tamanho: tamanho,
+
+            tipo: tipo,
+
+            quantidade: 1,
+
+            quantidadePromocao: 2,
+
+            preco: preco,
+
+            promocao: true,
+
+            precoFechado: true,
+
+            nomePromocao:
+                `PROMOÇÃO - 2 ${tipo} ${tamanhoTexto}`,
+
+            observacao: observacao,
+
+            lanche1: {
+
+                tipo: tipo,
+
+                tamanho: tamanho,
+
+                molhos:
+                    molhosLanche1,
+
+                acompanhamentos:
+                    acompanhamentosLanche1
+
+            },
+
+            lanche2: {
+
+                tipo: tipo,
+
+                tamanho: tamanho,
+
+                molhos:
+                    molhosLanche2,
+
+                acompanhamentos:
+                    acompanhamentosLanche2
+
             }
 
-        </strong>
-
-    `;
-
-}
+        };
 
 
-// ==========================================================
-// REMOVER ITEM
-// ==========================================================
-
-function removerItem(index) {
-
-    carrinho.splice(
-        index,
-        1
-    );
+        carrinho.push(item);
 
 
-    atualizarCarrinho();
-
-}
+        atualizarCarrinho();
 
 
-// ==========================================================
-// LIMPAR LANCHE
-// ==========================================================
-
-function limparLanche() {
-
-    document.querySelectorAll(
-        'input[name="tamanho"]'
-    ).forEach(
-        input => input.checked = false
-    );
-
-
-    document.querySelectorAll(
-        'input[name="tipo"]'
-    ).forEach(
-        input => input.checked = false
-    );
-
-
-    document.getElementById(
-        "quantidade"
-    ).value = 1;
-
-
-    document.querySelectorAll(
-        'input[name="molhos"]'
-    ).forEach(
-        input => input.checked = false
-    );
-
-
-    document.querySelectorAll(
-        'input[name="acompanhamentos"]'
-    ).forEach(
-        input => input.checked = false
-    );
-
-}
-
-
-// ==========================================================
-// MOLHOS + ACOMPANHAMENTOS PARA WHATSAPP
-// ==========================================================
-
-function montarComplementosWhatsApp(
-    molhos,
-    acompanhamentos
-) {
-
-    const listaMolhos =
-        molhos && molhos.length
-        ? molhos
-        : ["Nenhum"];
-
-
-    const listaAcompanhamentos =
-        acompanhamentos && acompanhamentos.length
-        ? acompanhamentos
-        : ["Nenhum"];
-
-
-    const quantidadeLinhas =
-        Math.max(
-            listaMolhos.length,
-            listaAcompanhamentos.length
-        );
-
-
-    let resultado = "";
-
-
-    for (
-        let i = 0;
-        i < quantidadeLinhas;
-        i++
-    ) {
-
-        const molho =
-            listaMolhos[i] || "";
-
-
-        const acompanhamento =
-            listaAcompanhamentos[i] || "";
-
-
-        resultado +=
-            `${molho} | ${acompanhamento}\n`;
+        fecharMontagemPromocao();
 
     }
 
 
-    return resultado;
-
-}
-
-
-// ==========================================================
-// FINALIZAR PEDIDO PELO WHATSAPP
-// ==========================================================
-
-function finalizarPedido() {
-
-    if (carrinho.length === 0) {
-
-        alert(
-            "Seu carrinho está vazio. Adicione pelo menos um lanche."
-        );
-
-        return;
-    }
-
-
-    const nome =
-        document.getElementById(
-            "nome"
-        ).value.trim();
-
-
-    const endereco =
-        document.getElementById(
-            "endereco"
-        ).value.trim();
-
-
-    const pagamento =
-        document.getElementById(
-            "pagamento"
-        ).value;
-
-
-    const observacoes =
-        document.getElementById(
-            "observacoes"
-        ).value.trim();
-
-
     // ======================================================
-    // VALIDAÇÕES
+    // ORDENA LISTA
     // ======================================================
 
-    if (!nome) {
+    function ordenarLista(lista) {
 
-        alert(
-            "Digite seu nome."
+        return [...lista].sort(
+            (a, b) =>
+                a.localeCompare(
+                    b,
+                    "pt-BR"
+                )
         );
 
-        document.getElementById(
-            "nome"
-        ).focus();
-
-        return;
-    }
-
-
-    if (!endereco) {
-
-        alert(
-            "Digite seu endereço."
-        );
-
-        document.getElementById(
-            "endereco"
-        ).focus();
-
-        return;
-    }
-
-
-    if (!pagamento) {
-
-        alert(
-            "Escolha a forma de pagamento."
-        );
-
-        document.getElementById(
-            "pagamento"
-        ).focus();
-
-        return;
     }
 
 
     // ======================================================
-    // CALCULAR TOTAL
+    // CALCULAR SUBTOTAL
     // ======================================================
 
-    let total = 0;
+    function calcularSubtotal(item) {
+
+        if (item.promocao) {
+
+            return item.preco;
+
+        }
 
 
-    // ======================================================
-    // MENSAGEM
-    // ======================================================
+        return (
+            item.preco *
+            item.quantidade
+        );
 
-    let mensagem =
-        "🌭 *NOVO PEDIDO - BOLDRINE LANCHES*\n\n";
-
-
-    mensagem +=
-        "==============================\n";
-
-    mensagem +=
-        "👤 *CLIENTE*\n";
-
-    mensagem +=
-        "==============================\n";
-
-
-    mensagem +=
-        `Nome: ${nome}\n`;
-
-
-    mensagem +=
-        `📍 Endereço: ${endereco}\n\n`;
+    }
 
 
     // ======================================================
-    // ITENS DO PEDIDO
+    // ATUALIZAR CARRINHO
     // ======================================================
 
-    mensagem +=
-        "==============================\n";
+    function atualizarCarrinho() {
 
-    mensagem +=
-        "🛒 *ITENS DO PEDIDO*\n";
-
-    mensagem +=
-        "==============================\n\n";
+        const container =
+            document.getElementById(
+                "carrinho"
+            );
 
 
-    carrinho.forEach(
-        (item, index) => {
+        if (
+            carrinho.length === 0
+        ) {
 
-            let subtotal;
+            container.innerHTML =
+                "<p>Nenhum lanche adicionado.</p>";
 
+            return;
 
-            if (item.promocao) {
-
-                subtotal =
-                    item.preco;
-
-            } else {
-
-                subtotal =
-                    item.preco *
-                    item.quantidade;
-
-            }
+        }
 
 
-            total += subtotal;
+        let html = "";
 
 
-            // ==================================================
-            // IDENTIFICAÇÃO
-            // ==================================================
+        carrinho.forEach(
+            (item, index) => {
 
-            if (item.promocao) {
-
-                mensagem +=
-                    `🔥 *ITEM ${index + 1} - PROMOÇÃO*\n`;
+                const subtotal =
+                    calcularSubtotal(item);
 
 
-                mensagem +=
-                    `🌭 *2 ${item.tipo} - ${
+                if (item.promocao) {
+
+                    const tamanhoTexto =
                         item.tamanho === "NORMAL"
-                        ? "14 CM"
-                        : "32 CM"
-                    }*\n`;
-
-            } else {
-
-                mensagem +=
-                    `🌭 *ITEM ${index + 1} - LANCHE*\n`;
+                            ? "14 CM"
+                            : "32 CM";
 
 
-                mensagem +=
-                    `*${item.tamanho} - ${item.tipo}*\n`;
+                    const lanche1Molhos =
+                        ordenarLista(
+                            item.lanche1?.molhos || []
+                        );
+
+
+                    const lanche1Acompanhamentos =
+                        ordenarLista(
+                            item.lanche1?.acompanhamentos || []
+                        );
+
+
+                    const lanche2Molhos =
+                        ordenarLista(
+                            item.lanche2?.molhos || []
+                        );
+
+
+                    const lanche2Acompanhamentos =
+                        ordenarLista(
+                            item.lanche2?.acompanhamentos || []
+                        );
+
+
+                    html += `
+
+                        <div class="item-carrinho">
+
+                            <strong>
+                                ${index + 1}.
+                                ${item.nomePromocao}
+                            </strong>
+
+
+                            <small>
+                                Valor da promoção:
+                                R$ ${item.preco
+                                    .toFixed(2)
+                                    .replace(".", ",")}
+                            </small>
+
+
+                            <div class="item-promocao-lanche">
+
+                                <strong>
+                                    Lanche 1
+                                </strong>
+
+
+                                <small>
+                                    Sabor:
+                                    ${item.tipo}
+                                </small>
+
+
+                                <small>
+                                    Tamanho:
+                                    ${tamanhoTexto}
+                                </small>
+
+
+                                <small>
+                                    Molhos:
+                                    ${
+                                        lanche1Molhos.length
+                                            ? lanche1Molhos.join(" | ")
+                                            : "Nenhum"
+                                    }
+                                </small>
+
+
+                                <small>
+                                    Acompanhamentos:
+                                    ${
+                                        lanche1Acompanhamentos.length
+                                            ? lanche1Acompanhamentos.join(" | ")
+                                            : "Nenhum"
+                                    }
+                                </small>
+
+                            </div>
+
+
+                            <div class="item-promocao-lanche">
+
+                                <strong>
+                                    Lanche 2
+                                </strong>
+
+
+                                <small>
+                                    Sabor:
+                                    ${item.tipo}
+                                </small>
+
+
+                                <small>
+                                    Tamanho:
+                                    ${tamanhoTexto}
+                                </small>
+
+
+                                <small>
+                                    Molhos:
+                                    ${
+                                        lanche2Molhos.length
+                                            ? lanche2Molhos.join(" | ")
+                                            : "Nenhum"
+                                    }
+                                </small>
+
+
+                                <small>
+                                    Acompanhamentos:
+                                    ${
+                                        lanche2Acompanhamentos.length
+                                            ? lanche2Acompanhamentos.join(" | ")
+                                            : "Nenhum"
+                                    }
+                                </small>
+
+                            </div>
+
+
+                            ${
+                                item.observacao
+                                    ? `
+                                        <small>
+                                            Observação:
+                                            ${item.observacao}
+                                        </small>
+                                      `
+                                    : ""
+                            }
+
+
+                            <small>
+
+                                Subtotal:
+
+                                R$ ${subtotal
+                                    .toFixed(2)
+                                    .replace(".", ",")}
+
+                            </small>
+
+
+                            <button
+                                type="button"
+                                onclick="removerItem(${index})"
+                            >
+                                Remover
+                            </button>
+
+                        </div>
+
+                    `;
+
+
+                } else {
+
+                    const tamanhoTexto =
+                        item.tamanho === "NORMAL"
+                            ? "14 CM"
+                            : "32 CM";
+
+
+                    const molhos =
+                        ordenarLista(
+                            item.molhos || []
+                        );
+
+
+                    const acompanhamentos =
+                        ordenarLista(
+                            item.acompanhamentos || []
+                        );
+
+
+                    html += `
+
+                        <div class="item-carrinho">
+
+                            <strong>
+                                ${index + 1}.
+                                ${item.tamanho}
+                                -
+                                ${item.tipo}
+                            </strong>
+
+
+                            <small>
+                                Tamanho:
+                                ${tamanhoTexto}
+                            </small>
+
+
+                            <small>
+                                Quantidade:
+                                ${item.quantidade}
+                            </small>
+
+
+                            <small>
+                                Valor unitário:
+                                R$ ${item.preco
+                                    .toFixed(2)
+                                    .replace(".", ",")}
+                            </small>
+
+
+                            <small>
+                                Molhos:
+                                ${
+                                    molhos.length
+                                        ? molhos.join(" | ")
+                                        : "Nenhum"
+                                }
+                            </small>
+
+
+                            <small>
+                                Acompanhamentos:
+                                ${
+                                    acompanhamentos.length
+                                        ? acompanhamentos.join(" | ")
+                                        : "Nenhum"
+                                }
+                            </small>
+
+
+                            <small>
+
+                                Subtotal:
+
+                                R$ ${subtotal
+                                    .toFixed(2)
+                                    .replace(".", ",")}
+
+                            </small>
+
+
+                            <button
+                                type="button"
+                                onclick="removerItem(${index})"
+                            >
+                                Remover
+                            </button>
+
+                        </div>
+
+                    `;
+
+                }
 
             }
+        );
 
 
-            // ==================================================
-            // TAMANHO
-            // ==================================================
+        // ==================================================
+        // TOTAL
+        // ==================================================
 
-            mensagem +=
-                `📏 Tamanho: ${
-                    item.tamanho === "NORMAL"
-                    ? "14 CM"
-                    : "32 CM"
-                }\n`;
-
-
-            // ==================================================
-            // QUANTIDADE
-            // ==================================================
-
-            mensagem +=
-                `🔢 Quantidade: ${
-                    item.quantidade
-                } ${
-                    item.quantidade === 1
-                    ? "unidade"
-                    : "unidades"
-                }\n`;
+        const total =
+            carrinho.reduce(
+                (
+                    soma,
+                    item
+                ) =>
+                    soma +
+                    calcularSubtotal(item),
+                0
+            );
 
 
-            // ==================================================
-            // PREÇO
-            // ==================================================
+        html += `
 
-            if (item.promocao) {
+            <div
+                style="
+                    margin-top:15px;
+                    font-size:20px;
+                    font-weight:900;
+                    text-align:center;
+                "
+            >
 
-                mensagem +=
-                    `💵 *Valor da promoção: R$ ${
-                        item.preco
-                        .toFixed(2)
-                        .replace(".", ",")
-                    }*\n`;
+                TOTAL:
 
-            } else {
+                R$ ${total
+                    .toFixed(2)
+                    .replace(".", ",")}
 
-                mensagem +=
-                    `💵 Valor unitário: R$ ${
-                        item.preco
-                        .toFixed(2)
-                        .replace(".", ",")
-                    }\n`;
+            </div>
 
-
-                mensagem +=
-                    `💰 Subtotal: R$ ${
-                        subtotal
-                        .toFixed(2)
-                        .replace(".", ",")
-                    }\n`;
-
-            }
+        `;
 
 
-            // ==================================================
-            // MOLHOS + ACOMPANHAMENTOS LADO A LADO
-            // ==================================================
-
-            mensagem += "\n";
-
-
-            mensagem +=
-                "🥫 *MOLHOS* | 🥗 *ACOMPANHAMENTOS*\n";
-
-
-            mensagem +=
-                "------------------------------\n";
-
-
-            mensagem +=
-                montarComplementosWhatsApp(
-                    item.molhos,
-                    item.acompanhamentos
-                );
-
-
-            // ==================================================
-            // OBSERVAÇÃO DO ITEM
-            // ==================================================
-
-            if (
-                item.observacao &&
-                item.observacao.trim() !== ""
-            ) {
-
-                mensagem +=
-                    `\n📝 *OBSERVAÇÃO DO ITEM*\n`;
-
-
-                mensagem +=
-                    `${item.observacao}\n`;
-
-            }
-
-
-            // ==================================================
-            // SEPARADOR
-            // ==================================================
-
-            mensagem +=
-                "\n------------------------------\n\n";
-
-        }
-    );
-
-
-    // ======================================================
-    // TOTAL
-    // ======================================================
-
-    mensagem +=
-        "==============================\n";
-
-
-    mensagem +=
-        "💰 *TOTAL DO PEDIDO*\n";
-
-
-    mensagem +=
-        "==============================\n";
-
-
-    mensagem +=
-        `💵 *R$ ${
-            total
-            .toFixed(2)
-            .replace(".", ",")
-        }*\n\n`;
-
-
-    // ======================================================
-    // PAGAMENTO
-    // ======================================================
-
-    mensagem +=
-        "💳 *PAGAMENTO*\n";
-
-
-    mensagem +=
-        `${pagamento}\n`;
-
-
-    // ======================================================
-    // OBSERVAÇÕES GERAIS
-    // ======================================================
-
-    if (observacoes) {
-
-        mensagem +=
-            `\n📝 *OBSERVAÇÕES GERAIS*\n`;
-
-
-        mensagem +=
-            `${observacoes}\n`;
+        container.innerHTML =
+            html;
 
     }
 
 
     // ======================================================
-    // FINAL DA MENSAGEM
+    // REMOVER ITEM
     // ======================================================
 
-    mensagem +=
-        "\n==============================\n";
+    function removerItem(index) {
 
-
-    mensagem +=
-        "❤️ *Obrigado por pedir na Boldrine Lanches!*\n";
-
-
-    mensagem +=
-        "==============================";
-
-
-    // ======================================================
-    // WHATSAPP
-    // ======================================================
-
-    const numero =
-        "5521988000094";
-
-
-    const url =
-        "https://wa.me/" +
-        numero +
-        "?text=" +
-        encodeURIComponent(
-            mensagem
+        carrinho.splice(
+            index,
+            1
         );
 
 
-    window.location.href =
-        url;
+        atualizarCarrinho();
 
-}
+    }
 
 
-// ==========================================================
-// INICIALIZAÇÃO
-// ==========================================================
+    // ======================================================
+    // FINALIZAR PEDIDO
+    // ======================================================
 
-atualizarCarrinho();
+    function finalizarPedido() {
+
+        if (
+            carrinho.length === 0
+        ) {
+
+            alert(
+                "Adicione pelo menos um lanche ao pedido."
+            );
+
+            return;
+        }
+
+
+        const nome =
+            document
+                .getElementById("nome")
+                .value
+                .trim();
+
+
+        const endereco =
+            document
+                .getElementById("endereco")
+                .value
+                .trim();
+
+
+        const pagamento =
+            document
+                .getElementById("pagamento")
+                .value;
+
+
+        const observacoes =
+            document
+                .getElementById("observacoes")
+                .value
+                .trim();
+
+
+        if (!nome) {
+
+            alert(
+                "Informe seu nome."
+            );
+
+
+            document
+                .getElementById("nome")
+                .focus();
+
+
+            return;
+        }
+
+
+        if (!endereco) {
+
+            alert(
+                "Informe seu endereço."
+            );
+
+
+            document
+                .getElementById("endereco")
+                .focus();
+
+
+            return;
+        }
+
+
+        if (!pagamento) {
+
+            alert(
+                "Selecione a forma de pagamento."
+            );
+
+
+            document
+                .getElementById("pagamento")
+                .focus();
+
+
+            return;
+        }
+
+
+        // ==================================================
+        // MENSAGEM
+        // ==================================================
+
+        let mensagem =
+            "NOVO PEDIDO - BOLDRINE LANCHES\n\n";
+
+
+        mensagem +=
+            `Cliente: ${nome}\n`;
+
+
+        mensagem +=
+            `Endereço: ${endereco}\n\n`;
+
+
+        mensagem +=
+            "PEDIDO\n\n";
+
+
+        // ==================================================
+        // ITENS
+        // ==================================================
+
+        carrinho.forEach(
+            (item, index) => {
+
+                const tamanhoTexto =
+                    item.tamanho === "NORMAL"
+                        ? "14 CM"
+                        : "32 CM";
+
+
+                const subtotal =
+                    calcularSubtotal(item);
+
+
+                if (item.promocao) {
+
+                    mensagem +=
+                        `${index + 1}. ${item.nomePromocao}\n`;
+
+
+                    mensagem +=
+                        `Valor da promoção: R$ ${
+                            item.preco
+                                .toFixed(2)
+                                .replace(".", ",")
+                        }\n\n`;
+
+
+                    // ======================================
+                    // LANCHE 1
+                    // ======================================
+
+                    mensagem +=
+                        "LANCHE 1\n";
+
+
+                    mensagem +=
+                        `Sabor: ${item.lanche1.tipo}\n`;
+
+
+                    mensagem +=
+                        `Tamanho: ${tamanhoTexto}\n`;
+
+
+                    const molhos1 =
+                        ordenarLista(
+                            item.lanche1.molhos || []
+                        );
+
+
+                    mensagem +=
+                        "Molhos: ";
+
+
+                    mensagem +=
+                        molhos1.length
+                            ? molhos1.join(" | ")
+                            : "Nenhum";
+
+
+                    mensagem +=
+                        "\n";
+
+
+                    const acompanhamentos1 =
+                        ordenarLista(
+                            item.lanche1.acompanhamentos || []
+                        );
+
+
+                    mensagem +=
+                        "Acompanhamentos: ";
+
+
+                    mensagem +=
+                        acompanhamentos1.length
+                            ? acompanhamentos1.join(" | ")
+                            : "Nenhum";
+
+
+                    mensagem +=
+                        "\n\n";
+
+
+                    // ======================================
+                    // LANCHE 2
+                    // ======================================
+
+                    mensagem +=
+                        "LANCHE 2\n";
+
+
+                    mensagem +=
+                        `Sabor: ${item.lanche2.tipo}\n`;
+
+
+                    mensagem +=
+                        `Tamanho: ${tamanhoTexto}\n`;
+
+
+                    const molhos2 =
+                        ordenarLista(
+                            item.lanche2.molhos || []
+                        );
+
+
+                    mensagem +=
+                        "Molhos: ";
+
+
+                    mensagem +=
+                        molhos2.length
+                            ? molhos2.join(" | ")
+                            : "Nenhum";
+
+
+                    mensagem +=
+                        "\n";
+
+
+                    const acompanhamentos2 =
+                        ordenarLista(
+                            item.lanche2.acompanhamentos || []
+                        );
+
+
+                    mensagem +=
+                        "Acompanhamentos: ";
+
+
+                    mensagem +=
+                        acompanhamentos2.length
+                            ? acompanhamentos2.join(" | ")
+                            : "Nenhum";
+
+
+                    mensagem +=
+                        "\n";
+
+
+                    if (
+                        item.observacao
+                    ) {
+
+                        mensagem +=
+                            `\nObservação: ${item.observacao}\n`;
+
+                    }
+
+
+                    mensagem +=
+                        `\nSubtotal: R$ ${
+                            subtotal
+                                .toFixed(2)
+                                .replace(".", ",")
+                        }\n`;
+
+                } else {
+
+                    // ======================================
+                    // LANCHE NORMAL
+                    // ======================================
+
+                    mensagem +=
+                        `${index + 1}. ${item.tamanho} - ${item.tipo}\n`;
+
+
+                    mensagem +=
+                        `Tamanho: ${tamanhoTexto}\n`;
+
+
+                    mensagem +=
+                        `Quantidade: ${item.quantidade}\n`;
+
+
+                    mensagem +=
+                        `Valor unitário: R$ ${
+                            item.preco
+                                .toFixed(2)
+                                .replace(".", ",")
+                        }\n\n`;
+
+
+                    const molhos =
+                        ordenarLista(
+                            item.molhos || []
+                        );
+
+
+                    mensagem +=
+                        "Molhos:\n";
+
+
+                    mensagem +=
+                        molhos.length
+                            ? molhos.join(" | ")
+                            : "Nenhum";
+
+
+                    mensagem +=
+                        "\n\n";
+
+
+                    const acompanhamentos =
+                        ordenarLista(
+                            item.acompanhamentos || []
+                        );
+
+
+                    mensagem +=
+                        "Acompanhamentos:\n";
+
+
+                    mensagem +=
+                        acompanhamentos.length
+                            ? acompanhamentos.join(" | ")
+                            : "Nenhum";
+
+
+                    mensagem +=
+                        `\n\nSubtotal: R$ ${
+                            subtotal
+                                .toFixed(2)
+                                .replace(".", ",")
+                        }\n`;
+
+                }
+
+
+                if (
+                    index <
+                    carrinho.length - 1
+                ) {
+
+                    mensagem +=
+                        "\n--------------------\n\n";
+
+                }
+
+            }
+        );
+
+
+        // ==================================================
+        // TOTAL
+        // ==================================================
+
+        const totalPedido =
+            carrinho.reduce(
+                (
+                    soma,
+                    item
+                ) =>
+                    soma +
+                    calcularSubtotal(item),
+                0
+            );
+
+
+        mensagem +=
+            "\n--------------------\n\n";
+
+
+        mensagem +=
+            `Pagamento: ${pagamento}\n`;
+
+
+        if (
+            observacoes
+        ) {
+
+            mensagem +=
+                "\nObservações gerais:\n";
+
+
+            mensagem +=
+                `${observacoes}\n`;
+
+        }
+
+
+        mensagem +=
+            `\nTOTAL DO PEDIDO: R$ ${
+                totalPedido
+                    .toFixed(2)
+                    .replace(".", ",")
+            }\n`;
+
+
+        mensagem +=
+            "\nObrigado por pedir na Boldrine Lanches!";
+
+
+        // ==================================================
+        // WHATSAPP
+        // ==================================================
+
+        const numero =
+            "5521988000094";
+
+
+        const url =
+            "https://wa.me/" +
+            numero +
+            "?text=" +
+            encodeURIComponent(
+                mensagem
+            );
+
+
+        window.location.href =
+            url;
+
+    }
+
+
+    // ======================================================
+    // INICIALIZAÇÃO
+    // ======================================================
+
+    atualizarPrecosSabores();
+
+    atualizarCarrinho();
 
 </script>
 
 </body>
 
 </html>
-```
