@@ -360,9 +360,6 @@
                 font-size: 12px;
             }
 
-
-            /* MOLHOS NO CELULAR */
-
             .lista-molhos {
                 grid-template-columns: 1fr 1fr;
                 gap: 7px;
@@ -379,9 +376,6 @@
                 height: 17px;
                 margin-right: 6px;
             }
-
-
-            /* ACOMPANHAMENTOS NO CELULAR */
 
             .lista-acompanhamentos {
                 grid-template-columns: 1fr 1fr;
@@ -409,7 +403,6 @@
 <body>
 
 <div class="container">
-
 
     <!-- ==================================================
          CABEÇALHO
@@ -494,11 +487,7 @@
             ⭐ Promoções válidas somente hoje!
         </div>
 
-
         <div class="promo-lista">
-
-
-            <!-- PROMOÇÃO 1 -->
 
             <div class="promo-item">
 
@@ -529,8 +518,6 @@
             </div>
 
 
-            <!-- PROMOÇÃO 2 -->
-
             <div class="promo-item">
 
                 <span class="promo-tag">
@@ -560,8 +547,6 @@
             </div>
 
 
-            <!-- PROMOÇÃO 3 -->
-
             <div class="promo-item">
 
                 <span class="promo-tag">
@@ -590,8 +575,6 @@
 
             </div>
 
-
-            <!-- PROMOÇÃO 4 -->
 
             <div class="promo-item">
 
@@ -672,10 +655,6 @@
         </div>
 
 
-        <!-- ==================================================
-             MOLHOS DA PROMOÇÃO
-        ================================================== -->
-
         <h2>
             🥫 MOLHOS
         </h2>
@@ -706,10 +685,6 @@
 
         </div>
 
-
-        <!-- ==================================================
-             ACOMPANHAMENTOS DA PROMOÇÃO
-        ================================================== -->
 
         <h2>
             🥗 ACOMPANHAMENTOS
@@ -742,8 +717,6 @@
         </div>
 
 
-        <!-- OBSERVAÇÃO -->
-
         <label for="promo_observacao">
             📝 Observação da promoção:
         </label>
@@ -754,8 +727,6 @@
             placeholder="Ex.: um sem cebola e outro com cheddar..."
         ></textarea>
 
-
-        <!-- ADICIONAR -->
 
         <button
             type="button"
@@ -808,9 +779,6 @@
         <h2>
             🌭 MONTE SEU DOG
         </h2>
-
-
-        <!-- TAMANHO -->
 
         <label>
             Escolha o tamanho:
@@ -866,8 +834,6 @@
         </div>
 
 
-        <!-- TIPO -->
-
         <label>
             Escolha o sabor:
         </label>
@@ -883,13 +849,10 @@
                 >
 
                 <div>
-
                     🌭
-
                     <strong>
                         Salsicha
                     </strong>
-
                 </div>
 
             </label>
@@ -904,21 +867,16 @@
                 >
 
                 <div>
-
                     🌭
-
                     <strong>
                         Linguiça
                     </strong>
-
                 </div>
 
             </label>
 
         </div>
 
-
-        <!-- QUANTIDADE -->
 
         <label for="quantidade">
             Quantidade:
@@ -931,10 +889,6 @@
             min="1"
         >
 
-
-        <!-- ==================================================
-             MOLHOS
-        ================================================== -->
 
         <h2>
             🥫 MOLHOS
@@ -967,10 +921,6 @@
         </div>
 
 
-        <!-- ==================================================
-             ACOMPANHAMENTOS
-        ================================================== -->
-
         <h2>
             🥗 ACOMPANHAMENTOS
         </h2>
@@ -1001,8 +951,6 @@
 
         </div>
 
-
-        <!-- BOTÃO -->
 
         <button
             type="button"
@@ -1814,6 +1762,10 @@ function finalizarPedido() {
         ).value.trim();
 
 
+    // ======================================================
+    // VALIDAÇÕES
+    // ======================================================
+
     if (!nome) {
 
         alert(
@@ -1859,27 +1811,47 @@ function finalizarPedido() {
     }
 
 
+    // ======================================================
+    // TOTAL
+    // ======================================================
+
     let total = 0;
 
+
+    // ======================================================
+    // CABEÇALHO DA MENSAGEM
+    // ======================================================
 
     let mensagem =
         "🌭 *NOVO PEDIDO — BOLDRINE LANCHES*\n\n";
 
 
     mensagem +=
-        "👤 *Cliente:* " +
+        "━━━━━━━━━━━━━━━━━━\n" +
+        "👤 *CLIENTE*\n" +
+        "━━━━━━━━━━━━━━━━━━\n";
+
+
+    mensagem +=
+        "Nome: " +
         nome +
         "\n";
 
 
     mensagem +=
-        "📍 *Endereço:* " +
+        "Endereço: " +
         endereco +
         "\n\n";
 
 
+    // ======================================================
+    // ITENS DO PEDIDO
+    // ======================================================
+
     mensagem +=
-        "🛒 *ITENS DO PEDIDO*\n\n";
+        "━━━━━━━━━━━━━━━━━━\n" +
+        "🛒 *ITENS DO PEDIDO*\n" +
+        "━━━━━━━━━━━━━━━━━━\n\n";
 
 
     carrinho.forEach(
@@ -1906,23 +1878,64 @@ function finalizarPedido() {
             total += subtotal;
 
 
+            // ==================================================
+            // IDENTIFICAÇÃO DO ITEM
+            // ==================================================
+
             if (item.promocao) {
 
                 mensagem +=
-                    `🔥 *${index + 1}. ${item.nomePromocao}*\n`;
-
+                    `🔥 *ITEM ${index + 1} — PROMOÇÃO*\n`;
 
                 mensagem +=
-                    `📏 Tamanho: ${
+                    `🌭 *2 ${item.tipo} — ${
                         item.tamanho === "NORMAL"
                         ? "14 CM"
                         : "32 CM"
-                    }\n`;
+                    }*\n`;
 
+            } else {
 
                 mensagem +=
-                    `🔢 Quantidade: 2 unidades\n`;
+                    `🌭 *ITEM ${index + 1} — LANCHE*\n`;
 
+                mensagem +=
+                    `*${item.tamanho} — ${item.tipo}*\n`;
+
+            }
+
+
+            // ==================================================
+            // TAMANHO
+            // ==================================================
+
+            mensagem +=
+                `📏 Tamanho: ${
+                    item.tamanho === "NORMAL"
+                    ? "14 CM"
+                    : "32 CM"
+                }\n`;
+
+
+            // ==================================================
+            // QUANTIDADE
+            // ==================================================
+
+            mensagem +=
+                `🔢 Quantidade: ${
+                    item.quantidade
+                } ${
+                    item.quantidade === 1
+                    ? "unidade"
+                    : "unidades"
+                }\n`;
+
+
+            // ==================================================
+            // PREÇO
+            // ==================================================
+
+            if (item.promocao) {
 
                 mensagem +=
                     `💰 *Valor da promoção: R$ ${
@@ -1934,98 +1947,136 @@ function finalizarPedido() {
             } else {
 
                 mensagem +=
-                    `*${index + 1}. ${item.tamanho} — ${item.tipo}*\n`;
-
-
-                mensagem +=
-                    `📏 Tamanho: ${
-                        item.tamanho === "NORMAL"
-                        ? "14 CM"
-                        : "32 CM"
-                    }\n`;
-
-
-                mensagem +=
-                    `🔢 Quantidade: ${item.quantidade}\n`;
-
-
-                mensagem +=
                     `💰 Valor unitário: R$ ${
                         item.preco
                         .toFixed(2)
                         .replace(".", ",")
                     }\n`;
 
-
                 mensagem +=
-                    `💵 Subtotal: R$ ${
+                    `💵 *Subtotal: R$ ${
                         subtotal
                         .toFixed(2)
                         .replace(".", ",")
-                    }\n`;
+                    }*\n`;
 
             }
 
 
-            mensagem +=
-                `🥫 Molhos: ${
-                    item.molhos.length
-                    ? item.molhos.join(", ")
-                    : "Nenhum"
-                }\n`;
+            // ==================================================
+            // MOLHOS
+            // ==================================================
+
+            const listaMolhos =
+                item.molhos &&
+                item.molhos.length > 0
+                ? item.molhos.join(" • ")
+                : "Nenhum";
 
 
             mensagem +=
-                `🥗 Acompanhamentos: ${
-                    item.acompanhamentos.length
-                    ? item.acompanhamentos.join(", ")
-                    : "Nenhum"
-                }\n`;
+                `\n🥫 *MOLHOS*\n` +
+                `${listaMolhos}\n`;
 
 
-            if (item.observacao) {
+            // ==================================================
+            // ACOMPANHAMENTOS
+            // ==================================================
+
+            const listaAcompanhamentos =
+                item.acompanhamentos &&
+                item.acompanhamentos.length > 0
+                ? item.acompanhamentos.join(" • ")
+                : "Nenhum";
+
+
+            mensagem +=
+                `\n🥗 *ACOMPANHAMENTOS*\n` +
+                `${listaAcompanhamentos}\n`;
+
+
+            // ==================================================
+            // OBSERVAÇÃO DO ITEM
+            // ==================================================
+
+            if (
+                item.observacao &&
+                item.observacao.trim() !== ""
+            ) {
 
                 mensagem +=
-                    `📝 Observação do combo: ${
-                        item.observacao
-                    }\n`;
+                    `\n📝 *OBSERVAÇÃO DO ITEM*\n` +
+                    `${item.observacao}\n`;
 
             }
 
 
-            mensagem += "\n";
+            // ==================================================
+            // SEPARADOR
+            // ==================================================
+
+            mensagem +=
+                "\n──────────────────\n\n";
 
         }
     );
 
 
+    // ======================================================
+    // TOTAL DO PEDIDO
+    // ======================================================
+
     mensagem +=
-        `💵 *TOTAL DO PEDIDO: R$ ${
+        "━━━━━━━━━━━━━━━━━━\n" +
+        "💰 *TOTAL DO PEDIDO*\n" +
+        "━━━━━━━━━━━━━━━━━━\n";
+
+
+    mensagem +=
+        `💵 *R$ ${
             total
             .toFixed(2)
             .replace(".", ",")
         }*\n\n`;
 
 
+    // ======================================================
+    // PAGAMENTO
+    // ======================================================
+
     mensagem +=
-        "💳 *Pagamento:* " +
+        "💳 *PAGAMENTO*\n" +
         pagamento +
         "\n";
 
 
+    // ======================================================
+    // OBSERVAÇÕES GERAIS
+    // ======================================================
+
     if (observacoes) {
 
         mensagem +=
-            "\n📝 *Observações gerais:* " +
+            "\n📝 *OBSERVAÇÕES GERAIS*\n" +
             observacoes +
             "\n";
 
     }
 
 
-    mensagem +=
-        "\n❤️ Obrigado por pedir na Boldrine Lanches!";
+    // ======================================================
+    // FINAL DA MENSAGEM
+    // ======================================================
 
+    mensagem +=
+        "\n━━━━━━━━━━━━━━━━━━\n" +
+        "❤️ *Obrigado por pedir na Boldrine Lanches!*\n" +
+        "━━━━━━━━━━━━━━━━━━";
+
+
+    // ======================================================
+    // WHATSAPP
+    // ======================================================
 
     const numero =
         "5521988000094";
