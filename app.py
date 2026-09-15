@@ -5,7 +5,9 @@ from zoneinfo import ZoneInfo
 
 from flask import Flask, render_template, request
 
+
 app = Flask(__name__)
+
 
 # ==========================================================
 # CONFIGURAÇÕES
@@ -94,9 +96,6 @@ def agora_brasil():
 
 def eh_quinta_feira():
     """
-    Retorna True somente quando for quinta-feira
-    no horário de Brasília.
-
     Segunda-feira = 0
     Terça-feira   = 1
     Quarta-feira  = 2
@@ -116,20 +115,12 @@ def eh_quinta_feira():
 @app.route("/", methods=["GET"])
 def inicio():
 
-    # ======================================================
-    # PROMOÇÃO SOMENTE NA QUINTA-FEIRA
-    # ======================================================
-
     promocao_ativa = eh_quinta_feira()
 
     if promocao_ativa:
-
         promocoes = PROMOCOES_QUINTA.copy()
-
     else:
-
         promocoes = {}
-
 
     return render_template(
         "index.html",
@@ -168,12 +159,14 @@ def pedido():
     ).strip()
 
     tamanho = request.form.get(
-        "tamanho"
-    )
+        "tamanho",
+        ""
+    ).strip()
 
     tipo = request.form.get(
-        "tipo"
-    )
+        "tipo",
+        ""
+    ).strip()
 
 
     # ======================================================
@@ -195,22 +188,70 @@ def pedido():
 
 
     if quantidade < 1:
-
         quantidade = 1
 
 
     # ======================================================
-    # BUSCA PREÇO NORMAL
+    # VALIDAÇÃO DO PRODUTO
     # ======================================================
 
-    preco = PRECOS.get(
-        (tamanho, tipo)
+    chave_produto = (
+        tamanho,
+        tipo
+    )
+
+    preco_normal = PRECOS.get(
+        chave_produto
     )
 
 
-    if preco is None:
+    if preco_normal is None:
 
         return "Pedido inválido.", 400
+
+
+    # ======================================================
+    # VERIFICA SE A PROMOÇÃO ESTÁ ATIVA
+    # ======================================================
+
+    promocao_ativa = eh_quinta_feira()
+
+
+    # ======================================================
+    # PREÇO DO PEDIDO
+    #
+    # Na quinta-feira:
+    # Normal Salsicha = R$ 32,00
+    # Normal Linguiça = R$ 35,00
+    # Super Salsicha  = R$ 42,00
+    # Super Linguiça  = R$ 45,00
+    #
+    # A promoção representa 2 lanches.
+    # ======================================================
+
+    usando_promocao = False
+
+    if promocao_ativa and quantidade == 2:
+
+        preco_promocao = PROMOCOES_QUINTA.get(
+            chave_produto
+        )
+
+        if preco_promocao is not None:
+
+            preco = preco_promocao
+            subtotal = preco_promocao
+            usando_promocao = True
+
+        else:
+
+            preco = preco_normal
+            subtotal = preco_normal * quantidade
+
+    else:
+
+        preco = preco_normal
+        subtotal = preco_normal * quantidade
 
 
     # ======================================================
@@ -242,10 +283,28 @@ def pedido():
 
 
     # ======================================================
-    # TOTAL
+    # TAXA DE CARTÃO
+    #
+    # A taxa é cobrada somente UMA VEZ por pedido.
     # ======================================================
 
-    total = preco * quantidade
+    if pagamento in [
+        "Cartão de Débito",
+        "Cartão de Crédito"
+    ]:
+
+        taxa_cartao = 1.00
+
+    else:
+
+        taxa_cartao = 0.00
+
+
+    # ======================================================
+    # TOTAL DO PEDIDO
+    # ======================================================
+
+    total = subtotal + taxa_cartao
 
 
     # ======================================================
@@ -297,36 +356,69 @@ def pedido():
     # PEDIDO
     # ======================================================
 
-    mensagem.append("PEDIDO")
+    mensagem.append(
+        "PEDIDO"
+    )
 
     mensagem.append("")
 
 
-    mensagem.append(
-        f"1. {tamanho} - {tipo}"
-    )
+    if usando_promocao:
 
-    mensagem.append(
-        f"Tamanho: {tamanho_cm}"
-    )
-
-    mensagem.append(
-        f"Quantidade: {quantidade}"
-    )
-
-    mensagem.append(
-        f"Valor unitário: R$ {preco:.2f}".replace(
-            ".",
-            ","
+        mensagem.append(
+            f"PROMOÇÃO DE QUINTA - 2 {tamanho} {tipo}"
         )
-    )
 
-    mensagem.append(
-        f"Subtotal: R$ {total:.2f}".replace(
-            ".",
-            ","
+        mensagem.append(
+            f"Tamanho: {tamanho_cm}"
         )
-    )
+
+        mensagem.append(
+            "Quantidade: 2 lanches"
+        )
+
+        mensagem.append(
+            f"Valor da promoção: R$ {preco:.2f}".replace(
+                ".",
+                ","
+            )
+        )
+
+        mensagem.append(
+            f"Subtotal: R$ {subtotal:.2f}".replace(
+                ".",
+                ","
+            )
+        )
+
+    else:
+
+        mensagem.append(
+            f"1. {tamanho} - {tipo}"
+        )
+
+        mensagem.append(
+            f"Tamanho: {tamanho_cm}"
+        )
+
+        mensagem.append(
+            f"Quantidade: {quantidade}"
+        )
+
+        mensagem.append(
+            f"Valor unitário: R$ {preco:.2f}".replace(
+                ".",
+                ","
+            )
+        )
+
+        mensagem.append(
+            f"Subtotal: R$ {subtotal:.2f}".replace(
+                ".",
+                ","
+            )
+        )
+
 
     mensagem.append("")
 
@@ -335,8 +427,9 @@ def pedido():
     # MOLHOS
     # ======================================================
 
-    mensagem.append("Molhos:")
-
+    mensagem.append(
+        "Molhos:"
+    )
 
     if molhos_ordenados:
 
@@ -362,7 +455,6 @@ def pedido():
     mensagem.append(
         "Acompanhamentos:"
     )
-
 
     if acompanhamentos_ordenados:
 
@@ -409,12 +501,26 @@ def pedido():
         f"{pagamento or 'Não informado'}"
     )
 
-    mensagem.append("")
+
+    # ======================================================
+    # TAXA DO CARTÃO
+    # ======================================================
+
+    if taxa_cartao > 0:
+
+        mensagem.append(
+            f"Taxa cartão: R$ {taxa_cartao:.2f}".replace(
+                ".",
+                ","
+            )
+        )
 
 
     # ======================================================
     # TOTAL
     # ======================================================
+
+    mensagem.append("")
 
     mensagem.append(
         f"TOTAL DO PEDIDO: "
@@ -450,6 +556,10 @@ def pedido():
         f"?text={quote(texto)}"
     )
 
+
+    # ======================================================
+    # PÁGINA DE SUCESSO
+    # ======================================================
 
     return render_template(
         "sucesso.html",
